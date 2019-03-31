@@ -32,3 +32,9 @@ While GerberStencilGenerator will display these shapes it currently cannot edit 
 ### Requirements
 GerberStencilGenerator is written in C++ and relies on the Qt Framework.
 This provides a reliable cross-platform compatibility and ensures, it runs likewise on Windows, Mac and Linux Systems.
+
+### Usage instructions
+1. Create a RS-274X Gerber File just like you would in order to prepare a PCB-Ordering.
+   You should preferably choose the dedicated Layers for Stencil creation. In EAGLE these are Layer **31 tCream** and/or Layer **32 bCream** respectively. In other CAD programs they might be named differently.
+2. Open the File within the GerberStencilGenerator.
+    Each group of Apertures will be listed in the column to the left.
