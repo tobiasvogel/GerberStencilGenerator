@@ -23,7 +23,7 @@ Once you are satisfied with the modifications you made, the Program will output 
 Please note that GerberStencilGenerator intentionally will not overwrite your original File, as by the nature of the Gerber Format introducing rounded corners requires replacing some simple shapes like a rectangle by a group of others to accurately represent the desired shapes. Therefore once the output file is written, the group of shapes cannot be changed back into a single shape as easily and retaining the original File is therefore desired and is not a Bug of the Program.
 
 ### What it isn't and limitations it has
-The program does is not a dedicated Gerber File Generator by itself. It will only modify already existing Gerber Files, you still need a PCB-Tool to generate a Gerber File in the first place.
+The program isn't a dedicated Gerber File Generator by itself. It will only modify already existing Gerber Files, you still need a PCB-Tool to generate a Gerber File in the first place.
 Another limitation (at least for now) is that GerberStencilGenerator can only edit so-called Flash-Apertures.
 Due to historical reasons, the Gerber RS-274X Format only knows four basic types of basic shapes: circles, rectangles, obround and polygons, optinally rotated, with or without a hole in it.
 These are also the only four shapes GerberStencilGenerator can actually edit. The Gerber Format itself also allows for what is called a Macro-Aperture, basically a custom shaped Aperture made from arbitrary combinations of the aforementioned shapes.
@@ -32,6 +32,8 @@ While GerberStencilGenerator will display these shapes it currently cannot edit 
 ### Requirements
 GerberStencilGenerator is written in C++ and relies on the Qt Framework.
 This provides a reliable cross-platform compatibility and ensures, it runs likewise on Windows, Mac and Linux Systems.
+
+Furthermore GerberStencilGenerator makes use of the [gerbv](http://gerbv.geda-project.org/) Gerber Editor program to display a preview image of the changes it makes. Although the preview-generation is optional and thus gerbv not required as a necessary dependency, being able to see your changes on-the-fly makes things a lot easier.
 
 ### Usage instructions
 1. Create a RS-274X Gerber File just like you would in order to prepare a PCB-Ordering.
