@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/res">
+        <file alias="circle">resources/apertures/circle.png</file>
+        <file alias="hollow-circle">resources/apertures/circle_h.png</file>
+        <file alias="macro">resources/apertures/macro.png</file>
+        <file alias="obround">resources/apertures/obround.png</file>
+        <file alias="hollow-obround">resources/apertures/obround_h.png</file>
+        <file alias="polygon">resources/apertures/polygon.png</file>
+        <file alias="hollow-polygon">resources/apertures/polygon_h.png</file>
+        <file alias="rectangle">resources/apertures/rectangle.png</file>
+        <file alias="hollow-rectangle">resources/apertures/rectangle_h.png</file>
+        <file alias="unknown">resources/apertures/unknown.png</file>
+        <file alias="loading">resources/loading.png</file>
+        <file alias="s_loading">resources/s_loading.png</file>
+        <file alias="web">resources/icons/DynamicDiscoveryDocument_32x.png</file>
+        <file alias="settings">resources/icons/Property_32x.png</file>
+        <file alias="save">resources/icons/Save_32x.png</file>
+        <file alias="accept">resources/icons/StatusOK_32x.png</file>
+        <file alias="deny">resources/icons/StatusCriticalError_32x.png</file>
+        <file alias="recheck">resources/icons/VBWorkflowManagerActivity_32x.png</file>
+        <file alias="status_warning">resources/icons/StatusWarning_32x.png</file>
+        <file alias="status_invalid">resources/icons/StatusInvalid_32x.png</file>
+        <file alias="open">resources/icons/OpenFolder_32x.png</file>
+        <file alias="refresh">resources/icons/Refresh_32x.png</file>
+        <file alias="status_notok">resources/icons/StatusOffline_stop_32x.png</file>
+        <file alias="color_pick">resources/icons/ColorPicker_32x.png</file>
+        <file alias="status_ok">resources/icons/Checkmark_32x.png</file>
+        <file alias="search">resources/icons/Search_32x.png</file>
+        <file alias="right">resources/icons/GlyphRight_32x.png</file>
+        <file alias="trash">resources/icons/trash_x32.png</file>
+    </qresource>
+</RCC>
