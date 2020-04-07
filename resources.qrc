@@ -38,5 +38,15 @@
         <file alias="rectangle-deleted">resources/apertures/rectangle_deleted.png</file>
         <file alias="unknown-deleted">resources/apertures/unknown_deleted.png</file>
         <file alias="hollow-rectangle-deleted">resources/apertures/rectangle_h_deleted.png</file>
+        <file alias="circle-changed">resources/apertures/circle_changed.png</file>
+        <file alias="hollow-circle-changed">resources/apertures/circle_h_changed.png</file>
+        <file alias="macro-changed">resources/apertures/macro_changed.png</file>
+        <file alias="obround-changed">resources/apertures/obround_changed.png</file>
+        <file alias="hollow-obround-changed">resources/apertures/obround_h_changed.png</file>
+        <file alias="polygon-changed">resources/apertures/polygon_changed.png</file>
+        <file alias="hollow-polygon-changed">resources/apertures/polygon_h_changed.png</file>
+        <file alias="rectangle-changed">resources/apertures/rectangle_changed.png</file>
+        <file alias="hollow-rectangle-changed">resources/apertures/rectangle_h_changed.png</file>
+        <file alias="unknown-changed">resources/apertures/unknown_changed.png</file>
     </qresource>
 </RCC>

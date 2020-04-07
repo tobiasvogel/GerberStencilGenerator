@@ -16,6 +16,7 @@
 #include "aperturelistwidget.h"
 #include "settingsdialog.h"
 #include "color.h"
+#include "shapeicon.h"
 
 #define AUTO_PREVIEW_TIMEOUT_MS 200
 #define APPLICATION_NAME "Gerber Stencil Generator"
@@ -24,8 +25,8 @@
 #define ORGANISATION_DOMAIN "tobiasvogel.tv"
 
 enum unit_type_t { UNKNOWN, METRIC, IMPERIAL };
-enum shape_type_t { UNSET, CIRCLE, RECTANGLE, OBROUND, POLYGON, MACRO };
-enum change_type_t { UNCHANGED, DRAFT, ACCEPTED, REVERTED, DISCARDED };
+//enum shape_type_t { UNSET, CIRCLE, RECTANGLE, OBROUND, POLYGON, MACRO };
+enum change_type_t { UNCHANGED, DRAFT, ACCEPTED, REVERTED, DISCARDED, DELETED };
 
 typedef enum unit_type_t unit_type;
 typedef enum shape_type_t shape_type;
@@ -59,6 +60,7 @@ typedef struct {
     QStringList replacementGerber;
     bool hasUnsavedChanges = false;
     change_type changeState = UNCHANGED;
+    ShapeIcon icon;
 } flash_aperture_struct;
 
 namespace Ui {
@@ -105,10 +107,10 @@ private:
     QStandardItemModel *aperturesWidgetList;
     QPixmap gerberPreviewPixmap;
     bool gerbv_confirmed = false;
-    bool autoPreview = false;
+    bool autoPreview = true;
     QLabel *loadingLabel;
     QMovie *loadingMovie;
-    QProcess *externalProcess;
+    //QProcess *externalProcess;
     QString processCommand;
     QStringList processArguments;
     QTemporaryFile overlayGerber;
@@ -157,7 +159,7 @@ protected Q_SLOTS:
    void toggleRoundnessAjustControls(bool enabled);
    void toggleInnerSizeAdjustControls(bool enabled);
    bool checkHasUnsavedChanges(QString selectedAperture);
-   void markUnsavedChanges(int currentIndex, bool hasChanges = true);
+   void markUnsavedChanges(bool hasChanges = true);
    void openSettingsDialog(void);
    void redrawChangedColorSettings(void);
    void resetCurrentChanges();
@@ -166,14 +168,12 @@ protected Q_SLOTS:
    change_type getChangeState(QString selectedAperture);
    void acceptChanges(void);
    void generatePreview(void);
-   void newPreviewAvailable(int exitCode, QProcess::ExitStatus);
    void processStateChanged(QProcess::ProcessState);
    bool getAutoPreviewEnabled(void);
    void setAutoPreviewEnabled(bool option);
    void enableAutoPreview(bool enable);
    void timedAutoUpdate(void);
    void removeApertureItem(void);
-   uint16_t getUint16(int value);
 #ifdef QT_DEBUG
    void dumpApertureList();
 #endif

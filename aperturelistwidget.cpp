@@ -30,7 +30,7 @@ void apertureListWidget::currentChanged(const QModelIndex &current, const QModel
     changedText(current.data().toString());
     }
     if (gsgInstance->autoPreview) {
-        gsgInstance->autoPreviewTimer->start(AUTO_PREVIEW_TIMEOUT_MS);
+        gsgInstance->generatePreview();
     }
 }
 

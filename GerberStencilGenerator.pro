@@ -29,6 +29,7 @@ CONFIG += c++11 link_pkgconfig
 SOURCES += \
     main.cpp \
     gerberstencilgenerator.cpp \
+    shapeicon.cpp \
     slidersizelabel.cpp \
     apertureeditview.cpp \
     hollowgraphicsrectitem.cpp \
@@ -43,6 +44,7 @@ SOURCES += \
 HEADERS += \
     color.h \
         gerberstencilgenerator.h \
+    shapeicon.h \
     slidersizelabel.h \
     apertureeditview.h \
     hollowgraphicsrectitem.h \

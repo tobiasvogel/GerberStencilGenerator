@@ -43,11 +43,15 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   ui->apertureGraphicsView->setScene(apertureEditScene);
   gerberPreviewScene = new QGraphicsScene(this);
   ui->gerberPreviewGView->setScene(gerberPreviewScene);
+
+  ui->gerberPreviewGView->setDragMode(QGraphicsView::ScrollHandDrag);
+  ui->gerberPreviewGView->setResizeAnchor(QGraphicsView::AnchorViewCenter);
+
   toggleSizeAdjustControls(false);
   toggleRoundnessAjustControls(false);
   toggleInnerSizeAdjustControls(false);
 
-  externalProcess = new QProcess(this);
+  //externalProcess = new QProcess(this);
 
   //QProcess::connect(externalProcess, SIGNAL(stateChanged(QProcess::ProcessState)),this, SLOT(processStateChanged(QProcess::ProcessState)));
   //QProcess::connect(externalProcess, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(newPreviewAvailable(int)));
@@ -71,14 +75,15 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   QObject::connect(ui->acceptChangesButton, SIGNAL(clicked()), this, SLOT(acceptChanges()));
   QObject::connect(ui->previewButton, SIGNAL(clicked()), this, SLOT(generatePreview()));
   QObject::connect(ui->clearApertureButton, SIGNAL(clicked()), this, SLOT(removeApertureItem()));
-  QObject::connect(externalProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(newPreviewAvailable(int, QProcess::ExitStatus)));
-  QObject::connect(externalProcess, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(processStateChanged(QProcess::ProcessState)));
+  //QObject::connect(externalProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(newPreviewAvailable(int, QProcess::ExitStatus)));
+  //QObject::connect(externalProcess, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(processStateChanged(QProcess::ProcessState)));
 
   ui->previewButton->setEnabled(true);
   ui->previewButton->setToolTip(QString());
 
   QAction *enableAutoPreviewAction = new QAction(ui->previewButton);
   enableAutoPreviewAction->setCheckable(true);
+  enableAutoPreviewAction->setChecked(true);
   enableAutoPreviewAction->setText(tr("Auto-Update"));
   ui->previewButton->addAction(enableAutoPreviewAction);
   QObject::connect(enableAutoPreviewAction, SIGNAL(toggled(bool)), this, SLOT(enableAutoPreview(bool)));
@@ -129,9 +134,9 @@ void GerberStencilGenerator::sizeSettingChanged(int percentage) {
       if (apertureIndex == -1) {
           throw("couldn't find aperture in list.");
       } else {
-          flash_aperture_struct tempAperture = apertureList.at(apertureIndex);
-          tempAperture.resizePercentage = percentage;
-          apertureList.replace(apertureIndex, tempAperture);
+          flash_aperture_struct *selectedAperture = nullptr;
+          selectedAperture = const_cast<flash_aperture_struct*>(&apertureList.at(apertureIndex));
+          selectedAperture->resizePercentage = percentage;
           updateEditingAperture(currentAperture);
       }
   }
@@ -154,9 +159,9 @@ void GerberStencilGenerator::roundnessSettingChanged(int percentage) {
       if (apertureIndex == -1) {
           throw("couldn't find aperture in list.");
       } else {
-          flash_aperture_struct tempAperture = apertureList.at(apertureIndex);
-          tempAperture.roundnessPercentage = percentage;
-          apertureList.replace(apertureIndex, tempAperture);
+          flash_aperture_struct *selectedAperture = nullptr;
+          selectedAperture = const_cast<flash_aperture_struct*>(&apertureList.at(apertureIndex));
+          selectedAperture->roundnessPercentage = percentage;
           updateEditingAperture(currentAperture);
       }
   }
@@ -179,9 +184,9 @@ void GerberStencilGenerator::innerSizeSettingChanged(int percentage) {
         if (apertureIndex == -1) {
             throw("couldn't find aperture in list.");
         } else {
-            flash_aperture_struct tempAperture = apertureList.at(apertureIndex);
-            tempAperture.innerResizePercentage = percentage;
-            apertureList.replace(apertureIndex, tempAperture);
+            flash_aperture_struct *selectedAperture = nullptr;
+            selectedAperture = const_cast<flash_aperture_struct*>(&apertureList.at(apertureIndex));
+            selectedAperture->innerResizePercentage = percentage;
             updateEditingAperture(currentAperture);
         }
     }
@@ -317,7 +322,7 @@ void GerberStencilGenerator::updateEditingAperture(QString selectedAperture)
         throw("couldn't find aperture in list.");
     }
 
-    this->markUnsavedChanges(apertureIndex, this->checkHasUnsavedChanges(selectedAperture));
+    this->markUnsavedChanges(this->checkHasUnsavedChanges(selectedAperture));
 
     apertureEditScene->clear();
     shape_type currentShape = apertureList.at(apertureIndex).originalShape;
@@ -681,26 +686,22 @@ bool GerberStencilGenerator::checkHasUnsavedChanges(QString selectedAperture) {
     return changed;
 }
 
-void GerberStencilGenerator::markUnsavedChanges(int currentIndex, bool hasChanges) {
+void GerberStencilGenerator::markUnsavedChanges(bool hasChanges) {
     if (!(aperturesWidgetList->rowCount() == 0)) {
-        QString currentAperture = currentSelectedItem();
+        flash_aperture_struct *selectedAperture = nullptr;
+        selectedAperture = const_cast<flash_aperture_struct*>(&apertureList.at(ui->apertureList->currentIndex().row()));
+        QFont itemFont;
+        itemFont = aperturesWidgetList->item(ui->apertureList->currentIndex().row())->font();
         if (hasChanges) {
-            if (currentAperture.startsWith("* ")) {
-                return;
-            } else {
-                currentAperture.prepend("* ");
-                aperturesWidgetList->item(ui->apertureList->currentIndex().row())->setText(currentAperture);
-                this->update();
-            }
+                itemFont.setStyle(QFont::StyleItalic);
+                selectedAperture->icon.setChanged(true);
         } else {
-            if (currentAperture.startsWith("* ")) {
-                currentAperture = currentAperture.right(currentAperture.length()-2);
-                aperturesWidgetList->item(ui->apertureList->currentIndex().row())->setText(currentAperture);
-                this->update();
-            } else {
-                return;
-            }
-            }
+                itemFont.setStyle(QFont::StyleNormal);
+                selectedAperture->icon.setChanged(false);
+        }
+        aperturesWidgetList->item(ui->apertureList->currentIndex().row())->setFont(itemFont);
+        aperturesWidgetList->item(ui->apertureList->currentIndex().row())->setIcon(selectedAperture->icon.getIcon());
+        this->update();
     }
 }
 
@@ -727,13 +728,13 @@ void GerberStencilGenerator::resetCurrentChanges() {
     if (!(this->checkHasUnsavedChanges(currentAperture))) {
         return;
     } else {
-        flash_aperture_struct tempAperture = apertureList.at(apertureIndex);
+        flash_aperture_struct *selectedAperture = nullptr;
+        selectedAperture = const_cast<flash_aperture_struct*>(&apertureList.at(apertureIndex));
 
-        tempAperture.resizePercentage = apertureList.at(apertureIndex).initialResizePercentage;
-        tempAperture.innerResizePercentage = apertureList.at(apertureIndex).initialInnerResizePercentage;
-        tempAperture.roundnessPercentage = apertureList.at(apertureIndex).initialRoundnessPercentage;
+        selectedAperture->resizePercentage = selectedAperture->initialResizePercentage;
+        selectedAperture->innerResizePercentage = selectedAperture->initialInnerResizePercentage;
+        selectedAperture->roundnessPercentage = selectedAperture->initialRoundnessPercentage;
 
-        apertureList.replace(apertureIndex, tempAperture);
         updateEditingAperture(currentAperture);
     }
 }
@@ -747,11 +748,9 @@ void GerberStencilGenerator::setChangeState(change_type chg) {
     if (!(this->checkHasUnsavedChanges(currentAperture))) {
         return;
     } else {
-        flash_aperture_struct tempAperture = apertureList.at(apertureIndex);
-
-        tempAperture.changeState = chg;
-
-        apertureList.replace(apertureIndex, tempAperture);
+        flash_aperture_struct *selectedAperture = nullptr;
+        selectedAperture = const_cast<flash_aperture_struct*>(&apertureList.at(apertureIndex));
+        selectedAperture->changeState = chg;
         updateEditingAperture(currentAperture);
     }
 }
@@ -779,7 +778,7 @@ void GerberStencilGenerator::acceptChanges() {
 }
 
 void GerberStencilGenerator::generatePreview() {
-   if (currentSelectedIndex() < 0) {
+    if (aperturesWidgetList->rowCount() < 1) {
         // FIXME: Show warning there is nothing loaded at this point
         return;
     }
@@ -787,7 +786,6 @@ void GerberStencilGenerator::generatePreview() {
     //loadingLabel->setGeometry(QRect(0,0,ui->gerberPreviewGView->size().width(),ui->gerberPreviewGView->size().height()));
     //loadingMovie->start();
     QSize previewSize = QSize(ui->gerberPreviewGView->contentsRect().width(), ui->gerberPreviewGView->contentsRect().height());
-    previewSize = QSize(ui->gerberPreviewGView->contentsRect().width(), ui->gerberPreviewGView->contentsRect().height());
     QString currentAperture = this->currentSelectedItem();
     bool ok = false;
     int apertureId = -1;
@@ -803,17 +801,6 @@ void GerberStencilGenerator::generatePreview() {
         qDebug() << "unable to detect aperture id";
         invokeRenderer(previewSize.width(), previewSize.height(), QStringList(),false);
     }
-}
-
-void GerberStencilGenerator::newPreviewAvailable(int exitCode, QProcess::ExitStatus status) {
-    //loadingLabel->hide();
-    //loadingMovie->stop();
-    //qDebug() << exitCode << status;
-    //if (exitCode == 0) {
-        gerberPreviewPixmap.convertFromImage(QImage(tempImageFile.fileName()));
-        gerberPreviewScene->addPixmap(gerberPreviewPixmap);
-        ui->gerberPreviewGView->update();
-    //}
 }
 
 void GerberStencilGenerator::processStateChanged(QProcess::ProcessState state)
@@ -839,7 +826,6 @@ void GerberStencilGenerator::timedAutoUpdate() {
     if (autoPreviewTimer->remainingTime() > 0) {
         autoPreviewTimer->stop();
         autoPreviewTimer->start(AUTO_PREVIEW_TIMEOUT_MS);
-    } else if (externalProcess->state() == QProcess::NotRunning) {
         generatePreview();
     } else {
         // FIXME: Show warning the preview generation is already running at this point
@@ -857,15 +843,12 @@ void GerberStencilGenerator::removeApertureItem()
         QFont itemFont = item->font();
         itemFont.setStrikeOut(true);
         item->setFont(itemFont);
-        qDebug() << "Remove Aperture " << currentAperture;
+        int apertureIndex = currentSelectedIndex();
+        flash_aperture_struct *selectedAperture = nullptr;
+        selectedAperture = const_cast<flash_aperture_struct*>(&apertureList.at(apertureIndex));
+        selectedAperture->icon.setDeleted(true);
+        item->setIcon(selectedAperture->icon.getIcon());
     }
-}
-
-uint16_t GerberStencilGenerator::getUint16(int value)
-{
-    int invalue = value << 8;
-    uint16_t retval = static_cast<uint16_t>(invalue) + static_cast<uint16_t>(value);
-    return retval;
 }
 
 QColor GerberStencilGenerator::getColor(QString colorId)  {
@@ -1083,6 +1066,8 @@ void GerberStencilGenerator::invokeRenderer(int width, int height, QStringList o
     cairo_surface_flush(target);
     QImage cairoImage = QImage(cairo_image_surface_get_data(target),width,height,QImage::Format_ARGB32);
     gerberPreviewPixmap.convertFromImage(cairoImage);
+    gerberPreviewScene->clear();
+    gerberPreviewScene->setSceneRect(0,0,width,height);
     gerberPreviewScene->addPixmap(gerberPreviewPixmap);
     ui->gerberPreviewGView->update();
     cairo_destroy(cr);
@@ -1095,6 +1080,7 @@ void GerberStencilGenerator::resizeEvent(QResizeEvent *event)
     event->accept();
     ui->apertureGraphicsView->adjustPreviewSize();
     ui->apertureGraphicsView->update();
+    generatePreview();
 }
 
 void GerberStencilGenerator::saveUserSettings()
@@ -1174,6 +1160,7 @@ void GerberStencilGenerator::parseGerberData() {
 
       tempAperture.originalId = rx.cap(1).toInt();
       tempAperture.originalShape = CIRCLE;
+      tempAperture.icon.setShape(CIRCLE);
 
       QString dimensions = aperture.right(aperture.length()-aperture.indexOf(",")-1);
       if (dimensions.endsWith("*%")) {
@@ -1190,6 +1177,7 @@ void GerberStencilGenerator::parseGerberData() {
         qDebug() << tempAperture.originalOuterDiameter;
       } else if (segments == 1) { // ring shape
         tempAperture.isHollow = true;
+        tempAperture.icon.setHollow(true);
         rx.setPattern("((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)");
         if (rx.indexIn(dimensions) > -1) {
           tempAperture.originalOuterDiameter = rx.cap(1).toDouble();
@@ -1210,6 +1198,7 @@ void GerberStencilGenerator::parseGerberData() {
 
       tempAperture.originalId = rx.cap(1).toInt();
       tempAperture.originalShape = RECTANGLE;
+      tempAperture.icon.setShape(RECTANGLE);
 
       QString dimensions = aperture.right(aperture.length()-aperture.indexOf(",")-1);
       if (dimensions.endsWith("*%")) {
@@ -1221,6 +1210,7 @@ void GerberStencilGenerator::parseGerberData() {
 
       if (segments == 2) { // contains a hole
         tempAperture.isHollow = true;
+        tempAperture.icon.setHollow(true);
         rx.setPattern("((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)");
         if (rx.indexIn(dimensions) > -1) {
           tempAperture.originalWidth = rx.cap(1).toDouble();
@@ -1271,6 +1261,7 @@ void GerberStencilGenerator::parseGerberData() {
 
         tempAperture.originalId = rx.cap(1).toInt();
         tempAperture.originalShape = OBROUND;
+        tempAperture.icon.setShape(OBROUND);
 
         QString dimensions = aperture.right(aperture.length()-aperture.indexOf(",")-1);
         if (dimensions.endsWith("*%")) {
@@ -1291,6 +1282,7 @@ void GerberStencilGenerator::parseGerberData() {
           }
         } else if (segments == 2) { // hollow obround
           tempAperture.isHollow = true;
+          tempAperture.icon.setHollow(true);
           rx.setPattern("((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)");
           if (rx.indexIn(dimensions) > -1) {
             tempAperture.originalWidth = rx.cap(1).toDouble();
@@ -1319,6 +1311,7 @@ void GerberStencilGenerator::parseGerberData() {
 
         tempAperture.originalId = rx.cap(1).toInt();
         tempAperture.originalShape = POLYGON;
+        tempAperture.icon.setShape(POLYGON);
 
         QString dimensions = aperture.right(aperture.length()-aperture.indexOf(",")-1);
         if (dimensions.endsWith("*%")) {
@@ -1349,6 +1342,7 @@ void GerberStencilGenerator::parseGerberData() {
           }
         } else if (segments == 3) { // hollow n-gon (optionally rotated)
           tempAperture.isHollow = true;
+          tempAperture.icon.setHollow(true);
           rx.setPattern("((?:[0-9]+)?\\.[0-9]+)X([0-9]+)X((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)");
           if (rx.indexIn(dimensions) > -1) {
             tempAperture.originalOuterDiameter = rx.cap(1).toDouble();
@@ -1373,41 +1367,9 @@ void GerberStencilGenerator::parseGerberData() {
 
     }
 
+
   Q_FOREACH (flash_aperture_struct apt, apertureList) {
-      if (apt.originalShape == CIRCLE) {
-          if (apt.isHollow) {
-      aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/hollow-circle"), QString("Aperture %1").arg(apt.originalId)));
-          } else {
-aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/circle"), QString("Aperture %1").arg(apt.originalId)));
-        }
-      } else if (apt.originalShape == RECTANGLE) {
-          if (apt.isHollow) {
-              aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/hollow-rectangle"), QString("Aperture %1").arg(apt.originalId)));
-          } else {
-              aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/rectangle"), QString("Aperture %1").arg(apt.originalId)));
-        }
-      } else if (apt.originalShape == OBROUND) {
-                    if (apt.isHollow) {
-                        aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/hollow-obround"), QString("Aperture %1").arg(apt.originalId)));
-
-                    } else {
-                        aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/obround"), QString("Aperture %1").arg(apt.originalId)));
-
-                    }
-      } else if (apt.originalShape == POLYGON) {
-          if (apt.isHollow) {
-              aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/hollow-polygon"), QString("Aperture %1").arg(apt.originalId)));
-
-          } else {
-              aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/polygon"), QString("Aperture %1").arg(apt.originalId)));
-
-          }
-      } else if (apt.originalShape == MACRO) {
-          aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/macro"), QString("[ Aperture %1 ]").arg(apt.originalId)));
-      } else {
-          aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/unknown"), QString("[ Aperture %1 ]").arg(apt.originalId)));
-
-    }
+      aperturesWidgetList->appendRow(new QStandardItem(apt.icon.getIcon(), QString("Aperture %1").arg(apt.originalId)));
   }
 
   for (int i = 0; i < aperturesWidgetList->rowCount(); i++) {
@@ -1415,6 +1377,10 @@ aperturesWidgetList->appendRow(new QStandardItem(QIcon(":/res/circle"), QString(
   }
 
   ui->apertureList->setModel(aperturesWidgetList);
+
+  if (aperturesWidgetList->rowCount() > 0) {
+      generatePreview();
+  }
 
   #ifdef QT_DEBUG
   dumpApertureList();
