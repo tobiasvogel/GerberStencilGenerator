@@ -28,5 +28,15 @@
         <file alias="search">resources/icons/Search_32x.png</file>
         <file alias="right">resources/icons/GlyphRight_32x.png</file>
         <file alias="trash">resources/icons/trash_x32.png</file>
+        <file alias="circle-deleted">resources/apertures/circle_deleted.png</file>
+        <file alias="hollow-circle-deleted">resources/apertures/circle_h_deleted.png</file>
+        <file alias="macro-deleted">resources/apertures/macro_deleted.png</file>
+        <file alias="obround-deleted">resources/apertures/obround_deleted.png</file>
+        <file alias="hollow-obround-deleted">resources/apertures/obround_h_deleted.png</file>
+        <file alias="polygon-deleted">resources/apertures/polygon_deleted.png</file>
+        <file alias="hollow-polygon-deleted">resources/apertures/polygon_h_deleted.png</file>
+        <file alias="rectangle-deleted">resources/apertures/rectangle_deleted.png</file>
+        <file alias="unknown-deleted">resources/apertures/unknown_deleted.png</file>
+        <file alias="hollow-rectangle-deleted">resources/apertures/rectangle_h_deleted.png</file>
     </qresource>
 </RCC>
