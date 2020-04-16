@@ -11,6 +11,14 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = GerberStencilGenerator
 TEMPLATE = app
 
+exists( $$PWD/3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee ) {
+    include($$PWD/3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee/color_widgets.pri)
+} else:exists( $$PWD/3rdparty/Qt-Color-Widgets-master ) {
+    include($$PWD/3rdparty/Qt-Color-Widgets-master/color_widgets.pri)
+} else {
+    error("Additional \"Qt-Color-Widgets\"-library required. Please read the README-file in \"3rdparty/\" directory.")
+}
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -43,6 +51,7 @@ SOURCES += \
 
 HEADERS += \
     color.h \
+    floatcompare.h \
         gerberstencilgenerator.h \
     shapeicon.h \
     slidersizelabel.h \
@@ -68,4 +77,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     resources.qrc
 
-PKGCONFIG += libgerbv cairo
+PKGCONFIG += libgerbv cairo pixman-1
+

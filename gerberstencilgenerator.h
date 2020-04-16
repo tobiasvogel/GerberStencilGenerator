@@ -17,6 +17,7 @@
 #include "settingsdialog.h"
 #include "color.h"
 #include "shapeicon.h"
+#include "QtColorWidgets/color_dialog.hpp"
 
 #define AUTO_PREVIEW_TIMEOUT_MS 200
 #define APPLICATION_NAME "Gerber Stencil Generator"
@@ -120,6 +121,8 @@ private:
     QTemporaryFile tempImageFile;
     QTimer *autoPreviewTimer;
 
+    color_widgets::ColorDialog *colorDialog;
+
     gerbv_project_t *mainProject;
     gerbv_render_info_t screenRenderInfo;
 
@@ -174,6 +177,7 @@ protected Q_SLOTS:
    void enableAutoPreview(bool enable);
    void timedAutoUpdate(void);
    void removeApertureItem(void);
+   QColor pickColor(QColor initialColor, QString windowTitle);
 #ifdef QT_DEBUG
    void dumpApertureList();
 #endif

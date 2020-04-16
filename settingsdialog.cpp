@@ -29,7 +29,6 @@
 settingsDialog::settingsDialog(GerberStencilGenerator *parent) : QDialog(parent), ui(new Ui::settingsDialog) {
     ui->setupUi(this);
     gsgInstance = parent;
-    this->refreshColors();
    QObject::connect(ui->backgroundColorChooser, SIGNAL(clicked()), this, SLOT(selectNewColor()));
    QObject::connect(ui->adjustmentColorChooser, SIGNAL(clicked()), this, SLOT(selectNewColor()));
    QObject::connect(ui->flashColorChooser, SIGNAL(clicked()), this, SLOT(selectNewColor()));
@@ -50,7 +49,7 @@ void settingsDialog::selectNewColor() {
     QColor initialColor;
     initialColor = QColor(gsgInstance->getColor(colorName));
     QColor newColor;
-    newColor = QColorDialog::getColor(initialColor, this, tr("Select Color"));
+    newColor = gsgInstance->pickColor(initialColor, tr("Select Color"));
     gsgInstance->setColor(colorName, newColor);
     this->refreshColors();
 }

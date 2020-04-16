@@ -8,6 +8,9 @@ QRectF HollowGraphicsRectItem::boundingRect() const
 
 void HollowGraphicsRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr)
 {
+    std::ignore = option;
+    std::ignore = widget;
+
     QPainterPath scene;
     scene.addRect(_rect);
     QPainterPath mask;

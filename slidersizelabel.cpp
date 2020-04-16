@@ -4,6 +4,7 @@
 #include "gerberstencilgenerator.h"
 
 sliderSizeLabel::sliderSizeLabel(QWidget *parent) {
+    std::ignore = parent;
     setStyleSheet("* { padding-right: 4px; padding-left: 4px; } :hover { background-color: #ddd; }");
 }
 

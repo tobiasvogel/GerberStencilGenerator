@@ -27,13 +27,13 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   ui(new Ui::GerberStencilGenerator) {
   ui->setupUi(this);
 
+  colorDialog = new color_widgets::ColorDialog(this);
+
   QCoreApplication::setOrganizationName(ORGANISATION_NAME);
   QCoreApplication::setApplicationName(APPLICATION_NAME);
   QCoreApplication::setOrganizationDomain(ORGANISATION_DOMAIN);
 
   this->setWindowTitle(APPLICATION_NAME);
-
-  gtk_init(nullptr,nullptr);
 
   userSettings = new QSettings(this);
 
@@ -403,6 +403,8 @@ void GerberStencilGenerator::updateEditingAperture(QString selectedAperture)
 
 void GerberStencilGenerator::drawRoundedRectangle(double origFlashWidth, double origFlashHeight, double origInnerDiameter, double maxCornerRadius, int resizePercentage, int roundnessPercentage, int innerResizePercentage, bool hollow = false) {
 
+    std::ignore = maxCornerRadius;
+
     double flashWidth = origFlashWidth/100*resizePercentage;
     double flashHeight = origFlashHeight/100*resizePercentage;
     double innerDiameter = origInnerDiameter*(100+innerResizePercentage)/100;
@@ -707,6 +709,7 @@ void GerberStencilGenerator::markUnsavedChanges(bool hasChanges) {
 
 void GerberStencilGenerator::openSettingsDialog() {
     settingsUi = new settingsDialog(this);
+    //settingsUi->setModal(true);
     settingsUi->show();
 }
 
@@ -849,6 +852,18 @@ void GerberStencilGenerator::removeApertureItem()
         selectedAperture->icon.setDeleted(true);
         item->setIcon(selectedAperture->icon.getIcon());
     }
+}
+
+QColor GerberStencilGenerator::pickColor(QColor initialColor, QString windowTitle)
+{
+    //QColorDialog colorDialog;
+    colorDialog->setWindowTitle(windowTitle);
+    colorDialog->setColor(initialColor);
+    //colorDialog->setCurrentColor(initialColor);
+    //colorDialog->setOptions(QColorDialog::ShowAlphaChannel|QColorDialog::DontUseNativeDialog);
+    colorDialog->setAlphaEnabled(true);
+    colorDialog->exec();
+    return colorDialog->color();
 }
 
 QColor GerberStencilGenerator::getColor(QString colorId)  {

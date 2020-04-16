@@ -8,6 +8,8 @@ QRectF HollowGraphicsObroundItem::boundingRect() const
 
 void HollowGraphicsObroundItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    std::ignore = option;
+    std::ignore = widget;
 
     this->calculateConsistingShapes();
 

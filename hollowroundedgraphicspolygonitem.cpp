@@ -1,6 +1,7 @@
 #include "hollowroundedgraphicspolygonitem.h"
 #include <QtMath>
 #include <QDebug>
+#include "floatcompare.h"
 
 
 QRectF HollowRoundedGraphicsPolygonItem::boundingRect() const
@@ -10,6 +11,8 @@ QRectF HollowRoundedGraphicsPolygonItem::boundingRect() const
 
 void HollowRoundedGraphicsPolygonItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr)
 {
+    std::ignore = option;
+    std::ignore = widget;
 
     this->calculateNgonPoints();
 
@@ -210,7 +213,7 @@ void HollowRoundedGraphicsPolygonItem::setVertices(int v)
 
 void HollowRoundedGraphicsPolygonItem::setRotation(float r)
 {
-    if (r == 0) {
+    if (fl_equal(r,0.0)) {
         _rotation = 0;
     } else if (r < 0) {
         float remainder;
@@ -257,14 +260,14 @@ void HollowRoundedGraphicsPolygonItem::calculateNgonPoints()
     double startAngle = 0;
     double centerAngle = ((2*M_PI) / vertices);
 
-    if (_rotation == 0) {
+    if (fl_equal(_rotation,0.0)) {
     if (vertices % 2 == 1) {
         startAngle = M_PI_2;
     } else {
         startAngle = M_PI_2 - centerAngle/2;
     }
     } else {
-        startAngle = qDegreesToRadians(_rotation);
+        startAngle = static_cast<double>(qDegreesToRadians(_rotation));
     }
 
     for (int i = 0; i < vertices; i++) {
@@ -292,6 +295,8 @@ void HollowRoundedGraphicsPolygonItem::getMaximumCornerLength()
 
 QPointF HollowRoundedGraphicsPolygonItem::getCircleCenter(QPointF firstP, QPointF secondP, QPointF thirdP, int percentage)
 {
+    std::ignore = thirdP;
+
     QPointF firstCenterP = QPointF(((firstP.x()+secondP.x())/2),((firstP.y()+secondP.y())/2));
     double cornerDistance = _maxCornerLength/100*percentage;
     double distanceRatio = cornerDistance/_maxCornerLength;

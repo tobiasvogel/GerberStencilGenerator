@@ -10,6 +10,8 @@ QRectF HollowGraphicsPolygonItem::boundingRect() const
 
 void HollowGraphicsPolygonItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr)
 {
+    std::ignore = option;
+    std::ignore = widget;
 
     this->calculateNgonPoints();
 

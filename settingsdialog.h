@@ -6,6 +6,7 @@
 #include <QSettings>
 #include <QDir>
 #include <QTemporaryFile>
+#include <QColorDialog>
 
 namespace Ui {
     class settingsDialog;

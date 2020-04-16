@@ -8,6 +8,8 @@ QRectF HollowRoundedGraphicsRectItem::boundingRect() const
 
 void HollowRoundedGraphicsRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr)
 {
+    std::ignore = option;
+    std::ignore = widget;
 
     getMaximumCornerRadius();
 

@@ -7,6 +7,9 @@ QRectF HollowGraphicsEllipseItem::boundingRect() const
 
 void HollowGraphicsEllipseItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    std::ignore = option;
+    std::ignore = widget;
+
     QPainterPath scene;
     scene.addRect(_rect);
     QPainterPath mask;

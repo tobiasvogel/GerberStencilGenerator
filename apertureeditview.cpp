@@ -3,6 +3,7 @@
 #include <QDebug>
 
 apertureEditView::apertureEditView(QWidget *parent) {
+    std::ignore = parent;
     _lastWidth = this->getBoundingBox().width();
     _lastHeight = this->getBoundingBox().height();
 }
