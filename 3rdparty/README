@@ -1,0 +1,7 @@
+Please clone the repository from https://gitlab.com/mattia.basaglia/Qt-Color-Widgets directly into this directory.
+
+Alternatively download the file from here:
+https://gitlab.com/mattia.basaglia/Qt-Color-Widgets/-/archive/2bc527adf371a534f6340943726b2d31627fa3ee/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee.zip
+and extract contents directly into this directory.
+
+After cloning the repository or downloading the file above, please run the "patch.sh"-script in this folder.
