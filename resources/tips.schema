@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "tips": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "tip": {
+              "type": "object",
+              "oneOf": [
+                {
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "html": {
+                      "type": "string"
+                    }
+                  },
+                  "required" : [
+                  	"title",
+                  	"html"
+                  ]
+                },
+                {
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "plain": {
+                      "type": "string"
+                    }
+                  },
+                  "required" : [
+                    "title",
+                    "plain"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "tip"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "tips"
+  ]
+}

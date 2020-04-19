@@ -106,6 +106,19 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   loadingLabel->setGeometry(QRect(0,0,ui->gerberPreviewGView->size().width(),ui->gerberPreviewGView->size().height()));
   loadingMovie->stop();
 
+  if (_showTipAtStartup) {
+      tipOfTheDayDialog = new TipOfTheDay(this);
+      QObject::connect(tipOfTheDayDialog, SIGNAL(showAtStartUp(bool)), this, SLOT(setShowTipAtStartup(bool)));
+      this->showTipOfTheDay();
+      bool maxtip = tipOfTheDayDialog->showTipNumber(_showTipOfTheDayNumber);
+      if (maxtip) {
+          qDebug() << "Next time request Tip Number: " << (_showTipOfTheDayNumber+1);
+          userSettings->setValue("showTipOfTheDayNumber", (_showTipOfTheDayNumber+1));
+      } else {
+          userSettings->setValue("showTipOfTheDayNumber", 0);
+      }
+  }
+
 }
 
 GerberStencilGenerator::~GerberStencilGenerator() {
@@ -866,6 +879,12 @@ QColor GerberStencilGenerator::pickColor(QColor initialColor, QString windowTitl
     return colorDialog->color();
 }
 
+void GerberStencilGenerator::setShowTipAtStartup(bool toggle)
+{
+    qDebug() << "Show Tip Of The Day at Startup:" << toggle;
+    userSettings->setValue("showAtStartup", toggle);
+}
+
 QColor GerberStencilGenerator::getColor(QString colorId)  {
     if (QString("flashColor") == colorId) {
         return flashColor.toRgb();
@@ -1089,6 +1108,12 @@ void GerberStencilGenerator::invokeRenderer(int width, int height, QStringList o
     gerbv_destroy_project (mainProject);
 }
 
+void GerberStencilGenerator::showTipOfTheDay()
+{
+    tipOfTheDayDialog->show();
+    tipOfTheDayDialog->raise();
+}
+
 
 void GerberStencilGenerator::resizeEvent(QResizeEvent *event)
 {
@@ -1107,6 +1132,8 @@ void GerberStencilGenerator::restoreUserSettings()
 {
     QVariant color;
     QVariant string;
+    QVariant boolean;
+    QVariant integer;
     userSettings->beginGroup("Colors");
     color = userSettings->value("flashColor", QVariant(QColor(255,0,0,255)));
     flashColor = color.value<QColor>();
@@ -1122,6 +1149,12 @@ void GerberStencilGenerator::restoreUserSettings()
     lightRed = color.value<QColor>();
     color = userSettings->value("greyedOutColor", QVariant(QColor(224,224,224)));
     greyedOutColor = color.value<QColor>();
+    userSettings->endGroup();
+    userSettings->beginGroup("TipOfTheDay");
+    boolean = userSettings->value("showAtStartup", QVariant(bool(true)));
+    _showTipAtStartup = boolean.value<bool>();
+    integer = userSettings->value("showTipOfTheDayNumber", QVariant(int(0)));
+    _showTipOfTheDayNumber = integer.value<int>();
     userSettings->endGroup();
 }
 

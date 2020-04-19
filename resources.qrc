@@ -49,4 +49,12 @@
         <file alias="hollow-rectangle-changed">resources/apertures/rectangle_h_changed.png</file>
         <file alias="unknown-changed">resources/apertures/unknown_changed.png</file>
     </qresource>
+    <qresource prefix="/img">
+        <file alias="lightbulb">resources/lightbulb.png</file>
+    </qresource>
+    <qresource prefix="/json">
+        <file alias="tips">resources/tips.json</file>
+        <file>resources/translations/tips_en.json</file>
+        <file alias="json_schema">resources/tips.schema</file>
+    </qresource>
 </RCC>

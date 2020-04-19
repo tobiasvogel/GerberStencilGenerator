@@ -1,0 +1,22 @@
+{
+  "tips": [
+    {
+      "tip": {
+        "title": "First Tip",
+        "html": "<html><body>blabla</body></html>"
+      }
+    },
+    {
+      "tip": {
+        "title": "Second Tip",
+        "plain": "blabla"
+      }
+    },
+    {
+      "tip": {
+        "title": "Third Tip",
+        "plain": "bloblu"
+      }
+    }
+  ]
+}

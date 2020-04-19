@@ -17,6 +17,7 @@
 #include "settingsdialog.h"
 #include "color.h"
 #include "shapeicon.h"
+#include "tipoftheday.h"
 #include "QtColorWidgets/color_dialog.hpp"
 
 #define AUTO_PREVIEW_TIMEOUT_MS 200
@@ -83,9 +84,14 @@ public:
     QColor getColor(QString colorId = "");
     bool setColor(QString colorId = "", QColor newColor = Qt::transparent);
 
+    Q_ENUM(unit_type);
+    Q_ENUM(change_type);
+    Q_ENUM(shape_type);
+
 private:
     Ui::GerberStencilGenerator *ui;
     settingsDialog *settingsUi;
+    TipOfTheDay *tipOfTheDayDialog;
     QSettings *userSettings;
     QString gerbvApplicationPath;
     QDir lastInputFileDir = QDir::homePath();
@@ -120,6 +126,8 @@ private:
 #endif
     QTemporaryFile tempImageFile;
     QTimer *autoPreviewTimer;
+    bool _showTipAtStartup = true;
+    int _showTipOfTheDayNumber = 0;
 
     color_widgets::ColorDialog *colorDialog;
 
@@ -138,6 +146,7 @@ protected:
     QStandardItemModel *getWidgetListModel(void);
     QStringList generateHighlightedGerber(int selectedApertureId);
     void invokeRenderer(int width, int height, QStringList overlayData, bool useTempOverlay);
+    void showTipOfTheDay(void);
 
 protected Q_SLOTS:
    void sizeSettingChanged(int percentage);
@@ -178,6 +187,7 @@ protected Q_SLOTS:
    void timedAutoUpdate(void);
    void removeApertureItem(void);
    QColor pickColor(QColor initialColor, QString windowTitle);
+   void setShowTipAtStartup(bool toggle);
 #ifdef QT_DEBUG
    void dumpApertureList();
 #endif

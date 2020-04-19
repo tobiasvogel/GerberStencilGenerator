@@ -47,7 +47,8 @@ SOURCES += \
     hollowgraphicsobrounditem.cpp \
     hollowgraphicspolygonitem.cpp \
     hollowroundedgraphicspolygonitem.cpp \
-    settingsdialog.cpp
+    settingsdialog.cpp \
+    tipoftheday.cpp
 
 HEADERS += \
     color.h \
@@ -63,7 +64,8 @@ HEADERS += \
     hollowgraphicsobrounditem.h \
     hollowgraphicspolygonitem.h \
     hollowroundedgraphicspolygonitem.h \
-    settingsdialog.h
+    settingsdialog.h \
+    tipoftheday.h
 
 FORMS += \
         gerberstencilgenerator.ui \
