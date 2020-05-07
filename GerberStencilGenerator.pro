@@ -48,12 +48,13 @@ SOURCES += \
     hollowgraphicspolygonitem.cpp \
     hollowroundedgraphicspolygonitem.cpp \
     settingsdialog.cpp \
+    snapslider.cpp \
     tipoftheday.cpp
 
 HEADERS += \
     color.h \
     floatcompare.h \
-        gerberstencilgenerator.h \
+    gerberstencilgenerator.h \
     shapeicon.h \
     slidersizelabel.h \
     apertureeditview.h \
@@ -65,6 +66,7 @@ HEADERS += \
     hollowgraphicspolygonitem.h \
     hollowroundedgraphicspolygonitem.h \
     settingsdialog.h \
+    snapslider.h \
     tipoftheday.h
 
 FORMS += \
@@ -81,3 +83,12 @@ RESOURCES += \
 
 PKGCONFIG += libgerbv cairo pixman-1
 
+win32 {
+    RC_ICONS = resources/appicon/icon.ico
+}
+macx {
+    ICON = resources/appicon/icon.icns
+}
+unix|linux {
+    ICON = resources/appicon/icon.png
+}

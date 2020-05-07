@@ -211,6 +211,16 @@ void HollowRoundedGraphicsRectItem::setRoundness(int percentage)
     _roundness = percentage;
 }
 
+QStringList HollowRoundedGraphicsRectItem::getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices = 0, bool isHollow = false)
+{
+    std::ignore = vertices;
+
+    QStringList apMacro;
+
+
+    return apMacro;
+}
+
 void HollowRoundedGraphicsRectItem::getMaximumCornerRadius()
 {
     double shorterSide = _rect.width();

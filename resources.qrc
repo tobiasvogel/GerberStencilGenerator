@@ -48,6 +48,8 @@
         <file alias="rectangle-changed">resources/apertures/rectangle_changed.png</file>
         <file alias="hollow-rectangle-changed">resources/apertures/rectangle_h_changed.png</file>
         <file alias="unknown-changed">resources/apertures/unknown_changed.png</file>
+        <file alias="appicon">resources/appicon/icon.png</file>
+        <file alias="untrash">resources/icons/untrash_x32.png</file>
     </qresource>
     <qresource prefix="/img">
         <file alias="lightbulb">resources/lightbulb.png</file>

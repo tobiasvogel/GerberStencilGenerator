@@ -245,7 +245,15 @@ void HollowRoundedGraphicsPolygonItem::setRotation(float r)
 
 void HollowRoundedGraphicsPolygonItem::setRoundness(int percentage)
 {
-        _roundness = percentage;
+    _roundness = percentage;
+}
+
+QStringList HollowRoundedGraphicsPolygonItem::getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices, bool isHollow)
+{
+    QStringList apMacro;
+
+
+    return apMacro;
 }
 
 void HollowRoundedGraphicsPolygonItem::calculateNgonPoints()

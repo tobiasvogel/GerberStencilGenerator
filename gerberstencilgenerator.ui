@@ -224,7 +224,7 @@
             </layout>
            </item>
            <item>
-            <widget class="QSlider" name="sizeAdjustSlider">
+            <widget class="snapSlider" name="sizeAdjustSlider">
              <property name="minimum">
               <number>1</number>
              </property>
@@ -288,7 +288,7 @@
             </layout>
            </item>
            <item>
-            <widget class="QSlider" name="cornerRadiusAdjustSlider">
+            <widget class="snapSlider" name="cornerRadiusAdjustSlider">
              <property name="maximum">
               <number>100</number>
              </property>
@@ -352,7 +352,7 @@
             </layout>
            </item>
            <item>
-            <widget class="QSlider" name="innerSizeAdjustSlider">
+            <widget class="snapSlider" name="innerSizeAdjustSlider">
              <property name="minimum">
               <number>-100</number>
              </property>
@@ -512,6 +512,11 @@
    <class>apertureListWidget</class>
    <extends>QListWidget</extends>
    <header location="global">aperturelistwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>snapSlider</class>
+   <extends>QSlider</extends>
+   <header location="global">snapslider.h</header>
   </customwidget>
  </customwidgets>
  <resources>

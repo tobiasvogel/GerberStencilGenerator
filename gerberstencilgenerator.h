@@ -12,12 +12,12 @@
 #include <QSettings>
 #include "apertureeditview.h"
 #include "slidersizelabel.h"
-#include "editableslider.h"
 #include "aperturelistwidget.h"
 #include "settingsdialog.h"
 #include "color.h"
 #include "shapeicon.h"
 #include "tipoftheday.h"
+#include "snapslider.h"
 #include "QtColorWidgets/color_dialog.hpp"
 
 #define AUTO_PREVIEW_TIMEOUT_MS 200
@@ -61,6 +61,7 @@ typedef struct {
     signed int initialInnerResizePercentage = 0;
     QStringList replacementGerber;
     bool hasUnsavedChanges = false;
+    bool toBeDeleted = false;
     change_type changeState = UNCHANGED;
     ShapeIcon icon;
 } flash_aperture_struct;
@@ -69,7 +70,7 @@ namespace Ui {
 class GerberStencilGenerator;
 class settingsDialog;
 class sliderSizeLabel;
-class editableSlider;
+class snapSlider;
 class apertureListWidget;
 }
 
@@ -186,6 +187,7 @@ protected Q_SLOTS:
    void enableAutoPreview(bool enable);
    void timedAutoUpdate(void);
    void removeApertureItem(void);
+   void restoreApertureItem(void);
    QColor pickColor(QColor initialColor, QString windowTitle);
    void setShowTipAtStartup(bool toggle);
 #ifdef QT_DEBUG
@@ -194,7 +196,7 @@ protected Q_SLOTS:
 
 
 friend class sliderSizeLabel;
-friend class editableSlider;
+friend class snapSlider;
 friend class apertureEditView;
 friend class settingsDialog;
 friend class apertureListWidget;

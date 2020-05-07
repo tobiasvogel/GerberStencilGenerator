@@ -34,6 +34,7 @@ public:
     void setBrush(QColor color);
     void setPen(QColor color);
     void setPen(QPen pen);
+    QStringList getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices,  bool isHollow);
 
 private:
     QRectF _rect = QRectF(0,0,0,0);

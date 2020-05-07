@@ -18,7 +18,7 @@ void sliderSizeLabel::mouseDoubleClickEvent(QMouseEvent *event) {
     bool ok;
     QString childName = this->objectName();
     childName.replace("Label", "Slider");
-    editableSlider *slider = this->parent()->findChild<editableSlider *>(childName);
+    snapSlider *slider = this->parent()->findChild<snapSlider *>(childName);
     int minimumValue = slider->minimum();
     int currentValue = slider->value();
     int maximumValue = slider->maximum();
@@ -43,7 +43,7 @@ void sliderSizeLabel::enableControl() {
     _isEnabled = true;
     QString childName = this->objectName();
     childName.replace("Label", "Slider");
-    editableSlider *slider = this->parent()->findChild<editableSlider *>(childName);
+    snapSlider *slider = this->parent()->findChild<snapSlider *>(childName);
     this->setText(QString("%1%").arg(slider->value()));
 }
 

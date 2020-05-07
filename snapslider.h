@@ -13,6 +13,7 @@ public:
 
 public Q_SLOTS:
      void setSnapping(int minimum, int maximum, int step);
+     void setSliderValue(int value);
 
 private Q_SLOTS:
     void currentValueChanged(int value);

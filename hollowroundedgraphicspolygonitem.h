@@ -38,6 +38,7 @@ public:
     void setVertices(int v);
     void setRotation(float r);
     void setRoundness(int percentage);
+    QStringList getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices,  bool isHollow);
 
 protected:
 

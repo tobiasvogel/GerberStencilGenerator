@@ -37,6 +37,7 @@ public:
     void setPen(QPen pen);
     void setVertices(int v);
     void setRotation(float r);
+    QStringList getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices,  bool isHollow);
 
 protected:
 

@@ -64,11 +64,11 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   //QTemporaryFile *tempImageFile = new QTemporaryFile();
   //tempImageFile->open();
 
-  QObject::connect(ui->sizeAdjustSlider, SIGNAL(valueChanged(int)), this, SLOT(sizeSettingChanged(int)));
+  QObject::connect(ui->sizeAdjustSlider, SIGNAL(snapValueChanged(int)), this, SLOT(sizeSettingChanged(int)));
   QObject::connect(ui->outputFileBrowseButton, SIGNAL(clicked()), this,SLOT(outputFileBrowse()));
   QObject::connect(ui->inputFileBrowseButton, SIGNAL(clicked()), this,SLOT(inputFileBrowse()));
-  QObject::connect(ui->cornerRadiusAdjustSlider, SIGNAL(valueChanged(int)),this , SLOT(roundnessSettingChanged(int)));
-  QObject::connect(ui->innerSizeAdjustSlider, SIGNAL(valueChanged(int)), this, SLOT(innerSizeSettingChanged(int)));
+  QObject::connect(ui->cornerRadiusAdjustSlider, SIGNAL(snapValueChanged(int)),this , SLOT(roundnessSettingChanged(int)));
+  QObject::connect(ui->innerSizeAdjustSlider, SIGNAL(snapValueChanged(int)), this, SLOT(innerSizeSettingChanged(int)));
   QObject::connect(ui->apertureList, SIGNAL(currentTextChanged(QString)), this ,SLOT(updateEditingAperture(QString)));
   QObject::connect(ui->settingsButton, SIGNAL(clicked()), this, SLOT(openSettingsDialog()));
   QObject::connect(ui->resetChangesButton, SIGNAL(clicked()), this, SLOT(resetCurrentChanges()));
@@ -97,6 +97,10 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
 #endif
 
   aperturesWidgetList = new QStandardItemModel(ui->apertureList);
+
+  ui->sizeAdjustSlider->setSnapping(10,200,10);
+  ui->innerSizeAdjustSlider->setSnapping(-100,100,10);
+  ui->cornerRadiusAdjustSlider->setSnapping(0,100,10);
 
   loadingLabel = new QLabel(ui->gerberPreviewGView);
   loadingLabel->hide();
@@ -132,7 +136,7 @@ GerberStencilGenerator::~GerberStencilGenerator() {
 
 void GerberStencilGenerator::sizeSettingChanged(int percentage) {
     if (ui->sizeAdjustLabel->getEnabled()) {
-  ui->sizeAdjustLabel->setText(QString("%1%").arg(percentage));
+            ui->sizeAdjustLabel->setText(QString("%1%").arg(percentage));
     }
   if (!(aperturesWidgetList->rowCount() == 0)) {
       QString currentAperture = aperturesWidgetList->item(ui->apertureList->currentIndex().row())->text();
@@ -353,9 +357,9 @@ void GerberStencilGenerator::updateEditingAperture(QString selectedAperture)
             toggleRoundnessAjustControls(false);
             toggleInnerSizeAdjustControls(apertureList.at(apertureIndex).isHollow);
 
-            ui->sizeAdjustSlider->setValue(apertureList.at(apertureIndex).resizePercentage);
+            ui->sizeAdjustSlider->setSliderValue(apertureList.at(apertureIndex).resizePercentage);
             if (apertureList.at(apertureIndex).isHollow) {
-                ui->innerSizeAdjustSlider->setValue(apertureList.at(apertureIndex).innerResizePercentage);
+                ui->innerSizeAdjustSlider->setSliderValue(apertureList.at(apertureIndex).innerResizePercentage);
             }
 
             drawEllipse(apertureList.at(apertureIndex).originalOuterDiameter, apertureList.at(apertureIndex).originalInnerDiameter, apertureList.at(apertureIndex).resizePercentage, apertureList.at(apertureIndex).innerResizePercentage, apertureList.at(apertureIndex).isHollow);
@@ -368,10 +372,10 @@ void GerberStencilGenerator::updateEditingAperture(QString selectedAperture)
             toggleRoundnessAjustControls(true);
             toggleInnerSizeAdjustControls(apertureList.at(apertureIndex).isHollow);
 
-            ui->sizeAdjustSlider->setValue(apertureList.at(apertureIndex).resizePercentage);
-            ui->cornerRadiusAdjustSlider->setValue(apertureList.at(apertureIndex).roundnessPercentage);
+            ui->sizeAdjustSlider->setSliderValue(apertureList.at(apertureIndex).resizePercentage);
+            ui->cornerRadiusAdjustSlider->setSliderValue(apertureList.at(apertureIndex).roundnessPercentage);
             if (apertureList.at(apertureIndex).isHollow) {
-                ui->innerSizeAdjustSlider->setValue(apertureList.at(apertureIndex).innerResizePercentage);
+                ui->innerSizeAdjustSlider->setSliderValue(apertureList.at(apertureIndex).innerResizePercentage);
             }
 
             drawRoundedRectangle(apertureList.at(apertureIndex).originalWidth, apertureList.at(apertureIndex).originalHeight, apertureList.at(apertureIndex).originalInnerDiameter, apertureList.at(apertureIndex).maxCornerRadius, apertureList.at(apertureIndex).resizePercentage,apertureList.at(apertureIndex).roundnessPercentage, apertureList.at(apertureIndex).innerResizePercentage, apertureList.at(apertureIndex).isHollow);
@@ -384,9 +388,9 @@ void GerberStencilGenerator::updateEditingAperture(QString selectedAperture)
             toggleRoundnessAjustControls(false);
             toggleInnerSizeAdjustControls(apertureList.at(apertureIndex).isHollow);
 
-            ui->sizeAdjustSlider->setValue(apertureList.at(apertureIndex).resizePercentage);
+            ui->sizeAdjustSlider->setSliderValue(apertureList.at(apertureIndex).resizePercentage);
             if (apertureList.at(apertureIndex).isHollow) {
-                ui->innerSizeAdjustSlider->setValue(apertureList.at(apertureIndex).innerResizePercentage);
+                ui->innerSizeAdjustSlider->setSliderValue(apertureList.at(apertureIndex).innerResizePercentage);
             }
 
             drawObroundShape(apertureList.at(apertureIndex).originalWidth,apertureList.at(apertureIndex).originalHeight,apertureList.at(apertureIndex).originalOuterDiameter,apertureList.at(apertureIndex).originalInnerDiameter,apertureList.at(apertureIndex).resizePercentage,apertureList.at(apertureIndex).innerResizePercentage,apertureList.at(apertureIndex).isHollow);
@@ -398,10 +402,10 @@ void GerberStencilGenerator::updateEditingAperture(QString selectedAperture)
             toggleSizeAdjustControls(true);
             toggleRoundnessAjustControls(true);
             toggleInnerSizeAdjustControls(apertureList.at(apertureIndex).isHollow);
-            ui->sizeAdjustSlider->setValue(apertureList.at(apertureIndex).resizePercentage);
-            ui->cornerRadiusAdjustSlider->setValue(apertureList.at(apertureIndex).roundnessPercentage);
+            ui->sizeAdjustSlider->setSliderValue(apertureList.at(apertureIndex).resizePercentage);
+            ui->cornerRadiusAdjustSlider->setSliderValue(apertureList.at(apertureIndex).roundnessPercentage);
             if (apertureList.at(apertureIndex).isHollow) {
-                ui->innerSizeAdjustSlider->setValue(apertureList.at(apertureIndex).innerResizePercentage);
+                ui->innerSizeAdjustSlider->setSliderValue(apertureList.at(apertureIndex).innerResizePercentage);
             }
 
             drawRoundedPolygon(apertureList.at(apertureIndex).originalOuterDiameter, apertureList.at(apertureIndex).originalVertices, apertureList.at(apertureIndex).rotation, apertureList.at(apertureIndex).originalInnerDiameter, apertureList.at(apertureIndex).resizePercentage, apertureList.at(apertureIndex).roundnessPercentage, apertureList.at(apertureIndex).innerResizePercentage, apertureList.at(apertureIndex).isHollow);
@@ -410,6 +414,14 @@ void GerberStencilGenerator::updateEditingAperture(QString selectedAperture)
     default:
                 qDebug() << "Error";
         throw("no valid shape associated with this aperture");
+    }
+
+    if (apertureList.at(apertureIndex).toBeDeleted) {
+        ui->clearApertureButton->setText(tr("Restore"));
+        ui->clearApertureButton->setIcon(QIcon(":/res/untrash"));
+    } else {
+        ui->clearApertureButton->setText(tr("Delete"));
+        ui->clearApertureButton->setIcon(QIcon(":/res/trash"));
     }
 
 }
@@ -852,18 +864,48 @@ void GerberStencilGenerator::timedAutoUpdate() {
 void GerberStencilGenerator::removeApertureItem()
 {
     if (!(aperturesWidgetList->rowCount() == 0)) {
+        flash_aperture_struct *selectedAperture = nullptr;
+        int apertureIndex = currentSelectedIndex();
+        selectedAperture = const_cast<flash_aperture_struct*>(&apertureList.at(apertureIndex));
+        if (selectedAperture->toBeDeleted) {
+            this->restoreApertureItem();
+        } else {
+            QString currentAperture = currentSelectedItem();
+            int selectedItem = ui->apertureList->currentIndex().row();
+            setListItemBackground(selectedItem, greyedOutColor);
+            QStandardItem *item = aperturesWidgetList->item(selectedItem);
+            QFont itemFont = item->font();
+            itemFont.setStrikeOut(true);
+            item->setFont(itemFont);
+            selectedAperture->toBeDeleted = true;
+            selectedAperture->icon.setDeleted(true);
+            item->setIcon(selectedAperture->icon.getIcon());
+            ui->clearApertureButton->setText(tr("Restore"));
+            ui->clearApertureButton->setIcon(QIcon(":/res/untrash"));
+        }
+    }
+}
+
+void GerberStencilGenerator::restoreApertureItem()
+{
+    if (!(aperturesWidgetList->rowCount() == 0)) {
         QString currentAperture = currentSelectedItem();
         int selectedItem = ui->apertureList->currentIndex().row();
-        setListItemBackground(selectedItem, greyedOutColor);
+        QPalette apertureListPalette = ui->apertureList->palette();
+        QColor apertureListBackground = apertureListPalette.base().color();
+        setListItemBackground(selectedItem, apertureListBackground);
         QStandardItem *item = aperturesWidgetList->item(selectedItem);
         QFont itemFont = item->font();
-        itemFont.setStrikeOut(true);
+        itemFont.setStrikeOut(false);
         item->setFont(itemFont);
         int apertureIndex = currentSelectedIndex();
         flash_aperture_struct *selectedAperture = nullptr;
         selectedAperture = const_cast<flash_aperture_struct*>(&apertureList.at(apertureIndex));
-        selectedAperture->icon.setDeleted(true);
+        selectedAperture->toBeDeleted = false;
+        selectedAperture->icon.setDeleted(false);
         item->setIcon(selectedAperture->icon.getIcon());
+        ui->clearApertureButton->setText(tr("Delete"));
+        ui->clearApertureButton->setIcon(QIcon(":/res/trash"));
     }
 }
 
@@ -1479,6 +1521,7 @@ void  GerberStencilGenerator::dumpApertureList(void) {
       qDebug() << QString("  initialRoundnessPercentage: %1%").arg(dumpApt.initialRoundnessPercentage);
       qDebug() << QString("  initialInnerResizePercentage: %1%").arg(dumpApt.initialInnerResizePercentage);
       qDebug() << QString("  hasUnsavedChanges: %1").arg((dumpApt.hasUnsavedChanges)?"true":"false");
+      qDebug() << QString("  toBeDeleted: %1").arg((dumpApt.toBeDeleted)?"true":"false");
       qDebug() << QString("  changeState: ").append((dumpApt.changeState==UNCHANGED)?"Unchanged":
                                                    ((dumpApt.changeState==DRAFT)?"Draft":
                                                    ((dumpApt.changeState==ACCEPTED)?"Accepted":

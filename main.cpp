@@ -17,6 +17,8 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
+    a.setWindowIcon(QIcon(":/res/appicon"));
+
     GerberStencilGenerator w;
 
     w.show();

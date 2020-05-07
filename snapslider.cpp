@@ -67,6 +67,16 @@ void snapSlider::setSnapping(int minimum, int maximum, int step)
     _tickInterval = this->tickInterval();
 }
 
+void snapSlider::setSliderValue(int value)
+{
+    if (!_snapMode) {
+        this->setValue(value);
+    } else {
+        float val = static_cast<float>(this->value())/static_cast<float>(_snapFactor);
+        this->setValue(qRound(val));
+    }
+}
+
 void snapSlider::currentValueChanged(int value)
 {
     if (!_snapMode) {
