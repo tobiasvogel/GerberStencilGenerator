@@ -94,6 +94,7 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
 
 #ifdef QT_DEBUG
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_D), this, SLOT(dumpApertureList()));
+  new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_T), this, SLOT(dumpApertureMacro()));
 #endif
 
   aperturesWidgetList = new QStandardItemModel(ui->apertureList);
@@ -1549,5 +1550,21 @@ void  GerberStencilGenerator::dumpApertureList(void) {
       qDebug() << QString("========");
   }
 
+}
+
+#include "enums.h"
+
+void  GerberStencilGenerator::dumpApertureMacro(void) {
+    Q_FOREACH(QGraphicsItem *gItem, apertureEditScene->items()) {
+        if (gItem->type() == HOLLOWROUNDEDGRAPHICSRECTITEM) {
+            HollowRoundedGraphicsRectItem *item = nullptr;
+            item = qgraphicsitem_cast<HollowRoundedGraphicsRectItem *>(gItem);
+            qDebug() << item->getApertureMacro(numberFormat.at(1));
+        } else if (gItem->type() == HOLLOWROUNDEDGRAPHICSPOLYGONITEM) {
+            HollowRoundedGraphicsPolygonItem *item = nullptr;
+            item = qgraphicsitem_cast<HollowRoundedGraphicsPolygonItem *>(gItem);
+            qDebug() << item->getApertureMacro(numberFormat.at(1));
+        }
+    }
 }
 #endif

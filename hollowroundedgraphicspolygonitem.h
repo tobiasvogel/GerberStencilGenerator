@@ -1,6 +1,7 @@
 #ifndef HOLLOWROUNDEDGRAPHICSPOLYGONITEM_H
 #define HOLLOWROUNDEDGRAPHICSPOLYGONITEM_H
 
+#include "enums.h"
 #include <QGraphicsPolygonItem>
 #include <QPainter>
 
@@ -13,6 +14,12 @@ public:
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget);
+
+    enum { Type = HOLLOWROUNDEDGRAPHICSPOLYGONITEM };
+
+    int type() const {
+        return Type;
+    }
 
     void setRect(qreal x, qreal y, qreal w, qreal h);
     void setRect(QRectF rect);
@@ -38,7 +45,7 @@ public:
     void setVertices(int v);
     void setRotation(float r);
     void setRoundness(int percentage);
-    QStringList getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices,  bool isHollow);
+    QStringList getApertureMacro(int decimals);
 
 protected:
 

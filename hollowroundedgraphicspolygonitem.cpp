@@ -248,7 +248,7 @@ void HollowRoundedGraphicsPolygonItem::setRoundness(int percentage)
     _roundness = percentage;
 }
 
-QStringList HollowRoundedGraphicsPolygonItem::getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices, bool isHollow)
+QStringList HollowRoundedGraphicsPolygonItem::getApertureMacro(int decimals)
 {
     QStringList apMacro;
 

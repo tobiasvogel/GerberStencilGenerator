@@ -237,7 +237,7 @@ void HollowGraphicsPolygonItem::setRotation(float r)
     }
 }
 
-QStringList HollowGraphicsPolygonItem::getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices, bool isHollow)
+QStringList HollowGraphicsPolygonItem::getApertureMacro()
 {
     QStringList apMacro;
 

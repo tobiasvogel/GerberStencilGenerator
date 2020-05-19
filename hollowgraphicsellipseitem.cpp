@@ -185,11 +185,8 @@ void HollowGraphicsEllipseItem::setPen(QPen pen)
     _drawingPen = pen;
 }
 
-QStringList HollowGraphicsEllipseItem::getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness = 0, int vertices = 0, bool isHollow = false)
+QStringList HollowGraphicsEllipseItem::getApertureMacro()
 {
-    std::ignore = vertices;
-    std::ignore = roundness;
-
     QStringList apMacro;
 
 

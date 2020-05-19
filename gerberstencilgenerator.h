@@ -2,6 +2,7 @@
 #define GERBERSTENCILGENERATOR_H
 
 #include "gerbv.h"
+#include "enums.h"
 #include <QWidget>
 #include <QDir>
 #include <QStandardItemModel>
@@ -26,13 +27,6 @@
 #define ORGANISATION_NAME "Tobias Vogel"
 #define ORGANISATION_DOMAIN "tobiasvogel.tv"
 
-enum unit_type_t { UNKNOWN, METRIC, IMPERIAL };
-//enum shape_type_t { UNSET, CIRCLE, RECTANGLE, OBROUND, POLYGON, MACRO };
-enum change_type_t { UNCHANGED, DRAFT, ACCEPTED, REVERTED, DISCARDED, DELETED };
-
-typedef enum unit_type_t unit_type;
-typedef enum shape_type_t shape_type;
-typedef enum change_type_t change_type;
 
 typedef struct {
     int originalId = 0;
@@ -192,6 +186,7 @@ protected Q_SLOTS:
    void setShowTipAtStartup(bool toggle);
 #ifdef QT_DEBUG
    void dumpApertureList();
+   void dumpApertureMacro();
 #endif
 
 

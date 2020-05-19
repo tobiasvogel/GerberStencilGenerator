@@ -1,18 +1,25 @@
 #ifndef HOLLOWGRAPHICSELLIPSEITEM_H
 #define HOLLOWGRAPHICSELLIPSEITEM_H
 
+#include "enums.h"
 #include <QGraphicsEllipseItem>
 #include <QPainter>
 
 class HollowGraphicsEllipseItem : public QGraphicsEllipseItem
 {
 public:
-    HollowGraphicsEllipseItem(QGraphicsEllipseItem *parent = nullptr) : QGraphicsEllipseItem(parent) {}
+    HollowGraphicsEllipseItem(QGraphicsEllipseItem *parent = nullptr) : QGraphicsEllipseItem(parent) { }
     QRectF boundingRect() const;
 
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget);
+
+    enum { Type = HOLLOWGRAPHICSELLIPSEITEM };
+
+    int type() const {
+        return Type;
+    }
 
     void setRect(qreal x, qreal y, qreal w, qreal h);
     void setRect(QRectF rect);
@@ -34,7 +41,7 @@ public:
     void setBrush(QColor color);
     void setPen(QColor color);
     void setPen(QPen pen);
-    QStringList getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices,  bool isHollow);
+    QStringList getApertureMacro();
 
 private:
     QRectF _rect = QRectF(0,0,0,0);

@@ -1,12 +1,9 @@
 #ifndef HOLLOWGRAPHICSOBROUNDITEM_H
 #define HOLLOWGRAPHICSOBROUNDITEM_H
 
+#include "enums.h"
 #include <QGraphicsEllipseItem>
 #include <QPainter>
-
-enum sides_type_t { UNDETERMINED, WIDTH, HEIGHT, EQUAL };
-
-typedef enum sides_type_t sides_type;
 
 class HollowGraphicsObroundItem : public QGraphicsEllipseItem
 {
@@ -17,6 +14,12 @@ public:
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget);
+
+    enum { Type = HOLLOWGRAPHICSOBROUNDITEM };
+
+    int type() const {
+        return Type;
+    }
 
     void setRect(qreal x, qreal y, qreal w, qreal h);
     void setRect(QRectF rect);
@@ -40,7 +43,7 @@ public:
     void setBrush(QColor color);
     void setPen(QColor color);
     void setPen(QPen pen);
-    QStringList getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices,  bool isHollow);
+    QStringList getApertureMacro();
 
 protected:
     double getShorterSide(void);

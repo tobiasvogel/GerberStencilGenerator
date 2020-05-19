@@ -53,6 +53,7 @@ SOURCES += \
 
 HEADERS += \
     color.h \
+    enums.h \
     floatcompare.h \
     gerberstencilgenerator.h \
     shapeicon.h \

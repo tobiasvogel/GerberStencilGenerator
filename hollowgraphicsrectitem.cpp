@@ -178,10 +178,8 @@ void HollowGraphicsRectItem::setPen(QPen pen)
     _drawingPen = pen;
 }
 
-QStringList HollowGraphicsRectItem::getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices = 0, bool isHollow = false)
+QStringList HollowGraphicsRectItem::getApertureMacro()
 {
-    std::ignore = vertices;
-
     QStringList apMacro;
 
 

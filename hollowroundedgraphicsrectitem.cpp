@@ -1,4 +1,5 @@
 #include "hollowroundedgraphicsrectitem.h"
+#include <QDebug>
 
 
 QRectF HollowRoundedGraphicsRectItem::boundingRect() const
@@ -211,12 +212,69 @@ void HollowRoundedGraphicsRectItem::setRoundness(int percentage)
     _roundness = percentage;
 }
 
-QStringList HollowRoundedGraphicsRectItem::getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices = 0, bool isHollow = false)
+QStringList HollowRoundedGraphicsRectItem::getApertureMacro(int decimals)
 {
-    std::ignore = vertices;
-
     QStringList apMacro;
 
+    getMaximumCornerRadius();
+
+    double radius = _maxCornerRadius/100*_roundness;
+
+    apMacro.append("0 The origin of the aperture is it’s center*");
+    apMacro.append("0 $1 X-size*");
+    apMacro.append("0 $2 Y-size*");
+    apMacro.append("0 $3 Rotation angle, in degrees counterclockwise*");
+
+    if (this->getShorterSide()==WIDTH) {
+
+            double fraction = _rect.width()/radius;
+            apMacro.append(QString("$4=$1/").append(QString::number(fraction, 'f', decimals)).append("*")); // radius
+
+    } else {
+
+            double fraction = _rect.height()/radius;
+            apMacro.append(QString("$4=$2/").append(QString::number(fraction, 'f', decimals)).append("*")); // radius
+
+    }
+
+    apMacro.append(QString("$5=$1/2*")); // width/2
+    apMacro.append(QString("$6=2X$4*")); // 2*radius
+    apMacro.append(QString("$7=$2-$6*")); // height-(2*radius)
+    apMacro.append(QString("$8=$7/2*")); // ((height-(2*radius))/2)
+    apMacro.append(QString("$9=$2/2*")); // height/2
+    apMacro.append(QString("$10=$1-$6*")); // width-(2*radius)
+    apMacro.append(QString("$11=$10/2*")); // ((width-(2*radius))/2)
+    if (this->isHollow()) {
+        if (!(this->getShorterSide()==WIDTH)) {
+            double fraction = _rect.height()/_hole.height();
+            apMacro.append(QString("$12=$2/").append(QString::number(fraction, 'f', decimals)).append("*")); // hole diameter
+            fraction = _rect.height()/abs((this->getHoleCenter().x()));
+            apMacro.append(QString("$13=$2/").append(QString::number(fraction, 'f', decimals)).append("*")); // hole center X
+            fraction = _rect.height()/abs((this->getHoleCenter().y()));
+            apMacro.append(QString("$14=$2/").append(QString::number(fraction, 'f', decimals)).append("*")); // hole center Y
+        } else {
+            double fraction = _rect.width()/_hole.width();
+            apMacro.append(QString("$12=$1/").append(QString::number(fraction, 'f', decimals)).append("*"));
+            fraction = _rect.width()/abs((this->getHoleCenter().x()));
+            apMacro.append(QString("$13=$1/").append(QString::number(fraction, 'f', decimals)).append("*")); // hole center X
+            fraction = _rect.width()/abs((this->getHoleCenter().y()));
+            apMacro.append(QString("$14=$1/").append(QString::number(fraction, 'f', decimals)).append("*")); // hole center Y
+        }
+    }
+
+    apMacro.append(QString("20,1,$1,-$5,-$8,$5,$8,$3*")); //horizontalFace
+    apMacro.append(QString("20,1,$10,-$11,-$9,$11,$9,$3*")); //verticalFace
+
+    apMacro.append(QString("1,1,$6,-$5+$4,-$9+$4,$3*")); //topLeftCorner
+    apMacro.append(QString("1,1,$6,$5-$4,-$9+$4,$3*")); //topRightCorner
+    apMacro.append(QString("1,1,$6,$5-$4,$9-$4,$3*"));  //bottomRightCorner
+    apMacro.append(QString("1,1,$6,-$5+$4,$9-$4,$3*")); //bottomLeftCorner
+
+    if (this->isHollow()) {
+        apMacro.append(QString("1,0,$12,").append((this->getHoleCenter().x()<0)?"-":"").append("$13,").append((this->getHoleCenter().y()<0)?"-":"").append("$14,$3*%"));
+    } else {
+        apMacro.last().append("%");
+    }
 
     return apMacro;
 }
@@ -228,6 +286,15 @@ void HollowRoundedGraphicsRectItem::getMaximumCornerRadius()
         shorterSide = _rect.height();
     }
     _maxCornerRadius = shorterSide/2;
+}
+
+sides_type HollowRoundedGraphicsRectItem::getShorterSide()
+{
+    if (_rect.height() < _rect.width()) {
+        return HEIGHT;
+    } else {
+        return WIDTH;
+    }
 }
 
 

@@ -1,6 +1,7 @@
 #ifndef HOLLOWROUNDEDGRAPHICSRECTITEM_H
 #define HOLLOWROUNDEDGRAPHICSRECTITEM_H
 
+#include "enums.h"
 #include <QGraphicsRectItem>
 #include <QPainter>
 
@@ -13,6 +14,12 @@ public:
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget);
+
+    enum { Type = HOLLOWROUNDEDGRAPHICSRECTITEM };
+
+    int type() const {
+        return Type;
+    }
 
     void setRect(qreal x, qreal y, qreal w, qreal h);
     void setRect(QRectF rect);
@@ -34,10 +41,11 @@ public:
     void setPen(QColor color);
     void setPen(QPen pen);
     void setRoundness(int percentage);
-    QStringList getApertureMacro(QRectF boundingBox, QRectF holeSize, QPointF centerPoint, QPointF holeCenter, int roundness, int vertices,  bool isHollow);
+    QStringList getApertureMacro(int decimals);
 
 private:
     void getMaximumCornerRadius();
+    sides_type getShorterSide();
     double _maxCornerRadius = 0.0;
     QRectF _rect = QRectF(0,0,0,0);
     QRectF _hole = QRectF(0,0,0,0);

@@ -1,9 +1,9 @@
 #ifndef SHAPEICON_H
 #define SHAPEICON_H
 
+#include "enums.h"
 #include <QIcon>
 
-enum shape_type_t { UNSET, CIRCLE, RECTANGLE, OBROUND, POLYGON, MACRO };
 
 class ShapeIcon
 {
