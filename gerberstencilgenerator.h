@@ -15,6 +15,7 @@
 #include "slidersizelabel.h"
 #include "aperturelistwidget.h"
 #include "settingsdialog.h"
+#include "gerberplotterdialog.h"
 #include "color.h"
 #include "shapeicon.h"
 #include "tipoftheday.h"
@@ -87,6 +88,7 @@ private:
     Ui::GerberStencilGenerator *ui;
     settingsDialog *settingsUi;
     TipOfTheDay *tipOfTheDayDialog;
+    GerberPlotterDialog *plotterDialog;
     QSettings *userSettings;
     QString gerbvApplicationPath;
     QDir lastInputFileDir = QDir::homePath();
@@ -110,6 +112,7 @@ private:
     QPixmap gerberPreviewPixmap;
     bool gerbv_confirmed = false;
     bool autoPreview = true;
+    bool hasUnsavedChanges = false;
     QLabel *loadingLabel;
     QMovie *loadingMovie;
     //QProcess *externalProcess;
@@ -184,6 +187,9 @@ protected Q_SLOTS:
    void restoreApertureItem(void);
    QColor pickColor(QColor initialColor, QString windowTitle);
    void setShowTipAtStartup(bool toggle);
+   void openGerberPlotterDialog(bool toggle);
+   void openCompilationDialog(bool toggle);
+   void requestQuit(void);
 #ifdef QT_DEBUG
    void dumpApertureList();
    void dumpApertureMacro();

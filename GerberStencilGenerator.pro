@@ -35,6 +35,7 @@ DEFINES += QT_NO_KEYWORDS
 CONFIG += c++11 link_pkgconfig
 
 SOURCES += \
+    gerberplotterdialog.cpp \
     main.cpp \
     gerberstencilgenerator.cpp \
     shapeicon.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
     color.h \
     enums.h \
     floatcompare.h \
+    gerberplotterdialog.h \
     gerberstencilgenerator.h \
     shapeicon.h \
     slidersizelabel.h \
@@ -71,6 +73,7 @@ HEADERS += \
     tipoftheday.h
 
 FORMS += \
+    gerberplotterdialog.ui \
         gerberstencilgenerator.ui \
     settingsdialog.ui
 

@@ -75,6 +75,7 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   QObject::connect(ui->acceptChangesButton, SIGNAL(clicked()), this, SLOT(acceptChanges()));
   QObject::connect(ui->previewButton, SIGNAL(clicked()), this, SLOT(generatePreview()));
   QObject::connect(ui->clearApertureButton, SIGNAL(clicked()), this, SLOT(removeApertureItem()));
+  QObject::connect(ui->quitButton, SIGNAL(clicked()), this, SLOT(requestQuit()));
   //QObject::connect(externalProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(newPreviewAvailable(int, QProcess::ExitStatus)));
   //QObject::connect(externalProcess, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(processStateChanged(QProcess::ProcessState)));
 
@@ -91,6 +92,19 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   autoPreviewTimer = new QTimer(this);
   autoPreviewTimer->setSingleShot(true);
   QObject::connect(autoPreviewTimer, SIGNAL(timeout()), this, SLOT(timedAutoUpdate()));
+
+  QAction *openPlotterDialogAction = new QAction(ui->utilitiesButton);
+  openPlotterDialogAction->setCheckable(false);
+  openPlotterDialogAction->setIcon(QIcon(":/res/plot"));
+  openPlotterDialogAction->setText(tr("Plot Gerber Files to Image..."));
+  QObject::connect(openPlotterDialogAction, SIGNAL(triggered(bool)), this, SLOT(openGerberPlotterDialog(bool)));
+  ui->utilitiesButton->addAction(openPlotterDialogAction);
+  QAction *openCompilationDialogAction = new QAction(ui->utilitiesButton);
+  openCompilationDialogAction->setCheckable(false);
+  openCompilationDialogAction->setIcon(QIcon(":/res/compile"));
+  openCompilationDialogAction->setText(tr("Arrange multiple Gerber Files into one File..."));
+  QObject::connect(openCompilationDialogAction, SIGNAL(triggered(bool)), this, SLOT(openCompilationDialog(bool)));
+  ui->utilitiesButton->addAction(openCompilationDialogAction);
 
 #ifdef QT_DEBUG
   new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_D), this, SLOT(dumpApertureList()));
@@ -928,6 +942,22 @@ void GerberStencilGenerator::setShowTipAtStartup(bool toggle)
     userSettings->setValue("showAtStartup", toggle);
 }
 
+void GerberStencilGenerator::openGerberPlotterDialog(bool toggle)
+{
+    std::ignore = toggle;
+#ifdef QT_DEBUG
+    qDebug() << "opening gerber plotter dialog";
+#endif
+    plotterDialog = new GerberPlotterDialog(this);
+    plotterDialog->show();
+    plotterDialog->raise();
+}
+
+void GerberStencilGenerator::openCompilationDialog(bool toggle)
+{
+    std::ignore = toggle;
+}
+
 QColor GerberStencilGenerator::getColor(QString colorId)  {
     if (QString("flashColor") == colorId) {
         return flashColor.toRgb();
@@ -1155,6 +1185,19 @@ void GerberStencilGenerator::showTipOfTheDay()
 {
     tipOfTheDayDialog->show();
     tipOfTheDayDialog->raise();
+}
+
+void GerberStencilGenerator::requestQuit()
+{
+    if (!(hasUnsavedChanges)) {
+        qApp->quit();
+#ifdef QT_DEBUG
+    } else {
+        qDebug() << "Unsaves changes prevent from exiting";
+    // Until implemented: will just reject quitting app if hasUnsavedChanges = true..
+#endif
+    }
+
 }
 
 

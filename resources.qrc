@@ -50,6 +50,10 @@
         <file alias="unknown-changed">resources/apertures/unknown_changed.png</file>
         <file alias="appicon">resources/appicon/icon.png</file>
         <file alias="untrash">resources/icons/untrash_x32.png</file>
+        <file alias="compile">resources/icons/AddBuildQueue_32x.png</file>
+        <file alias="plot">resources/icons/GenerateResource_32x.png</file>
+        <file alias="toolbox">resources/icons/Toolbox_32x.png</file>
+        <file alias="exit">resources/icons/exit_x32.png</file>
     </qresource>
     <qresource prefix="/img">
         <file alias="lightbulb">resources/lightbulb.png</file>
