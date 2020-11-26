@@ -20,6 +20,7 @@
 #include "shapeicon.h"
 #include "tipoftheday.h"
 #include "snapslider.h"
+#include "renderthread.h"
 #include "QtColorWidgets/color_dialog.hpp"
 
 #define AUTO_PREVIEW_TIMEOUT_MS 200
@@ -115,22 +116,18 @@ private:
     bool hasUnsavedChanges = false;
     QLabel *loadingLabel;
     QMovie *loadingMovie;
-    //QProcess *externalProcess;
-    QString processCommand;
     QStringList processArguments;
     QTemporaryFile overlayGerber;
 #ifdef QT_DEBUG
     QTemporaryFile tempLogFile;
 #endif
     QTemporaryFile tempImageFile;
-    QTimer *autoPreviewTimer;
     bool _showTipAtStartup = true;
     int _showTipOfTheDayNumber = 0;
 
     color_widgets::ColorDialog *colorDialog;
 
-    gerbv_project_t *mainProject;
-    gerbv_render_info_t screenRenderInfo;
+    RenderThread thread;
 
 protected:
    void resizeEvent(QResizeEvent *event);
@@ -182,7 +179,7 @@ protected Q_SLOTS:
    bool getAutoPreviewEnabled(void);
    void setAutoPreviewEnabled(bool option);
    void enableAutoPreview(bool enable);
-   void timedAutoUpdate(void);
+   void previewUpdate(const QImage image, QSize size);
    void removeApertureItem(void);
    void restoreApertureItem(void);
    QColor pickColor(QColor initialColor, QString windowTitle);

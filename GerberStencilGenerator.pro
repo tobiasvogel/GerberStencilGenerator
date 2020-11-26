@@ -38,6 +38,7 @@ SOURCES += \
     gerberplotterdialog.cpp \
     main.cpp \
     gerberstencilgenerator.cpp \
+    renderthread.cpp \
     shapeicon.cpp \
     slidersizelabel.cpp \
     apertureeditview.cpp \
@@ -58,6 +59,7 @@ HEADERS += \
     floatcompare.h \
     gerberplotterdialog.h \
     gerberstencilgenerator.h \
+    renderthread.h \
     shapeicon.h \
     slidersizelabel.h \
     apertureeditview.h \

@@ -51,19 +51,6 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   toggleRoundnessAjustControls(false);
   toggleInnerSizeAdjustControls(false);
 
-  //externalProcess = new QProcess(this);
-
-  //QProcess::connect(externalProcess, SIGNAL(stateChanged(QProcess::ProcessState)),this, SLOT(processStateChanged(QProcess::ProcessState)));
-  //QProcess::connect(externalProcess, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(newPreviewAvailable(int)));
-  //QTemporaryFile *overlayGerber = new QTemporaryFile();
-  //overlayGerber->open();
-#ifdef QT_DEBUG
-  //QTemporaryFile *tempLogFile = new QTemporaryFile();
-  //tempLogFile->open();
-#endif
-  //QTemporaryFile *tempImageFile = new QTemporaryFile();
-  //tempImageFile->open();
-
   QObject::connect(ui->sizeAdjustSlider, SIGNAL(snapValueChanged(int)), this, SLOT(sizeSettingChanged(int)));
   QObject::connect(ui->outputFileBrowseButton, SIGNAL(clicked()), this,SLOT(outputFileBrowse()));
   QObject::connect(ui->inputFileBrowseButton, SIGNAL(clicked()), this,SLOT(inputFileBrowse()));
@@ -76,8 +63,8 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   QObject::connect(ui->previewButton, SIGNAL(clicked()), this, SLOT(generatePreview()));
   QObject::connect(ui->clearApertureButton, SIGNAL(clicked()), this, SLOT(removeApertureItem()));
   QObject::connect(ui->quitButton, SIGNAL(clicked()), this, SLOT(requestQuit()));
-  //QObject::connect(externalProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(newPreviewAvailable(int, QProcess::ExitStatus)));
-  //QObject::connect(externalProcess, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(processStateChanged(QProcess::ProcessState)));
+
+  QObject::connect(&thread, &RenderThread::renderedImage, this, &GerberStencilGenerator::previewUpdate);
 
   ui->previewButton->setEnabled(true);
   ui->previewButton->setToolTip(QString());
@@ -88,10 +75,6 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   enableAutoPreviewAction->setText(tr("Auto-Update"));
   ui->previewButton->addAction(enableAutoPreviewAction);
   QObject::connect(enableAutoPreviewAction, SIGNAL(toggled(bool)), this, SLOT(enableAutoPreview(bool)));
-
-  autoPreviewTimer = new QTimer(this);
-  autoPreviewTimer->setSingleShot(true);
-  QObject::connect(autoPreviewTimer, SIGNAL(timeout()), this, SLOT(timedAutoUpdate()));
 
   QAction *openPlotterDialogAction = new QAction(ui->utilitiesButton);
   openPlotterDialogAction->setCheckable(false);
@@ -865,15 +848,15 @@ void GerberStencilGenerator::enableAutoPreview(bool enable) {
     this->setAutoPreviewEnabled(enable);
 }
 
-void GerberStencilGenerator::timedAutoUpdate() {
-    if (autoPreviewTimer->remainingTime() > 0) {
-        autoPreviewTimer->stop();
-        autoPreviewTimer->start(AUTO_PREVIEW_TIMEOUT_MS);
-        generatePreview();
-    } else {
-        // FIXME: Show warning the preview generation is already running at this point
-        return;
-    }
+void GerberStencilGenerator::previewUpdate(const QImage image, QSize size)
+{
+    qDebug() << "update called!";
+    QImage renderImage = image;
+    gerberPreviewPixmap.convertFromImage(renderImage);
+    gerberPreviewScene->clear();
+    gerberPreviewScene->setSceneRect(0,0,size.width(),size.height());
+    gerberPreviewScene->addPixmap(gerberPreviewPixmap);
+    ui->gerberPreviewGView->update();
 }
 
 void GerberStencilGenerator::removeApertureItem()
@@ -1124,61 +1107,8 @@ void GerberStencilGenerator::invokeRenderer(int width, int height, QStringList o
         }
     }
 
-    mainProject = gerbv_create_project();
-    screenRenderInfo.renderType = GERBV_RENDER_TYPE_CAIRO_HIGH_QUALITY;
-    screenRenderInfo.displayWidth = width;
-    screenRenderInfo.displayHeight = height;
-    cairo_surface_t *target = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, width, height);
-    cairo_t *cr = cairo_create(target);
+    thread.render(width, height, _overlay, QDir::toNativeSeparators(lastInputFileDir.absolutePath()).toStdString(), QDir::toNativeSeparators(overlayGerber.fileName()).toStdString(), lineColor, flashColor, backgroundColor);
 
-    std::string file1 = QDir::toNativeSeparators(lastInputFileDir.absolutePath()).toStdString();
-    std::string file2 = QDir::toNativeSeparators(overlayGerber.fileName()).toStdString();
-
-    Color lnColor = Color(lineColor);
-    Color flColor = Color(flashColor);
-    Color bgColor = Color(backgroundColor);
-
-    gerbv_open_layer_from_filename_with_color(mainProject, const_cast<gchar*>(file1.c_str()), lnColor.gtk()->r(), lnColor.gtk()->g(), lnColor.gtk()->b(), lnColor.gtk()->a());
-    if (_overlay) {
-        gerbv_open_layer_from_filename_with_color(mainProject, const_cast<gchar*>(file2.c_str()), flColor.gtk()->r(), flColor.gtk()->g(), flColor.gtk()->b(), flColor.gtk()->a());
-    }
-
-    if ((mainProject->file[0] == nullptr) || (mainProject->file[1] == nullptr)) {
-                    qDebug() << "There was an error parsing the files.";
-    }
-
-    gerbv_render_all_layers_to_cairo_target (mainProject, cr, &screenRenderInfo);
-
-    // paint the background white before we draw anything
-    cairo_set_source_rgba (cr, bgColor.cairo()->r(), bgColor.cairo()->g(), bgColor.cairo()->b(), 1);
-    cairo_paint (cr);
-
-    gerbv_render_zoom_to_fit_display (mainProject, &screenRenderInfo);
-
-    //layer 0
-    if (mainProject->file[0]) {
-    cairo_push_group (cr);
-    gerbv_render_layer_to_cairo_target (cr, mainProject->file[0], &screenRenderInfo);
-    cairo_pop_group_to_source (cr);
-    cairo_paint (cr);
-    }
-    //layer 1
-    if (mainProject->file[1]) {
-    cairo_push_group (cr);
-    gerbv_render_layer_to_cairo_target (cr, mainProject->file[1], &screenRenderInfo);
-    cairo_pop_group_to_source (cr);
-    cairo_paint (cr);
-    }
-
-    cairo_surface_flush(target);
-    QImage cairoImage = QImage(cairo_image_surface_get_data(target),width,height,QImage::Format_ARGB32);
-    gerberPreviewPixmap.convertFromImage(cairoImage);
-    gerberPreviewScene->clear();
-    gerberPreviewScene->setSceneRect(0,0,width,height);
-    gerberPreviewScene->addPixmap(gerberPreviewPixmap);
-    ui->gerberPreviewGView->update();
-    cairo_destroy(cr);
-    gerbv_destroy_project (mainProject);
 }
 
 void GerberStencilGenerator::showTipOfTheDay()
@@ -1204,6 +1134,7 @@ void GerberStencilGenerator::requestQuit()
 void GerberStencilGenerator::resizeEvent(QResizeEvent *event)
 {
     event->accept();
+    qDebug()  << "resized";
     ui->apertureGraphicsView->adjustPreviewSize();
     ui->apertureGraphicsView->update();
     generatePreview();

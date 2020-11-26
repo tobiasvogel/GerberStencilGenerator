@@ -1,0 +1,9 @@
+The Gerber files enclosed in this Zip-file are generated from the Arduino Uno Reference Design files (Rev G as of 2020-11-28) and are only intended to be used for demonstration purposes of the GerberStencilGenerator program.
+
+It is strictly forbidden to use this Zip-file in parts or as a whole in any other way. Rights on the Arduino Design, the Arduino Trademark and the included Design files remain with its creators from Arduino (http://www.arduino.cc).
+
+The distribution of this file for the purpose stated here falls under fair use as the Arduino Platform is licensed under a Open Hardware License. Any other use is not allowed in any way.
+
+This Zip-file in parts or as a whole may not be used in any other way than in combination with the GerberStencilGenerator-program for demonstration and testing purposes of the programs capabilities.
+
+Any reproduction of the Data in any way, either physically or electronically is not allowed in any way.
