@@ -2,482 +2,552 @@
 #include "ui_gerberplotterdialog.h"
 
 
-GerberPlotterDialog::GerberPlotterDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::GerberPlotterDialog)
-{
-    ui->setupUi(this);
+GerberPlotterDialog::GerberPlotterDialog( QWidget *parent ) :
+   QDialog( parent ),
+   ui( new Ui::GerberPlotterDialog ) {
+   ui->setupUi( this );
 
-    colorDialog = new color_widgets::ColorDialog(this);
+   colorDialog = new color_widgets::ColorDialog( this );
 
-    lastDir = QDir::home();
-    QObject::connect(ui->cancelButton, &QPushButton::clicked, [this]() { close(); });
-    //QObject::connect(ui->generateButton, &QPushButton::clicked, [this]() { std::ignore = this; qDebug() << "Not implemented yet."; });
-    QObject::connect(ui->boardOutlineBrowseButton, &QPushButton::clicked, [this]() {
-       browseOpenFile(ui->boardOutlineLineEdit, tr("Board Outline Gerber File"), nullptr, tr("Board Outline (*.gml);;Generic Gerber File (*.grb);;Any file (*.*)"));
-    });
-    QObject::connect(ui->drillsBrowseButton, &QPushButton::clicked, [this]() {
-       browseOpenFile(ui->drillsLineEdit, tr("Drills Gerber File"), nullptr, tr("Excellon Drills File (*.xln *.txt *.drl *.nc *.exc *.drd);;Generic Gerber File (*.grb);;Any file (*.*)"));
-    });
-    QObject::connect(ui->topCopperBrowseButton, &QPushButton::clicked, [this]() {
-        browseOpenFile(ui->topCopperLineEdit, tr("Top Copper Gerber File"), nullptr, tr("Copper Gerber File (*.gtl *.top *.cmp);;Generic Gerber File (*.grb);;Any file (*.*)"));
-    });
-    QObject::connect(ui->topSolderMaskBrowseButton, &QPushButton::clicked, [this]() {
-        browseOpenFile(ui->topSolderMaskLineEdit, tr("Top Solder Mask Gerber File"), nullptr, tr("Solder Mask Gerber File (*.gts *.tsm *.smt);;Generic Gerber File (*.grb);;Any file (*.*)"));
-    });
-    QObject::connect(ui->topSilkscreenBrowseButton, &QPushButton::clicked, [this]() {
-        browseOpenFile(ui->topSilkscreenLineEdit, tr("Top Silkscreen Gerber File"), nullptr, tr("Silkscreen Gerber File (*.gto *.tsk *.sst);;Generic Gerber File (*.grb);;Any file (*.*)"));
-    });
-    QObject::connect(ui->bottomCopperBrowseButton, &QPushButton::clicked, [this]() {
-        browseOpenFile(ui->bottomCopperLineEdit, tr("Bottom Copper Gerber File"), nullptr, tr("Copper Gerber File (*.gbl *.bot *.sol);;Generic Gerber File (*.grb);;Any file (*.*)"));
-    });
-    QObject::connect(ui->bottomSolderMaskBrowseButton, &QPushButton::clicked, [this]() {
-        browseOpenFile(ui->bottomSolderMaskLineEdit, tr("Bottom Solder Mask Gerber File"), nullptr, tr("Solder Mask Gerber File (*.gbs *.bsm *.smb);;Generic Gerber File (*.grb);;Any file (*.*)"));
-    });
-    QObject::connect(ui->bottomSilkscreenBrowseButton, &QPushButton::clicked, [this]() {
-        browseOpenFile(ui->bottomSilkscreenLineEdit, tr("Bottom Silkscreen Gerber File"), nullptr, tr("Silkscreen Gerber File (*.gbo *.bsk *.ssb);;Generic Gerber File (*.grb);;Any file (*.*)"));
-    });
-    QObject::connect(ui->topSideBrowseButton, &QPushButton::clicked, [this]() {
-        checkImageFormat();
-        if (graphicsFormat == PNG) {
-            browseSaveFile(ui->topSideLineEdit, tr("Top Side Output Image File"), nullptr, tr("PNG-Graphic (*.png)"));
-        } else {
-            browseSaveFile(ui->topSideLineEdit, tr("Top Side Output Image File"), nullptr, tr("JPEG-Image (*.jpg *.jpeg)"));
-        }
-    });
-    QObject::connect(ui->bottomSideBrowseButton, &QPushButton::clicked, [this]() {
-        checkImageFormat();
-        if (graphicsFormat == PNG) {
-            browseSaveFile(ui->bottomSideLineEdit, tr("Bottom Side Output Image File"), nullptr, tr("PNG-Graphic (*.png)"));
-        } else {
-            browseSaveFile(ui->bottomSideLineEdit, tr("Bottom Side Output Image File"), nullptr, tr("JPEG-Image (*.jpg *.jpeg)"));
-        }
-    });
-    QObject::connect(ui->radioButton_jpeg, &QRadioButton::clicked, [this]() { imageFormatChanged(); });
-    QObject::connect(ui->radioButton_png, &QRadioButton::clicked, [this]() { imageFormatChanged(); });
-    QObject::connect(ui->radioButton_green, &QRadioButton::clicked, [this]() { colorSchemeChanged(); });
-    QObject::connect(ui->radioButton_blue, &QRadioButton::clicked, [this]() { colorSchemeChanged(); });
-    QObject::connect(ui->radioButton_red, &QRadioButton::clicked, [this]() { colorSchemeChanged(); });
-    QObject::connect(ui->radioButton_yellow, &QRadioButton::clicked, [this]() { colorSchemeChanged(); });
-    QObject::connect(ui->radioButton_white, &QRadioButton::clicked, [this]() { colorSchemeChanged(); });
-    QObject::connect(ui->radioButton_black, &QRadioButton::clicked, [this]() { colorSchemeChanged(); });
-    QObject::connect(ui->radioButton_custom, &QRadioButton::clicked, [this]() { colorSchemeChanged(); });
-    QObject::connect(ui->padsColorComboBox, QOverload<int>::of(&QComboBox::activated),
-                     [=](int index) { padsColorChanged(index); });
+   lastDir = QDir::home();
+   QObject::connect( ui->cancelButton, &QPushButton::clicked, [this]() { close(); } );
+   //QObject::connect(ui->generateButton, &QPushButton::clicked, [this]() { std::ignore = this; qDebug() << "Not implemented yet."; });
+   QObject::connect( ui->boardOutlineBrowseButton, &QPushButton::clicked, [this]() {
+      browseOpenFile( ui->boardOutlineLineEdit, tr( "Board Outline Gerber File" ), nullptr, tr( "Board Outline (*.gml);;Generic Gerber File (*.grb);;Any file (*.*)" ) );
+   } );
+   QObject::connect( ui->drillsBrowseButton, &QPushButton::clicked, [this]() {
+      browseOpenFile( ui->drillsLineEdit, tr( "Drills Gerber File" ), nullptr,
+                      tr( "Excellon Drills File (*.xln *.txt *.drl *.nc *.exc *.drd);;Generic Gerber File (*.grb);;Any file (*.*)" ) );
+   } );
+   QObject::connect( ui->topCopperBrowseButton, &QPushButton::clicked, [this]() {
+      browseOpenFile( ui->topCopperLineEdit, tr( "Top Copper Gerber File" ), nullptr,
+                      tr( "Copper Gerber File (*.gtl *.top *.cmp);;Generic Gerber File (*.grb);;Any file (*.*)" ) );
+   } );
+   QObject::connect( ui->topSolderMaskBrowseButton, &QPushButton::clicked, [this]() {
+      browseOpenFile( ui->topSolderMaskLineEdit, tr( "Top Solder Mask Gerber File" ), nullptr,
+                      tr( "Solder Mask Gerber File (*.gts *.tsm *.smt);;Generic Gerber File (*.grb);;Any file (*.*)" ) );
+   } );
+   QObject::connect( ui->topSilkscreenBrowseButton, &QPushButton::clicked, [this]() {
+      browseOpenFile( ui->topSilkscreenLineEdit, tr( "Top Silkscreen Gerber File" ), nullptr,
+                      tr( "Silkscreen Gerber File (*.gto *.tsk *.sst);;Generic Gerber File (*.grb);;Any file (*.*)" ) );
+   } );
+   QObject::connect( ui->bottomCopperBrowseButton, &QPushButton::clicked, [this]() {
+      browseOpenFile( ui->bottomCopperLineEdit, tr( "Bottom Copper Gerber File" ), nullptr,
+                      tr( "Copper Gerber File (*.gbl *.bot *.sol);;Generic Gerber File (*.grb);;Any file (*.*)" ) );
+   } );
+   QObject::connect( ui->bottomSolderMaskBrowseButton, &QPushButton::clicked, [this]() {
+      browseOpenFile( ui->bottomSolderMaskLineEdit, tr( "Bottom Solder Mask Gerber File" ), nullptr,
+                      tr( "Solder Mask Gerber File (*.gbs *.bsm *.smb);;Generic Gerber File (*.grb);;Any file (*.*)" ) );
+   } );
+   QObject::connect( ui->bottomSilkscreenBrowseButton, &QPushButton::clicked, [this]() {
+      browseOpenFile( ui->bottomSilkscreenLineEdit, tr( "Bottom Silkscreen Gerber File" ), nullptr,
+                      tr( "Silkscreen Gerber File (*.gbo *.bsk *.ssb);;Generic Gerber File (*.grb);;Any file (*.*)" ) );
+   } );
+   QObject::connect( ui->topSideBrowseButton, &QPushButton::clicked, [this]() {
+      checkImageFormat();
 
-    QObject::connect(ui->bgColorComboBox, QOverload<int>::of(&QComboBox::activated),
-                     [=](int index) { backgroundColorChanged(index); });
+      if ( graphicsFormat == PNG ) {
+         browseSaveFile( ui->topSideLineEdit, tr( "Top Side Output Image File" ), nullptr, tr( "PNG-Graphic (*.png)" ) );
 
-    QObject::connect(ui->bottomSideOutputGroupBox, QOverload<bool>::of(&QGroupBox::toggled),
-                     [=](bool on) { bottomSideOutputToggled(on); });
+      } else {
+         browseSaveFile( ui->topSideLineEdit, tr( "Top Side Output Image File" ), nullptr, tr( "JPEG-Image (*.jpg *.jpeg)" ) );
+      }
+   } );
+   QObject::connect( ui->bottomSideBrowseButton, &QPushButton::clicked, [this]() {
+      checkImageFormat();
 
-    QObject::connect(ui->topSideOutputGroupBox, QOverload<bool>::of(&QGroupBox::toggled),
-                     [=](bool on) { topSideOutputToggled(on); });
+      if ( graphicsFormat == PNG ) {
+         browseSaveFile( ui->bottomSideLineEdit, tr( "Bottom Side Output Image File" ), nullptr, tr( "PNG-Graphic (*.png)" ) );
 
-    QObject::connect(ui->imgWidthBox, QOverload<int>::of(&QSpinBox::valueChanged),
-                     [=](int width) { imgSizeChanged(width, -1); });
+      } else {
+         browseSaveFile( ui->bottomSideLineEdit, tr( "Bottom Side Output Image File" ), nullptr, tr( "JPEG-Image (*.jpg *.jpeg)" ) );
+      }
+   } );
+   QObject::connect( ui->radioButton_jpeg, &QRadioButton::clicked, [this]() { imageFormatChanged(); } );
+   QObject::connect( ui->radioButton_png, &QRadioButton::clicked, [this]() { imageFormatChanged(); } );
+   QObject::connect( ui->radioButton_green, &QRadioButton::clicked, [this]() { colorSchemeChanged(); } );
+   QObject::connect( ui->radioButton_blue, &QRadioButton::clicked, [this]() { colorSchemeChanged(); } );
+   QObject::connect( ui->radioButton_red, &QRadioButton::clicked, [this]() { colorSchemeChanged(); } );
+   QObject::connect( ui->radioButton_yellow, &QRadioButton::clicked, [this]() { colorSchemeChanged(); } );
+   QObject::connect( ui->radioButton_white, &QRadioButton::clicked, [this]() { colorSchemeChanged(); } );
+   QObject::connect( ui->radioButton_black, &QRadioButton::clicked, [this]() { colorSchemeChanged(); } );
+   QObject::connect( ui->radioButton_custom, &QRadioButton::clicked, [this]() { colorSchemeChanged(); } );
+   QObject::connect( ui->padsColorComboBox, QOverload<int>::of( &QComboBox::activated ),
+   [ = ]( int index ) { padsColorChanged( index ); } );
 
-    QObject::connect(ui->imgHeightBox, QOverload<int>::of(&QSpinBox::valueChanged),
-                     [=](int height) { imgSizeChanged(-1, height); });
+   QObject::connect( ui->bgColorComboBox, QOverload<int>::of( &QComboBox::activated ),
+   [ = ]( int index ) { backgroundColorChanged( index ); } );
 
-    QObject::connect(ui->evalBoardSizeButton, &QPushButton::clicked, [this]() { loadGerberBoardOutline(); });
+   QObject::connect( ui->bottomSideOutputGroupBox, QOverload<bool>::of( &QGroupBox::toggled ),
+   [ = ]( bool on ) { bottomSideOutputToggled( on ); } );
+
+   QObject::connect( ui->topSideOutputGroupBox, QOverload<bool>::of( &QGroupBox::toggled ),
+   [ = ]( bool on ) { topSideOutputToggled( on ); } );
+
+   QObject::connect( ui->imgWidthBox, QOverload<int>::of( &QSpinBox::valueChanged ),
+   [ = ]( int width ) { imgSizeChanged( width, -1 ); } );
+
+   QObject::connect( ui->imgHeightBox, QOverload<int>::of( &QSpinBox::valueChanged ),
+   [ = ]( int height ) { imgSizeChanged( -1, height ); } );
+
+   QObject::connect( ui->evalBoardSizeButton, &QPushButton::clicked, [this]() { loadGerberBoardOutline(); } );
 
 
 
 
-    disabledFieldStylesheet = "background-color: ";
-    disabledFieldStylesheet.append(QColor(QPalette().color(QPalette::Disabled, QPalette::Base)).name(QColor::HexRgb));
-    disabledFieldStylesheet.append("; color: ");
-    disabledFieldStylesheet.append(QColor(QPalette().color(QPalette::Disabled, QPalette::WindowText)).name(QColor::HexRgb));
-    disabledFieldStylesheet.append(";");
+   disabledFieldStylesheet = "background-color: ";
+   disabledFieldStylesheet.append( QColor( QPalette().color( QPalette::Disabled, QPalette::Base ) ).name( QColor::HexRgb ) );
+   disabledFieldStylesheet.append( "; color: " );
+   disabledFieldStylesheet.append( QColor( QPalette().color( QPalette::Disabled, QPalette::WindowText ) ).name( QColor::HexRgb ) );
+   disabledFieldStylesheet.append( ";" );
 
-    checkImageFormat();
+   checkImageFormat();
 
-    toggleSizeLoaded();
+   toggleSizeLoaded();
 }
 
-GerberPlotterDialog::~GerberPlotterDialog()
-{
-    delete ui;
+GerberPlotterDialog::~GerberPlotterDialog() {
+   delete ui;
 }
 
-QString GerberPlotterDialog::colorComboBoxText(QString text, QColor color)
-{
-    QString returnText = text;
-    if (text.endsWith(")")) {
-        // there is already a color-string appended
-        if (text.right(8).startsWith(QChar(0x0023))) { // HexRgb
-            returnText = text.left(text.size()-10);
-         } else if (text.right(10).startsWith(QChar(0x0023))) { // HexArgb
-            returnText = text.left(text.size()-12);
+QString GerberPlotterDialog::colorComboBoxText( QString text, QColor color ) {
+   QString returnText = text;
+
+   if ( text.endsWith( ")" ) ) {
+      // there is already a color-string appended
+      if ( text.right( 8 ).startsWith( QChar( 0x0023 ) ) ) { // HexRgb
+         returnText = text.left( text.size() - 10 );
+
+      } else if ( text.right( 10 ).startsWith( QChar( 0x0023 ) ) ) { // HexArgb
+         returnText = text.left( text.size() - 12 );
+
+      } else {
+         qDebug() << "uh-oh.. something went very wrong here :-(";
+         return text;
+      }
+   }
+
+   returnText.append( QChar( 0x0020 ) );
+   returnText.append( QChar( 0x0028 ) );
+
+   if ( color.alpha() == 255 ) {
+      returnText.append( color.name( QColor::HexRgb ) );
+
+   } else {
+      returnText.append( color.name( QColor::HexArgb ) );
+   }
+
+   returnText.append( QChar( 0x0029 ) );
+   return returnText;
+}
+
+QColor GerberPlotterDialog::getLastCustomColor( QString text, bool alpha, QColor initialColor = Qt::white ) {
+   QColor returnColor = initialColor;
+   QString colorString = "";
+
+   if ( !( text.endsWith( ")" ) ) ) {
+      // no custom color selected yet
+      return returnColor;
+
+   } else {
+      if ( text.right( 8 ).startsWith( QChar( 0x0023 ) ) ) { // HexRgb
+         colorString = text.right( 8 );
+         colorString = colorString.left( colorString.size() - 1 );
+         qDebug() << colorString;
+
+         if ( QColor( colorString ).isValid() ) {
+            returnColor = QColor( colorString );
+         }
+
+      } else if ( text.right( 10 ).startsWith( QChar( 0x0023 ) ) ) { // HexArgb
+         colorString = text.right( 10 );
+         colorString = colorString.left( colorString.size() - 1 );
+         qDebug() << colorString;
+
+         if ( QColor( colorString ).isValid() ) {
+            returnColor = QColor( colorString );
+         }
+
+      } else {
+         // something went wrong
+         return returnColor;
+      }
+   }
+
+   if ( !alpha ) {
+      returnColor.setAlpha( 255 );
+   }
+
+   return returnColor;
+}
+
+void GerberPlotterDialog::browseOpenFile( QLineEdit *lineEdit, QString promptText, QString browseDir, QString fileFilters ) {
+   QString dir;
+
+   if ( browseDir.isNull() || browseDir.isEmpty() ) {
+      dir = getLastDir();
+
+   } else {
+      dir = browseDir;
+   }
+
+   QString fileName = QFileDialog::getOpenFileName( this, promptText, dir, fileFilters );
+
+   if ( fileName.isEmpty() || fileName.isNull() ) {
+      return;
+
+   } else {
+      lineEdit->setText( fileName );
+      QString filePath = QFileInfo( fileName ).absolutePath();
+      lastDir.setPath( filePath );
+   }
+}
+
+void GerberPlotterDialog::browseSaveFile( QLineEdit *lineEdit, QString promptText, QString browseDir, QString fileFilter ) {
+   QString dir;
+
+   if ( browseDir.isNull() || browseDir.isEmpty() ) {
+      dir = getLastDir();
+
+   } else {
+      dir = browseDir;
+   }
+
+   QString fileName = QFileDialog::getSaveFileName( this, promptText, dir, fileFilter );
+
+   if ( fileName.isEmpty() || fileName.isNull() ) {
+      return;
+
+   } else {
+      lineEdit->setText( fileName );
+      QString filePath = QFileInfo( fileName ).absolutePath();
+      lastDir.setPath( filePath );
+   }
+}
+
+void GerberPlotterDialog::colorSchemeChanged( void ) {
+
+   if ( ui->radioButton_green->isChecked() ) { pcbColorScheme = PCB_GREEN; }
+
+   else if ( ui->radioButton_blue->isChecked() ) { pcbColorScheme = PCB_BLUE; }
+
+   else if ( ui->radioButton_red->isChecked() ) { pcbColorScheme = PCB_RED; }
+
+   else if ( ui->radioButton_yellow->isChecked() ) { pcbColorScheme = PCB_YELLOW; }
+
+   else if ( ui->radioButton_white->isChecked() ) { pcbColorScheme = PCB_WHITE; }
+
+   else if ( ui->radioButton_black->isChecked() ) { pcbColorScheme = PCB_BLACK; }
+
+   else if ( ui->radioButton_custom->isChecked() ) { pcbColorScheme = PCB_CUSTOM; }
+
+   else { pcbColorScheme = PCB_GREEN; }
+
+   QStringList colors;
+
+
+   switch ( pcbColorScheme ) {
+      case PCB_BLUE:
+         if ( ui->padsColorComboBox->currentText().toLower().contains( tr( "gold" ) ) ) {
+            colors =  QString::fromStdString( bluePcbGoldPad ).split( QLatin1Char( ';' ) );
+
          } else {
-            qDebug() << "uh-oh.. something went very wrong here :-(";
-            return text;
-        }
-    }
-        returnText.append(QChar(0x0020));
-        returnText.append(QChar(0x0028));
-        if (color.alpha()==255) {
-            returnText.append(color.name(QColor::HexRgb));
-        } else {
-            returnText.append(color.name(QColor::HexArgb));
-        }
-        returnText.append(QChar(0x0029));
-    return returnText;
-}
+            colors =  QString::fromStdString( bluePcbSilverPad ).split( QLatin1Char( ';' ) );
+         }
 
-QColor GerberPlotterDialog::getLastCustomColor(QString text, bool alpha, QColor initialColor = Qt::white)
-{
-    QColor returnColor = initialColor;
-    QString colorString = "";
-    if (!(text.endsWith(")"))) {
-        // no custom color selected yet
-        return returnColor;
-    } else {
-        if (text.right(8).startsWith(QChar(0x0023))) { // HexRgb
-            colorString = text.right(8);
-            colorString = colorString.left(colorString.size()-1);
-            qDebug() << colorString;
-            if (QColor(colorString).isValid()) {
-            returnColor = QColor(colorString);
+         break;
+
+      case PCB_RED:
+         if ( ui->padsColorComboBox->currentText().toLower().contains( tr( "gold" ) ) ) {
+            colors =  QString::fromStdString( redPcbGoldPad ).split( QLatin1Char( ';' ) );
+
+         } else {
+            colors =  QString::fromStdString( redPcbSilverPad ).split( QLatin1Char( ';' ) );
+         }
+
+         break;
+
+      case PCB_YELLOW:
+         if ( ui->padsColorComboBox->currentText().toLower().contains( tr( "gold" ) ) ) {
+            colors =  QString::fromStdString( yellowPcbGoldPad ).split( QLatin1Char( ';' ) );
+
+         } else {
+            colors =  QString::fromStdString( yellowPcbSilverPad ).split( QLatin1Char( ';' ) );
+         }
+
+         break;
+
+      case PCB_WHITE:
+         if ( ui->padsColorComboBox->currentText().toLower().contains( tr( "gold" ) ) ) {
+            colors =  QString::fromStdString( whitePcbGoldPad ).split( QLatin1Char( ';' ) );
+
+         } else {
+            colors =  QString::fromStdString( whitePcbSilverPad ).split( QLatin1Char( ';' ) );
+         }
+
+         break;
+
+      case PCB_BLACK:
+         if ( ui->padsColorComboBox->currentText().toLower().contains( tr( "gold" ) ) ) {
+            colors =  QString::fromStdString( blackPcbGoldPad ).split( QLatin1Char( ';' ) );
+
+         } else {
+            colors =  QString::fromStdString( blackPcbSilverPad ).split( QLatin1Char( ';' ) );
+         }
+
+         break;
+
+      case PCB_CUSTOM:
+         if ( ui->padsColorComboBox->currentText().toLower().contains( tr( "gold" ) ) ) {
+            colors =  QString( customPcbGoldPad ).split( QLatin1Char( ';' ) );
+            _padsColor = QColor( QString( "#" ).append( goldPcbPadColor.c_str() ) );
+
+         } else {
+            colors =  QString( customPcbSilverPad ).split( QLatin1Char( ';' ) );
+
+            if ( ui->padsColorComboBox->currentIndex() != ( ui->padsColorComboBox->count() - 1 ) ) { // selected pad color must be silver
+               _padsColor = QColor( QString( "#" ).append( silverPcbPadColor.c_str() ) );
             }
-        } else if (text.right(10).startsWith(QChar(0x0023))) { // HexArgb
-            colorString = text.right(10);
-            colorString = colorString.left(colorString.size()-1);
-            qDebug() << colorString;
-            if (QColor(colorString).isValid()) {
-            returnColor = QColor(colorString);
-            }
-        } else {
-            // something went wrong
-            return returnColor;
-        }
-    }
-    if (!alpha) {
-        returnColor.setAlpha(255);
-    }
-    return returnColor;
-}
+         }
 
-void GerberPlotterDialog::browseOpenFile(QLineEdit *lineEdit, QString promptText, QString browseDir, QString fileFilters)
-{
-    QString dir;
-    if (browseDir.isNull() || browseDir.isEmpty()) {
-        dir = getLastDir();
-    } else {
-        dir = browseDir;
-    }
-    QString fileName = QFileDialog::getOpenFileName(this, promptText, dir, fileFilters);
-    if (fileName.isEmpty() || fileName.isNull()) {
-        return;
-    } else {
-        lineEdit->setText(fileName);
-        QString filePath = QFileInfo(fileName).absolutePath();
-        lastDir.setPath(filePath);
-    }
-}
+         break;
 
-void GerberPlotterDialog::browseSaveFile(QLineEdit *lineEdit, QString promptText, QString browseDir, QString fileFilter)
-{
-    QString dir;
-    if (browseDir.isNull() || browseDir.isEmpty()) {
-        dir = getLastDir();
-    } else {
-        dir = browseDir;
-    }
-    QString fileName = QFileDialog::getSaveFileName(this, promptText, dir, fileFilter);
-    if (fileName.isEmpty() || fileName.isNull()) {
-        return;
-    } else {
-        lineEdit->setText(fileName);
-        QString filePath = QFileInfo(fileName).absolutePath();
-        lastDir.setPath(filePath);
-    }
-}
+      case PCB_GREEN:
+      default:
+         if ( ui->padsColorComboBox->currentText().toLower().contains( tr( "gold" ) ) ) {
+            colors =  QString::fromStdString( greenPcbGoldPad ).split( QLatin1Char( ';' ) );
 
-void GerberPlotterDialog::colorSchemeChanged(void)
-{
+         } else {
+            colors =  QString::fromStdString( greenPcbSilverPad ).split( QLatin1Char( ';' ) );
+         }
+   }
 
-    if (ui->radioButton_green->isChecked()) { pcbColorScheme = PCB_GREEN; }
-    else if (ui->radioButton_blue->isChecked()) { pcbColorScheme = PCB_BLUE; }
-    else if (ui->radioButton_red->isChecked()) { pcbColorScheme = PCB_RED; }
-    else if (ui->radioButton_yellow->isChecked()) { pcbColorScheme = PCB_YELLOW; }
-    else if (ui->radioButton_white->isChecked()) { pcbColorScheme = PCB_WHITE; }
-    else if (ui->radioButton_black->isChecked()) { pcbColorScheme = PCB_BLACK; }
-    else if (ui->radioButton_custom->isChecked()) { pcbColorScheme = PCB_CUSTOM; }
-    else { pcbColorScheme = PCB_GREEN; }
-
-    QStringList colors;
-
-
-    switch (pcbColorScheme) {
-    case PCB_BLUE:
-        if (ui->padsColorComboBox->currentText().toLower().contains(tr("gold"))) {
-            colors =  QString::fromStdString(bluePcbGoldPad).split(QLatin1Char(';'));
-        } else {
-           colors =  QString::fromStdString(bluePcbSilverPad).split(QLatin1Char(';'));
-        }
-        break;
-    case PCB_RED:
-        if (ui->padsColorComboBox->currentText().toLower().contains(tr("gold"))) {
-            colors =  QString::fromStdString(redPcbGoldPad).split(QLatin1Char(';'));
-        } else {
-           colors =  QString::fromStdString(redPcbSilverPad).split(QLatin1Char(';'));
-        }
-        break;
-    case PCB_YELLOW:
-        if (ui->padsColorComboBox->currentText().toLower().contains(tr("gold"))) {
-            colors =  QString::fromStdString(yellowPcbGoldPad).split(QLatin1Char(';'));
-        } else {
-           colors =  QString::fromStdString(yellowPcbSilverPad).split(QLatin1Char(';'));
-        }
-        break;
-    case PCB_WHITE:
-        if (ui->padsColorComboBox->currentText().toLower().contains(tr("gold"))) {
-            colors =  QString::fromStdString(whitePcbGoldPad).split(QLatin1Char(';'));
-        } else {
-           colors =  QString::fromStdString(whitePcbSilverPad).split(QLatin1Char(';'));
-        }
-        break;
-    case PCB_BLACK:
-        if (ui->padsColorComboBox->currentText().toLower().contains(tr("gold"))) {
-            colors =  QString::fromStdString(blackPcbGoldPad).split(QLatin1Char(';'));
-        } else {
-           colors =  QString::fromStdString(blackPcbSilverPad).split(QLatin1Char(';'));
-        }
-        break;
-    case PCB_CUSTOM:
-        if (ui->padsColorComboBox->currentText().toLower().contains(tr("gold"))) {
-            colors =  QString(customPcbGoldPad).split(QLatin1Char(';'));
-            _padsColor = QColor(QString("#").append(goldPcbPadColor.c_str()));
-        } else {
-            colors =  QString(customPcbSilverPad).split(QLatin1Char(';'));
-            if (ui->padsColorComboBox->currentIndex() != (ui->padsColorComboBox->count()-1)) { // selected pad color must be silver
-                    _padsColor = QColor(QString("#").append(silverPcbPadColor.c_str()));
-            }
-        }
-        break;
-    case PCB_GREEN:
-    default:
-        if (ui->padsColorComboBox->currentText().toLower().contains(tr("gold"))) {
-            colors =  QString::fromStdString(greenPcbGoldPad).split(QLatin1Char(';'));
-        } else {
-           colors =  QString::fromStdString(greenPcbSilverPad).split(QLatin1Char(';'));
-        }
-    }
-
-    ui->baseColorLineEdit->setText(QString("#").append(colors.at(0)));
-    ui->copperColorLineEdit->setText(QString("#").append(colors.at(1)));
-    ui->silkscreenColorLineEdit->setText(QString("#").append(colors.at(2)));
-    ui->bumpMapSpinBox->setValue(colors.at(4).toInt());
+   ui->baseColorLineEdit->setText( QString( "#" ).append( colors.at( 0 ) ) );
+   ui->copperColorLineEdit->setText( QString( "#" ).append( colors.at( 1 ) ) );
+   ui->silkscreenColorLineEdit->setText( QString( "#" ).append( colors.at( 2 ) ) );
+   ui->bumpMapSpinBox->setValue( colors.at( 4 ).toInt() );
 
 }
 
-void GerberPlotterDialog::imageFormatChanged()
-{
-    if (ui->radioButton_png->isChecked()) {
-        graphicsFormat = PNG;
-        ui->jpgQualityBox->setEnabled(false);
-        if (ui->bgColorComboBox->count() < 4) {
-            ui->bgColorComboBox->insertItem(0, tr("transparent"));
-        }
-    } else if (ui->radioButton_jpeg->isChecked()) {
-        graphicsFormat = JPEG;
-        ui->jpgQualityBox->setEnabled(true);
-        if (ui->bgColorComboBox->currentIndex() == 0) {
-            ui->bgColorComboBox->setCurrentIndex(2);
-        }
-        if (ui->bgColorComboBox->count() == 4){
-            ui->bgColorComboBox->removeItem(0);
-        }
-        if (ui->bgColorComboBox->currentIndex() == (ui->bgColorComboBox->count()-1)) {
-            // previously selected color may contain alpha value, let the user re-pick
-            backgroundColorChanged(ui->bgColorComboBox->currentIndex());
-        }
-    } else {
-        return;
-    }
+void GerberPlotterDialog::imageFormatChanged() {
+   if ( ui->radioButton_png->isChecked() ) {
+      graphicsFormat = PNG;
+      ui->jpgQualityBox->setEnabled( false );
+
+      if ( ui->bgColorComboBox->count() < 4 ) {
+         ui->bgColorComboBox->insertItem( 0, tr( "transparent" ) );
+      }
+
+   } else if ( ui->radioButton_jpeg->isChecked() ) {
+      graphicsFormat = JPEG;
+      ui->jpgQualityBox->setEnabled( true );
+
+      if ( ui->bgColorComboBox->currentIndex() == 0 ) {
+         ui->bgColorComboBox->setCurrentIndex( 2 );
+      }
+
+      if ( ui->bgColorComboBox->count() == 4 ) {
+         ui->bgColorComboBox->removeItem( 0 );
+      }
+
+      if ( ui->bgColorComboBox->currentIndex() == ( ui->bgColorComboBox->count() - 1 ) ) {
+         // previously selected color may contain alpha value, let the user re-pick
+         backgroundColorChanged( ui->bgColorComboBox->currentIndex() );
+      }
+
+   } else {
+      return;
+   }
 }
 
-void GerberPlotterDialog::backgroundColorChanged(int index)
-{
-    if (graphicsFormat == PNG) {
-    if (index == 0) {
-        _backgroundColor = Qt::transparent;
-    } else if (index == 1) {
-        _backgroundColor = Qt::black;
-    } else if (index == 2) {
-        _backgroundColor = Qt::white;
-    } else if (index == 3) {
-        _backgroundColor = this->pickColor(getLastCustomColor(ui->bgColorComboBox->currentText(), true), tr("Choose background Color"), true);
-         ui->bgColorComboBox->setItemText(index, colorComboBoxText(ui->bgColorComboBox->currentText(), _backgroundColor));
-    } else {
-        return;
-    }
-    } else { // graphicsFormat == JPEG
-        if (index == 0) {
-            _backgroundColor = Qt::black;
-        } else if (index == 1) {
-            _backgroundColor = Qt::white;
-        } else if (index == 2) {
-            _backgroundColor = this->pickColor(getLastCustomColor(ui->bgColorComboBox->currentText(), false), tr("Choose background Color"), false);
-             ui->bgColorComboBox->setItemText(index, colorComboBoxText(ui->bgColorComboBox->currentText(), _backgroundColor));
-        } else {
-            return;
-        }
-    }
+void GerberPlotterDialog::backgroundColorChanged( int index ) {
+   if ( graphicsFormat == PNG ) {
+      if ( index == 0 ) {
+         _backgroundColor = Qt::transparent;
+
+      } else if ( index == 1 ) {
+         _backgroundColor = Qt::black;
+
+      } else if ( index == 2 ) {
+         _backgroundColor = Qt::white;
+
+      } else if ( index == 3 ) {
+         _backgroundColor = this->pickColor( getLastCustomColor( ui->bgColorComboBox->currentText(), true ), tr( "Choose background Color" ), true );
+         ui->bgColorComboBox->setItemText( index, colorComboBoxText( ui->bgColorComboBox->currentText(), _backgroundColor ) );
+
+      } else {
+         return;
+      }
+
+   } else { // graphicsFormat == JPEG
+      if ( index == 0 ) {
+         _backgroundColor = Qt::black;
+
+      } else if ( index == 1 ) {
+         _backgroundColor = Qt::white;
+
+      } else if ( index == 2 ) {
+         _backgroundColor = this->pickColor( getLastCustomColor( ui->bgColorComboBox->currentText(), false ), tr( "Choose background Color" ), false );
+         ui->bgColorComboBox->setItemText( index, colorComboBoxText( ui->bgColorComboBox->currentText(), _backgroundColor ) );
+
+      } else {
+         return;
+      }
+   }
 }
 
-void GerberPlotterDialog::padsColorChanged(int index)
-{
-    if ((ui->padsColorComboBox->itemText(index).contains(tr("gold"))) || (ui->padsColorComboBox->itemText(index).contains(tr("silver")))) {
-        colorSchemeChanged();
-    } else {
-        _padsColor = this->pickColor(getLastCustomColor(ui->padsColorComboBox->currentText(), false, _padsColor), tr("Choose background Color"), false);
-         ui->padsColorComboBox->setItemText(index, colorComboBoxText(ui->padsColorComboBox->currentText(), _padsColor));
-    }
+void GerberPlotterDialog::padsColorChanged( int index ) {
+   if ( ( ui->padsColorComboBox->itemText( index ).contains( tr( "gold" ) ) ) || ( ui->padsColorComboBox->itemText( index ).contains( tr( "silver" ) ) ) ) {
+      colorSchemeChanged();
+
+   } else {
+      _padsColor = this->pickColor( getLastCustomColor( ui->padsColorComboBox->currentText(), false, _padsColor ), tr( "Choose background Color" ), false );
+      ui->padsColorComboBox->setItemText( index, colorComboBoxText( ui->padsColorComboBox->currentText(), _padsColor ) );
+   }
 }
 
-QColor GerberPlotterDialog::pickColor(QColor initialColor, QString windowTitle, bool alpha)
-{
-    if (alpha) {
-        colorDialog->setAlphaEnabled(true);
-    } else {
-        colorDialog->setAlphaEnabled(false);
-    }
-    colorDialog->setWindowTitle(windowTitle);
-    colorDialog->setColor(initialColor);
-    colorDialog->exec();
-    return colorDialog->color();
+QColor GerberPlotterDialog::pickColor( QColor initialColor, QString windowTitle, bool alpha ) {
+   if ( alpha ) {
+      colorDialog->setAlphaEnabled( true );
+
+   } else {
+      colorDialog->setAlphaEnabled( false );
+   }
+
+   colorDialog->setWindowTitle( windowTitle );
+   colorDialog->setColor( initialColor );
+   colorDialog->exec();
+   return colorDialog->color();
 }
 
-QString GerberPlotterDialog::getLastDir()
-{
-    QString lastDirString = lastDir.absolutePath();
-    return lastDirString;
+QString GerberPlotterDialog::getLastDir() {
+   QString lastDirString = lastDir.absolutePath();
+   return lastDirString;
 }
 
-void GerberPlotterDialog::checkImageFormat()
-{
-    if (ui->radioButton_png->isChecked()) {
-        graphicsFormat = PNG;
-        ui->jpgQualityBox->setEnabled(false);
-    } else {
-        graphicsFormat = JPEG;
-        ui->jpgQualityBox->setEnabled(true);
-    }
+void GerberPlotterDialog::checkImageFormat() {
+   if ( ui->radioButton_png->isChecked() ) {
+      graphicsFormat = PNG;
+      ui->jpgQualityBox->setEnabled( false );
+
+   } else {
+      graphicsFormat = JPEG;
+      ui->jpgQualityBox->setEnabled( true );
+   }
 }
 
-void GerberPlotterDialog::bottomSideOutputToggled(bool on)
-{
-     ui->flipBottomCheckBox->setEnabled(on);
+void GerberPlotterDialog::bottomSideOutputToggled( bool on ) {
+   ui->flipBottomCheckBox->setEnabled( on );
 }
 
-void GerberPlotterDialog::topSideOutputToggled(bool on)
-{
-    std::ignore = on;
+void GerberPlotterDialog::topSideOutputToggled( bool on ) {
+   std::ignore = on;
 }
 
-void GerberPlotterDialog::imgSizeChanged(int width, int height)
-{
-    qDebug() << "( " << width <<", "<< height << ");";
-    if (((width < 0) && (height < 0))) { // something very fishy is going on...
-        {
-           const QSignalBlocker firstSignalBlocker(ui->imgWidthBox);
-           const QSignalBlocker secondSignalBlocker(ui->imgHeightBox);
-            ui->imgWidthBox->setValue(1600);
-        }
-        this->imgSizeChanged(1600, -1);
-    }
-    if (width < 0) { // height was changed
-            double dWidth = height / imgSizeConstraint;
-            int _width = qRound(dWidth);
-            {
-                const QSignalBlocker blocker(ui->imgWidthBox);
-                ui->imgWidthBox->setValue(_width);
-            }
-    } else if (height < 0) {
-            double dHeight = width * imgSizeConstraint;
-            int _height = qRound(dHeight);
-            {
-                const QSignalBlocker blocker(ui->imgHeightBox);
-                ui->imgHeightBox->setValue(_height);
-            }
-    }
-    return;
+void GerberPlotterDialog::imgSizeChanged( int width, int height ) {
+   qDebug() << "( " << width << ", " << height << ");";
+
+   if ( ( ( width < 0 ) && ( height < 0 ) ) ) { // something very fishy is going on...
+      {
+         const QSignalBlocker firstSignalBlocker( ui->imgWidthBox );
+         const QSignalBlocker secondSignalBlocker( ui->imgHeightBox );
+         ui->imgWidthBox->setValue( 1600 );
+      }
+      this->imgSizeChanged( 1600, -1 );
+   }
+
+   if ( width < 0 ) { // height was changed
+      double dWidth = height / imgSizeConstraint;
+      int _width = qRound( dWidth );
+      {
+         const QSignalBlocker blocker( ui->imgWidthBox );
+         ui->imgWidthBox->setValue( _width );
+      }
+
+   } else if ( height < 0 ) {
+      double dHeight = width * imgSizeConstraint;
+      int _height = qRound( dHeight );
+      {
+         const QSignalBlocker blocker( ui->imgHeightBox );
+         ui->imgHeightBox->setValue( _height );
+      }
+   }
+
+   return;
 }
 
-void GerberPlotterDialog::loadGerberBoardOutline(void)
-{
+void GerberPlotterDialog::loadGerberBoardOutline( void ) {
 
-        if (!_outlineLoaded) {
-        QString filename = ui->boardOutlineLineEdit->text();
-        if (filename.isNull() || filename.isEmpty()) { return; }
+   if ( !_outlineLoaded ) {
+      QString filename = ui->boardOutlineLineEdit->text();
 
-        if (!(QFile(filename).exists())) {
-            //FIXME: throw error
-            return;
-        }
+      if ( filename.isNull() || filename.isEmpty() ) { return; }
 
-           mainProject = gerbv_create_project();
+      if ( !( QFile( filename ).exists() ) ) {
+         //FIXME: throw error
+         return;
+      }
 
-           std::string _file1 = filename.toStdString();
+      mainProject = gerbv_create_project();
 
-           gerbv_open_layer_from_filename(mainProject, const_cast<gchar*>(_file1.c_str()));
+      std::string _file1 = filename.toStdString();
 
-           if (!(mainProject->file[0])) {
-               //FIXME: throw error
-               return;
-           }
+      gerbv_open_layer_from_filename( mainProject, const_cast<gchar *>( _file1.c_str() ) );
 
-           gerbv_render_size_t *renderSize = new gerbv_render_size_t;
+      if ( !( mainProject->file[0] ) ) {
+         //FIXME: throw error
+         return;
+      }
 
-           gerbv_render_get_boundingbox(mainProject, renderSize);
+      gerbv_render_size_t *renderSize = new gerbv_render_size_t;
 
-           QRectF renderRect;
-           renderRect.setTop(renderSize->top);
-           renderRect.setLeft(renderSize->left);
-           renderRect.setBottom(renderSize->bottom);
-           renderRect.setRight(renderSize->right);
+      gerbv_render_get_boundingbox( mainProject, renderSize );
 
-           if ((renderRect.width() <= 0) || (renderRect.height() <= 0)) {
-               // FIXME: throw error
-               return;
-           }
+      QRectF renderRect;
+      renderRect.setTop( renderSize->top );
+      renderRect.setLeft( renderSize->left );
+      renderRect.setBottom( renderSize->bottom );
+      renderRect.setRight( renderSize->right );
 
-           imgSizeConstraint = renderRect.height() / renderRect.width();
+      if ( ( renderRect.width() <= 0 ) || ( renderRect.height() <= 0 ) ) {
+         // FIXME: throw error
+         return;
+      }
 
-           gerbv_destroy_project(mainProject);
+      imgSizeConstraint = renderRect.height() / renderRect.width();
 
-           imgSizeChanged(ui->imgWidthBox->value(), -1);
+      gerbv_destroy_project( mainProject );
 
-           _outlineLoaded = true;
+      imgSizeChanged( ui->imgWidthBox->value(), -1 );
 
-        } else {
+      _outlineLoaded = true;
 
-            _outlineLoaded = false;
-        }
+   } else {
 
-           toggleSizeLoaded();
+      _outlineLoaded = false;
+   }
+
+   toggleSizeLoaded();
 }
 
-void GerberPlotterDialog::toggleSizeLoaded()
-{
+void GerberPlotterDialog::toggleSizeLoaded() {
 
-    bool loaded = _outlineLoaded;
-        ui->imageSizeGroupBox->setEnabled(loaded);
-        ui->boardOutlineGroupBox->setEnabled(!loaded);
-        ui->drillsGroupBox->setEnabled(loaded);
-        ui->topCopperGroupBox->setEnabled(loaded);
-        ui->topSilkscreenGroupBox->setEnabled(loaded);
-        ui->topSolderMaskGroupBox->setEnabled(loaded);
-        ui->bottomCopperGroupBox->setEnabled(loaded);
-        ui->bottomSilkscreenGroupBox->setEnabled(loaded);
-        ui->bottomSolderMaskGroupBox->setEnabled(loaded);
-        ui->generateButton->setEnabled(loaded);
-        if (loaded) {
-        ui->evalBoardSizeButton->setText(tr("Reset Board Outline"));
-        } else {
-            ui->evalBoardSizeButton->setText(tr("Get Size from Outline"));
-        }
+   bool loaded = _outlineLoaded;
+   ui->imageSizeGroupBox->setEnabled( loaded );
+   ui->boardOutlineGroupBox->setEnabled( !loaded );
+   ui->drillsGroupBox->setEnabled( loaded );
+   ui->topCopperGroupBox->setEnabled( loaded );
+   ui->topSilkscreenGroupBox->setEnabled( loaded );
+   ui->topSolderMaskGroupBox->setEnabled( loaded );
+   ui->bottomCopperGroupBox->setEnabled( loaded );
+   ui->bottomSilkscreenGroupBox->setEnabled( loaded );
+   ui->bottomSolderMaskGroupBox->setEnabled( loaded );
+   ui->generateButton->setEnabled( loaded );
+
+   if ( loaded ) {
+      ui->evalBoardSizeButton->setText( tr( "Reset Board Outline" ) );
+
+   } else {
+      ui->evalBoardSizeButton->setText( tr( "Get Size from Outline" ) );
+   }
 }

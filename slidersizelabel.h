@@ -5,27 +5,27 @@
 
 class sliderSizeLabel : public QLabel {
 public:
-    sliderSizeLabel(QWidget *parent = nullptr);
-    ~sliderSizeLabel();
+   sliderSizeLabel( QWidget *parent = nullptr );
+   ~sliderSizeLabel();
 
 
 protected:
-    void mouseDoubleClickEvent(QMouseEvent *event);
+   void mouseDoubleClickEvent( QMouseEvent *event );
 
-friend class GerberStencilGenerator;
+   friend class GerberStencilGenerator;
 
 protected Q_SLOTS:
-    void disableControl();
-    void enableControl();
+   void disableControl();
+   void enableControl();
 
-    void enable(bool toggle);
+   void enable( bool toggle );
 
-    bool getEnabled();
+   bool getEnabled();
 
 private:
-    QString notAvailableAbbreviation = tr("n/a");
+   QString notAvailableAbbreviation = tr( "n/a" );
 
-    bool _isEnabled = true;
+   bool _isEnabled = true;
 
 };
 

@@ -2,104 +2,102 @@
 #include "gerberstencilgenerator.h"
 #include <QDebug>
 
-apertureEditView::apertureEditView(QWidget *parent) {
-    std::ignore = parent;
-    _lastWidth = this->getBoundingBox().width();
-    _lastHeight = this->getBoundingBox().height();
+apertureEditView::apertureEditView( QWidget *parent ) {
+   std::ignore = parent;
+   _lastWidth = this->getBoundingBox().width();
+   _lastHeight = this->getBoundingBox().height();
 }
 
 apertureEditView::~apertureEditView() {
 
 }
 
+void apertureEditView::resizeEvent( QResizeEvent *event ) {
+   event->accept();
 
-void apertureEditView::resizeEvent(QResizeEvent *event) {
-        event->accept();
-    if (this->items().count() == 0) {
-        return;
-    } else {
-        this->adjustPreviewSize();
-    }
+   if ( this->items().count() == 0 ) {
+      return;
+
+   } else {
+      this->adjustPreviewSize();
+   }
 }
 
-void apertureEditView::adjustPreviewSize()
-{
-    if (this->items().count() == 0) {
-        return;
-    }
+void apertureEditView::adjustPreviewSize() {
+   if ( this->items().count() == 0 ) {
+      return;
+   }
 
-    this->adjustPreviewSize(_lastWidth, _lastHeight);
+   this->adjustPreviewSize( _lastWidth, _lastHeight );
 }
 
-void apertureEditView::adjustPreviewSize(qreal width, qreal height)
-{
-    if (this->items().count() == 0) {
-        return;
-    }
+void apertureEditView::adjustPreviewSize( qreal width, qreal height ) {
+   if ( this->items().count() == 0 ) {
+      return;
+   }
 
-    if (_lastWidth != width && width != 0) {
-        _lastWidth = width;
-    }
-    if (_lastHeight != height && height != 0) {
-        _lastHeight = height;
-    }
+   if ( _lastWidth != width && width != 0 ) {
+      _lastWidth = width;
+   }
 
-    double maxHeight = height;
-    double maxWidth = width;
+   if ( _lastHeight != height && height != 0 ) {
+      _lastHeight = height;
+   }
 
-    maxHeight *= 1.75;
-    maxWidth *= 1.75;
+   double maxHeight = height;
+   double maxWidth = width;
 
-    QRectF viewportBoundingBox;
-    viewportBoundingBox.setWidth(maxWidth);
-    viewportBoundingBox.setHeight(maxHeight);
-    viewportBoundingBox.setX(-(maxWidth/2));
-    viewportBoundingBox.setY(-(maxHeight/2));
+   maxHeight *= 1.75;
+   maxWidth *= 1.75;
 
-    this->setBoundingBox(viewportBoundingBox);
+   QRectF viewportBoundingBox;
+   viewportBoundingBox.setWidth( maxWidth );
+   viewportBoundingBox.setHeight( maxHeight );
+   viewportBoundingBox.setX( -( maxWidth / 2 ) );
+   viewportBoundingBox.setY( -( maxHeight / 2 ) );
 
-    this->fitInView(viewportBoundingBox, Qt::KeepAspectRatio);
-    this->centerOn(0,0);
-    this->repaint();
-    this->update();
+   this->setBoundingBox( viewportBoundingBox );
+
+   this->fitInView( viewportBoundingBox, Qt::KeepAspectRatio );
+   this->centerOn( 0, 0 );
+   this->repaint();
+   this->update();
 }
 
-void apertureEditView::setBoundingBoxHeight(qreal height){
-    _boundingBox.setY(-(height/2));
-    _boundingBox.setHeight(height);
-
-}
-
-void apertureEditView::setBoundingBoxWidth(qreal width){
-    _boundingBox.setX(-(width/2));
-    _boundingBox.setWidth(width);
+void apertureEditView::setBoundingBoxHeight( qreal height ) {
+   _boundingBox.setY( -( height / 2 ) );
+   _boundingBox.setHeight( height );
 
 }
 
-void apertureEditView::setBoundingBoxSize(QRectF bbrect){
-    _boundingBox.setWidth(bbrect.width());
-    _boundingBox.setHeight(bbrect.height());
+void apertureEditView::setBoundingBoxWidth( qreal width ) {
+   _boundingBox.setX( -( width / 2 ) );
+   _boundingBox.setWidth( width );
+
 }
 
-void apertureEditView::setBoundingBoxSize(qreal width, qreal height) {
-    _boundingBox.setWidth(width);
-    _boundingBox.setHeight(height);
+void apertureEditView::setBoundingBoxSize( QRectF bbrect ) {
+   _boundingBox.setWidth( bbrect.width() );
+   _boundingBox.setHeight( bbrect.height() );
 }
 
-void apertureEditView::setBoundingBox(QRectF bbrect)
-{
-    _boundingBox = bbrect;
+void apertureEditView::setBoundingBoxSize( qreal width, qreal height ) {
+   _boundingBox.setWidth( width );
+   _boundingBox.setHeight( height );
 }
 
-QPointF apertureEditView::getShapeOffset()
-{
-    QRectF shapeBoundingBox = _boundingBox;
-    QRectF sceneBoundingBox = this->scene()->itemsBoundingRect();
-    QPointF shapeCenter = shapeBoundingBox.center();
-    QPointF sceneCenter = sceneBoundingBox.center();
-    return QPointF((sceneCenter.x()-shapeCenter.x()),(sceneCenter.y()-shapeCenter.y()));
+void apertureEditView::setBoundingBox( QRectF bbrect ) {
+   _boundingBox = bbrect;
+}
+
+QPointF apertureEditView::getShapeOffset() {
+   QRectF shapeBoundingBox = _boundingBox;
+   QRectF sceneBoundingBox = this->scene()->itemsBoundingRect();
+   QPointF shapeCenter = shapeBoundingBox.center();
+   QPointF sceneCenter = sceneBoundingBox.center();
+   return QPointF( ( sceneCenter.x() - shapeCenter.x() ), ( sceneCenter.y() - shapeCenter.y() ) );
 }
 
 const QRectF apertureEditView::getBoundingBox() {
-    return _boundingBox;
+   return _boundingBox;
 }

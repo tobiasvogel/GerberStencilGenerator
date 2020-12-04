@@ -9,26 +9,26 @@
 #include <QColorDialog>
 
 namespace Ui {
-    class settingsDialog;
+class settingsDialog;
 }
 
 class GerberStencilGenerator;
 
 class settingsDialog : public QDialog {
-    Q_OBJECT
+   Q_OBJECT
 public:
-    settingsDialog(GerberStencilGenerator *parent);
-    ~settingsDialog();
+   settingsDialog( GerberStencilGenerator *parent );
+   ~settingsDialog();
 
 protected Q_SLOTS:
-    void selectNewColor(void);
-    void refreshColors(void);
+   void selectNewColor( void );
+   void refreshColors( void );
 
 private:
-    Ui::settingsDialog *ui;
-    GerberStencilGenerator *gsgInstance = nullptr;
+   Ui::settingsDialog *ui;
+   GerberStencilGenerator *gsgInstance = nullptr;
 
-friend class GerberStencilGenerator;
+   friend class GerberStencilGenerator;
 };
 
 #endif // SETTINGSDIALOG_H

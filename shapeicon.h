@@ -5,29 +5,28 @@
 #include <QIcon>
 
 
-class ShapeIcon
-{
+class ShapeIcon {
 public:
-    ShapeIcon();
+   ShapeIcon();
 
-    QIcon getIcon(void);
+   QIcon getIcon( void );
 
-    void setShape(shape_type_t shape);
-    void setHollow(bool hollow);
-    void setDeleted(bool deleted);
-    void setChanged(bool changed);
+   void setShape( shape_type_t shape );
+   void setHollow( bool hollow );
+   void setDeleted( bool deleted );
+   void setChanged( bool changed );
 
-    shape_type_t getShape(void);
-    bool isHollow(void);
-    bool isDeleted(void);
-    bool isChanged(void);
+   shape_type_t getShape( void );
+   bool isHollow( void );
+   bool isDeleted( void );
+   bool isChanged( void );
 
 private:
-    shape_type_t _shape = UNSET;
-    bool _hollow = false;
-    bool _deleted = false;
-    bool _changed = false;
-    QPixmap *_iconPixmap;
+   shape_type_t _shape = UNSET;
+   bool _hollow = false;
+   bool _deleted = false;
+   bool _changed = false;
+   QPixmap *_iconPixmap;
 };
 
 #endif // SHAPEICON_H
