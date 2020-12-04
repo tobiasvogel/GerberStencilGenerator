@@ -14,10 +14,10 @@ public:
         int g_value = color.green() << 8;
         int b_value = color.blue() << 8;
         int a_value = color.alpha() << 8;
-        _r = static_cast<uint16_t>(r_value) + static_cast<uint16_t>(r_value);
-        _g = static_cast<uint16_t>(g_value) + static_cast<uint16_t>(g_value);
-        _b = static_cast<uint16_t>(b_value) + static_cast<uint16_t>(b_value);
-        _a = static_cast<uint16_t>(a_value) + static_cast<uint16_t>(a_value);
+        _r = static_cast<uint16_t>(color.red()) + static_cast<uint16_t>(r_value);
+        _g = static_cast<uint16_t>(color.green()) + static_cast<uint16_t>(g_value);
+        _b = static_cast<uint16_t>(color.blue()) + static_cast<uint16_t>(b_value);
+        _a = static_cast<uint16_t>(color.alpha()) + static_cast<uint16_t>(a_value);
     }
 
     guint16 r(void) { return _r; }

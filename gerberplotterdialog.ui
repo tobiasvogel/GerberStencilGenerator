@@ -206,6 +206,9 @@
            </item>
            <item>
             <widget class="QSpinBox" name="imgHeightBox">
+             <property name="readOnly">
+              <bool>false</bool>
+             </property>
              <property name="suffix">
               <string> px</string>
              </property>
@@ -224,6 +227,9 @@
          </item>
          <item>
           <widget class="QCheckBox" name="flipBottomCheckBox">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Flip bottom side horizontally</string>
            </property>
@@ -247,7 +253,7 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-358</y>
+        <y>0</y>
         <width>542</width>
         <height>635</height>
        </rect>
@@ -285,7 +291,11 @@
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_16">
              <item>
-              <widget class="QLineEdit" name="drillsLineEdit"/>
+              <widget class="QLineEdit" name="drillsLineEdit">
+               <property name="readOnly">
+                <bool>false</bool>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="drillsBrowseButton">
@@ -701,7 +711,20 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="evalBoardSizeButton">
+       <property name="text">
+        <string>Get Size from Outline</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="generateButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Generate</string>
        </property>

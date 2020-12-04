@@ -54,6 +54,10 @@
         <file alias="plot">resources/icons/GenerateResource_32x.png</file>
         <file alias="toolbox">resources/icons/Toolbox_32x.png</file>
         <file alias="exit">resources/icons/exit_x32.png</file>
+        <file alias="splitter">resources/splitter.png</file>
+        <file alias="zoom-in">resources/icons/zoom_in_x24.png</file>
+        <file alias="zoom-out">resources/icons/zoom_out_x24.png</file>
+        <file alias="no-zoom">resources/icons/no_zoom_x24.png</file>
     </qresource>
     <qresource prefix="/img">
         <file alias="lightbulb">resources/lightbulb.png</file>

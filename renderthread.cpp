@@ -1,7 +1,6 @@
 #include "renderthread.h"
 
 RenderThread::RenderThread(QObject *parent) : QThread(parent) {
-   mainProject = gerbv_create_project();
    screenRenderInfo.renderType = GERBV_RENDER_TYPE_CAIRO_HIGH_QUALITY;
 }
 
@@ -25,6 +24,8 @@ void RenderThread::render(int width, int height, bool overlay, std::string file1
     _lnColor = lnColor;
     _flColor = flColor;
     _bgColor = bgColor;
+
+    mainProject = gerbv_create_project();
 
     if (!isRunning()) {
         start(LowPriority);
@@ -51,7 +52,7 @@ void RenderThread::run() {
         }
 
         if ((mainProject->file[0] == nullptr) || ((_overlay == true) && (mainProject->file[1] == nullptr))) {
-                        qDebug() << "There was an error parsing the files.";
+            qDebug() << "There was an error parsing the files.";
         }
 
         gerbv_render_all_layers_to_cairo_target (mainProject, cr, &screenRenderInfo);
@@ -64,25 +65,28 @@ void RenderThread::run() {
 
         //layer 0
         if (mainProject->file[0]) {
-        cairo_push_group (cr);
-        gerbv_render_layer_to_cairo_target (cr, mainProject->file[0], &screenRenderInfo);
-        cairo_pop_group_to_source (cr);
-        cairo_paint (cr);
+            cairo_push_group (cr);
+            gerbv_render_layer_to_cairo_target (cr, mainProject->file[0], &screenRenderInfo);
+            cairo_pop_group_to_source (cr);
+            cairo_paint (cr);
         }
         //layer 1
         if (mainProject->file[1]) {
-        cairo_push_group (cr);
-        gerbv_render_layer_to_cairo_target (cr, mainProject->file[1], &screenRenderInfo);
-        cairo_pop_group_to_source (cr);
-        cairo_paint (cr);
+            cairo_push_group (cr);
+            gerbv_render_layer_to_cairo_target (cr, mainProject->file[1], &screenRenderInfo);
+            cairo_pop_group_to_source (cr);
+            cairo_paint (cr);
         }
 
         cairo_surface_flush(target);
 
         if (!restart) {
             Q_EMIT renderedImage(QImage(cairo_image_surface_get_data(target),size.width(),size.height(),QImage::Format_ARGB32), size);
+            cairo_destroy(cr);
+            gerbv_destroy_project (mainProject);
         } else {
             cairo_destroy(cr);
+            gerbv_destroy_project (mainProject);
         }
         //gerbv_destroy_project (mainProject);
         mutex.lock();

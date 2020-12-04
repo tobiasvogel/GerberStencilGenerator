@@ -9,6 +9,7 @@
 #include <QStandardItem>
 #include <QShortcut>
 #include <QTemporaryFile>
+#include <QScrollBar>
 #include <QProcess>
 #include <QMessageBox>
 #include <QMovie>
@@ -19,7 +20,6 @@
 #include "hollowgraphicsobrounditem.h"
 #include "hollowgraphicspolygonitem.h"
 #include "hollowroundedgraphicspolygonitem.h"
-#include "cairo.h"
 
 
 GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
@@ -66,6 +66,8 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
 
   QObject::connect(&thread, &RenderThread::renderedImage, this, &GerberStencilGenerator::previewUpdate);
 
+  QObject::connect(ui->splitter, &QSplitter::splitterMoved, [this]() { resizeEvent(nullptr); });
+
   ui->previewButton->setEnabled(true);
   ui->previewButton->setToolTip(QString());
 
@@ -107,6 +109,22 @@ GerberStencilGenerator::GerberStencilGenerator(QWidget *parent) :
   loadingLabel->setStyleSheet("background-color: rgba(0,0,0,0.6);");
   loadingLabel->setGeometry(QRect(0,0,ui->gerberPreviewGView->size().width(),ui->gerberPreviewGView->size().height()));
   loadingMovie->stop();
+
+  previewZoomInButton = new QPushButton(ui->gerberPreviewGView);
+  previewZoomOutButton = new QPushButton(ui->gerberPreviewGView);
+  previewNormalZoomButton = new QPushButton(ui->gerberPreviewGView);
+
+  //previewZoomInButton->setEnabled(false);
+  //previewZoomOutButton->setEnabled(false);
+  //previewNormalZoomButton->setEnabled(false);
+
+  previewZoomInButton->setIcon(QIcon(":/res/zoom-in"));
+  previewZoomOutButton->setIcon(QIcon(":/res/zoom-out"));
+  previewNormalZoomButton->setIcon(QIcon(":/res/no-zoom"));
+
+  QObject::connect(previewZoomInButton, &QPushButton::clicked, [this]() { previewScaleFactor+=0.5; generatePreview(); });
+  QObject::connect(previewZoomOutButton, &QPushButton::clicked, [this]() { previewScaleFactor-=0.5; generatePreview(); });
+  QObject::connect(previewNormalZoomButton, &QPushButton::clicked, [this]() { previewScaleFactor=1.0; generatePreview(); });
 
   if (_showTipAtStartup) {
       tipOfTheDayDialog = new TipOfTheDay(this);
@@ -822,10 +840,10 @@ void GerberStencilGenerator::generatePreview() {
     QStringList highlightGerber;
     if (ok) {
         highlightGerber = generateHighlightedGerber(apertureId);
-        invokeRenderer(previewSize.width(), previewSize.height(), highlightGerber, true);
+        invokeRenderer(previewSize.width()*previewScaleFactor, previewSize.height()*previewScaleFactor, highlightGerber, true);
     } else {
         qDebug() << "unable to detect aperture id";
-        invokeRenderer(previewSize.width(), previewSize.height(), QStringList(),false);
+        invokeRenderer(previewSize.width()*previewScaleFactor, previewSize.height()*previewScaleFactor, QStringList(),false);
     }
 }
 
@@ -909,11 +927,8 @@ void GerberStencilGenerator::restoreApertureItem()
 
 QColor GerberStencilGenerator::pickColor(QColor initialColor, QString windowTitle)
 {
-    //QColorDialog colorDialog;
     colorDialog->setWindowTitle(windowTitle);
     colorDialog->setColor(initialColor);
-    //colorDialog->setCurrentColor(initialColor);
-    //colorDialog->setOptions(QColorDialog::ShowAlphaChannel|QColorDialog::DontUseNativeDialog);
     colorDialog->setAlphaEnabled(true);
     colorDialog->exec();
     return colorDialog->color();
@@ -939,6 +954,16 @@ void GerberStencilGenerator::openGerberPlotterDialog(bool toggle)
 void GerberStencilGenerator::openCompilationDialog(bool toggle)
 {
     std::ignore = toggle;
+}
+
+bool GerberStencilGenerator::isGerberDataLoaded()
+{
+    return _gerberDataLoaded;
+}
+
+void GerberStencilGenerator::setGerberDataLoaded(bool loaded)
+{
+    _gerberDataLoaded = loaded;
 }
 
 QColor GerberStencilGenerator::getColor(QString colorId)  {
@@ -1133,10 +1158,32 @@ void GerberStencilGenerator::requestQuit()
 
 void GerberStencilGenerator::resizeEvent(QResizeEvent *event)
 {
+    if (event) {
     event->accept();
+    }
     qDebug()  << "resized";
     ui->apertureGraphicsView->adjustPreviewSize();
     ui->apertureGraphicsView->update();
+    int previewWidgetWidth = ui->gerberPreviewGView->geometry().width();
+    if (ui->gerberPreviewGView->verticalScrollBar()->isVisible()) {
+        previewWidgetWidth -= ui->gerberPreviewGView->verticalScrollBar()->width();
+    }
+    int previewWidgetHeight = ui->gerberPreviewGView->geometry().height();
+    if (ui->gerberPreviewGView->horizontalScrollBar()->isVisible()) {
+        previewWidgetHeight -= ui->gerberPreviewGView->horizontalScrollBar()->height();
+    }
+    int previewWidgetButtonSize = 24;
+    int previewWidgetButtonPadding = 4;
+
+    previewZoomInButton->setGeometry((previewWidgetWidth-previewWidgetButtonSize-previewWidgetButtonPadding),
+                                     (previewWidgetHeight-previewWidgetButtonSize-previewWidgetButtonPadding),
+                                     previewWidgetButtonSize,previewWidgetButtonSize);
+    previewZoomOutButton->setGeometry((previewWidgetWidth-previewWidgetButtonSize-previewWidgetButtonSize-previewWidgetButtonPadding-1),
+                                      (previewWidgetHeight-previewWidgetButtonSize-previewWidgetButtonPadding),
+                                      previewWidgetButtonSize,previewWidgetButtonSize);
+    previewNormalZoomButton->setGeometry((previewWidgetWidth-previewWidgetButtonSize-previewWidgetButtonSize-previewWidgetButtonSize-previewWidgetButtonPadding-2),
+                                         (previewWidgetHeight-previewWidgetButtonSize-previewWidgetButtonPadding),
+                                         previewWidgetButtonSize,previewWidgetButtonSize);
     generatePreview();
 }
 
@@ -1422,6 +1469,7 @@ void GerberStencilGenerator::parseGerberData() {
         }
 
         apertureList.append(tempAperture);
+        Q_EMIT gerberDataLoaded(true);
 
         continue;
       } else {
@@ -1540,5 +1588,10 @@ void  GerberStencilGenerator::dumpApertureMacro(void) {
             qDebug() << item->getApertureMacro(numberFormat.at(1));
         }
     }
+}
+
+void GerberStencilGenerator::afterWindowIsShown()
+{
+    this->resizeEvent(nullptr);
 }
 #endif

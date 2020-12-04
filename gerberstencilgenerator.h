@@ -1,7 +1,6 @@
 ﻿#ifndef GERBERSTENCILGENERATOR_H
 #define GERBERSTENCILGENERATOR_H
 
-#include "gerbv.h"
 #include "enums.h"
 #include <QWidget>
 #include <QDir>
@@ -9,8 +8,8 @@
 #include <QMessageBox>
 #include <QProcess>
 #include <QTemporaryFile>
-#include <QTimer>
 #include <QSettings>
+#include <QSplitter>
 #include "apertureeditview.h"
 #include "slidersizelabel.h"
 #include "aperturelistwidget.h"
@@ -23,7 +22,6 @@
 #include "renderthread.h"
 #include "QtColorWidgets/color_dialog.hpp"
 
-#define AUTO_PREVIEW_TIMEOUT_MS 200
 #define APPLICATION_NAME "Gerber Stencil Generator"
 #define APPLICATION_AUTHOR "Tobias X Vogel"
 #define ORGANISATION_NAME "Tobias Vogel"
@@ -125,12 +123,24 @@ private:
     bool _showTipAtStartup = true;
     int _showTipOfTheDayNumber = 0;
 
+    QPushButton *previewZoomInButton;
+    QPushButton *previewZoomOutButton;
+    QPushButton *previewNormalZoomButton;
+
+    double previewScaleFactor = 1.00;
+
     color_widgets::ColorDialog *colorDialog;
 
     RenderThread thread;
 
+    bool _gerberDataLoaded = false;
+
 protected:
    void resizeEvent(QResizeEvent *event);
+   void showEvent(QShowEvent *event) {
+       QWidget::showEvent(event);
+       QMetaObject::invokeMethod(this, "afterWindowIsShown", Qt::ConnectionType::QueuedConnection);
+   }
 
     void saveUserSettings(void);
     void restoreUserSettings(void);
@@ -142,6 +152,9 @@ protected:
     QStringList generateHighlightedGerber(int selectedApertureId);
     void invokeRenderer(int width, int height, QStringList overlayData, bool useTempOverlay);
     void showTipOfTheDay(void);
+
+Q_SIGNALS:
+    void gerberDataLoaded(bool loaded);
 
 protected Q_SLOTS:
    void sizeSettingChanged(int percentage);
@@ -186,12 +199,16 @@ protected Q_SLOTS:
    void setShowTipAtStartup(bool toggle);
    void openGerberPlotterDialog(bool toggle);
    void openCompilationDialog(bool toggle);
+   bool isGerberDataLoaded(void);
+   void setGerberDataLoaded(bool loaded);
    void requestQuit(void);
 #ifdef QT_DEBUG
    void dumpApertureList();
    void dumpApertureMacro();
 #endif
 
+private Q_SLOTS:
+   void afterWindowIsShown(void);
 
 friend class sliderSizeLabel;
 friend class snapSlider;
