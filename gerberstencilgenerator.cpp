@@ -1,3 +1,6 @@
+// workaround for bug: https://gitlab.gnome.org/GNOME/glib/-/merge_requests/1963/diffs?commit_id=552b8fd862061e74b5ad2ffe6a700f850a76f797
+#include <type_traits>
+// end workaround
 #include "gerbv.h"
 #include "gerberstencilgenerator.h"
 #include "ui_gerberstencilgenerator.h"
@@ -90,6 +93,12 @@ GerberStencilGenerator::GerberStencilGenerator( QWidget *parent ) :
    openCompilationDialogAction->setText( tr( "Arrange multiple Gerber Files into one File..." ) );
    QObject::connect( openCompilationDialogAction, SIGNAL( triggered( bool ) ), this, SLOT( openCompilationDialog( bool ) ) );
    ui->utilitiesButton->addAction( openCompilationDialogAction );
+   QAction *openEmbedTextDialogAction = new QAction( ui->utilitiesButton );
+   openEmbedTextDialogAction->setCheckable( false );
+   openEmbedTextDialogAction->setIcon( QIcon( ":/res/embedtext" ) );
+   openEmbedTextDialogAction->setText( tr( "Embed Text in Solder-Pads..." ) );
+   QObject::connect( openEmbedTextDialogAction, SIGNAL( triggered( bool ) ), this, SLOT( openEmbedTextDialog( bool ) ) );
+   ui->utilitiesButton->addAction( openEmbedTextDialogAction );
 
    #ifdef QT_DEBUG
    new QShortcut( QKeySequence( Qt::CTRL + Qt::Key_D ), this, SLOT( dumpApertureList() ) );
@@ -1059,6 +1068,10 @@ void GerberStencilGenerator::openCompilationDialog( bool toggle ) {
    std::ignore = toggle;
 }
 
+void GerberStencilGenerator::openEmbedTextDialog( bool toggle ) {
+   std::ignore = toggle;
+}
+
 bool GerberStencilGenerator::isGerberDataLoaded() {
    return _gerberDataLoaded;
 }
@@ -1291,7 +1304,6 @@ void GerberStencilGenerator::requestQuit() {
    }
 
 }
-
 
 void GerberStencilGenerator::resizeEvent( QResizeEvent *event ) {
    if ( event ) {

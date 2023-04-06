@@ -12,15 +12,18 @@
 #include <QColor>
 #include <QPalette>
 #include <QSignalBlocker>
+#include <QTemporaryFile>
 #include "QtColorWidgets/color_dialog.hpp"
 #include "color.h"
 #include "gerbv.h"
 
 
 enum pcb_color_t { PCB_GREEN, PCB_BLUE, PCB_RED, PCB_YELLOW, PCB_WHITE, PCB_BLACK, PCB_CUSTOM };
-typedef enum pcb_color_t pcb_color;
 enum graphics_format_t { JPEG, PNG };
+enum pcb_side_t { PCB_TOP, PCB_BOTTOM };
+typedef enum pcb_color_t pcb_color;
 typedef enum graphics_format_t graphics_format;
+typedef enum pcb_side_t pcb_side;
 
 namespace Ui {
 class GerberPlotterDialog;
@@ -36,6 +39,7 @@ public:
 
    Q_ENUM( pcb_color );
    Q_ENUM( graphics_format );
+   Q_ENUM( pcb_side );
 
    const std::string greenPcbSilverPad = "046703;4b8748;fefffa;c4c4c4;50";
    const std::string greenPcbGoldPad = "036702;5a8931;fefffa;ebc888;50";
@@ -64,8 +68,17 @@ private:
    QString disabledFieldStylesheet;
 
    gerbv_project_t *mainProject;
+   gerbv_render_info_t screenRenderInfo;
+
+   QTemporaryFile *outlineImage;
+   QTemporaryFile *soldermaskImage;
+   QTemporaryFile *copperImage;
+   QTemporaryFile *drillsImage;
+   QTemporaryFile *silkscreenImage;
 
    bool _outlineLoaded = false;
+
+   bool renderImage( std::string gerberFilename, std::string outlineGerberFilename, Color layerColor, std::string imageFilename, int width, int height );
 
 
 protected:
@@ -93,6 +106,16 @@ private Q_SLOTS:
    void imgSizeChanged( int width, int height );
    void loadGerberBoardOutline( void );
    void toggleSizeLoaded( void );
+
+   QColor getBackgroundColor( void );
+   QColor getBaseColor( void );
+   QColor getSoldermaskColor( void );
+   QColor getCopperColor( void );
+   QColor getSilkscreenColor( void );
+   QColor getPadsColor( void );
+   QColor getAlphaMaskColor( void );
+
+   void generateImageFile( pcb_side pcbSide, bool flip );
 };
 
 #endif // GERBERPLOTTERDIALOG_H

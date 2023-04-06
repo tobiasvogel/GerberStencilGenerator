@@ -28,7 +28,7 @@
 #define ORGANISATION_DOMAIN "tobiasvogel.tv"
 
 
-typedef struct {
+typedef struct flash_aperture_struct {
    int originalId = 0;
    QString replacementDesignator;
    shape_type originalShape = UNSET;
@@ -201,6 +201,7 @@ protected Q_SLOTS:
    void setShowTipAtStartup( bool toggle );
    void openGerberPlotterDialog( bool toggle );
    void openCompilationDialog( bool toggle );
+   void openEmbedTextDialog( bool toggle );
    bool isGerberDataLoaded( void );
    void setGerberDataLoaded( bool loaded );
    void requestQuit( void );

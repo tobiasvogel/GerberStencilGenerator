@@ -551,3 +551,169 @@ void GerberPlotterDialog::toggleSizeLoaded() {
       ui->evalBoardSizeButton->setText( tr( "Get Size from Outline" ) );
    }
 }
+
+QColor GerberPlotterDialog::getBackgroundColor() {
+   QColor returnColor;
+   returnColor = _backgroundColor;
+   return returnColor;
+}
+
+QColor GerberPlotterDialog::getBaseColor() {
+   QString colorCandidate = ui->baseColorLineEdit->text();
+   QColor returnColor = QColor( colorCandidate );
+   return returnColor;
+}
+
+QColor GerberPlotterDialog::getSoldermaskColor() {
+   QString colorCandidate = ui->baseColorLineEdit->text();
+   QColor returnColor = QColor( colorCandidate );
+   return returnColor;
+}
+
+QColor GerberPlotterDialog::getCopperColor() {
+   QString colorCandidate = ui->copperColorLineEdit->text();
+   QColor returnColor = QColor( colorCandidate );
+   return returnColor;
+}
+
+QColor GerberPlotterDialog::getSilkscreenColor() {
+   QString colorCandidate = ui->silkscreenColorLineEdit->text();
+   QColor returnColor = QColor( colorCandidate );
+   return returnColor;
+}
+
+QColor GerberPlotterDialog::getPadsColor() {
+   QColor returnColor;
+   returnColor = _padsColor;
+   return returnColor;
+}
+
+QColor GerberPlotterDialog::getAlphaMaskColor() {
+   QString colorCandidate = "#ff00ff";
+   QColor returnColor = QColor( colorCandidate );
+   return returnColor;
+}
+
+void GerberPlotterDialog::generateImageFile( pcb_side pcbSide, bool flip ) {
+
+   outlineImage = new QTemporaryFile( "outline.png.XXXXXX", this );
+   soldermaskImage = new QTemporaryFile( "soldermask.png.XXXXXX", this );
+   copperImage = new QTemporaryFile( "copper.png.XXXXXX", this );
+   drillsImage = new QTemporaryFile( "drills.png.XXXXXX", this );
+   silkscreenImage = new QTemporaryFile( "silkscreen.png.XXXXXX", this );
+
+   outlineImage->setAutoRemove( false );
+   soldermaskImage->setAutoRemove( false );
+   copperImage->setAutoRemove( false );
+   drillsImage->setAutoRemove( false );
+   silkscreenImage->setAutoRemove( false );
+
+   QColor backgroundColor = getBackgroundColor();
+   QColor baseColor = getBaseColor();
+   QColor soldermaskColor = getSoldermaskColor();
+   QColor copperColor = getCopperColor();
+   QColor silkscreenColor = getSilkscreenColor();
+   QColor padsColor = getPadsColor();
+   QColor alphaMaskColor = getAlphaMaskColor();
+
+   int width = ui->imgWidthBox->value();
+   int height = ui->imgHeightBox->value();
+
+
+   QString outlineGerberFile = ui->boardOutlineLineEdit->text();
+   QString soldermaskGerberFile;
+
+   if ( pcbSide == PCB_TOP ) {
+      soldermaskGerberFile = ui->topSolderMaskLineEdit->text();
+
+   } else if ( pcbSide == PCB_BOTTOM ) {
+      soldermaskGerberFile = ui->bottomSolderMaskLineEdit->text();
+   }
+
+   QString copperGerberFile;
+
+   if ( pcbSide == PCB_TOP ) {
+      copperGerberFile = ui->topCopperLineEdit->text();
+
+   } else if ( pcbSide == PCB_BOTTOM ) {
+      copperGerberFile = ui->bottomCopperLineEdit->text();
+   }
+
+   QString drillsGerberFile = ui->drillsLineEdit->text();
+   QString silkscreenGerberFile;
+
+   if ( pcbSide == PCB_TOP ) {
+      silkscreenGerberFile = ui->topSilkscreenLineEdit->text();
+
+   } else if ( pcbSide == PCB_BOTTOM ) {
+      silkscreenGerberFile = ui->bottomSilkscreenLineEdit->text();
+   }
+
+
+   // make outline image
+   outlineImage->open();
+   outlineImage->close();
+   renderImage( outlineGerberFile.toStdString(), outlineGerberFile.toStdString(), Color( baseColor ), outlineImage->fileName().toStdString(), width, height );
+
+
+   // make soldermask (pads) image
+   soldermaskImage->open();
+   soldermaskImage->close();
+   renderImage( soldermaskGerberFile.toStdString(), outlineGerberFile.toStdString(), Color( soldermaskColor ), soldermaskImage->fileName().toStdString(), width, height );
+
+   // make copper image
+   copperImage->open();
+   copperImage->close();
+   renderImage( copperGerberFile.toStdString(), outlineGerberFile.toStdString(), Color( copperColor ), copperImage->fileName().toStdString(), width, height );
+
+   // make drills image
+   drillsImage->open();
+   drillsImage->close();
+   renderImage( drillsGerberFile.toStdString(), outlineGerberFile.toStdString(), Color( alphaMaskColor ), drillsImage->fileName().toStdString(), width, height );
+
+   // make silkscreen image
+   silkscreenImage->open();
+   silkscreenImage->close();
+   renderImage( silkscreenGerberFile.toStdString(), outlineGerberFile.toStdString(), Color( silkscreenColor ), silkscreenImage->fileName().toStdString(), width, height );
+
+}
+
+
+bool GerberPlotterDialog::renderImage( std::string gerberFilename, std::string outlineGerberFilename, Color layerColor, std::string imageFilename,
+                                       int width, int height ) {
+
+   mainProject = gerbv_create_project();
+
+   //screenRenderInfo.displayWidth = width;
+   //screenRenderInfo.displayHeight = height;
+
+   //cairo_surface_t *target = cairo_image_surface_create( CAIRO_FORMAT_ARGB32, width, height );
+   //cairo_t *cr = cairo_create( target );
+
+   Color transparent = Color( Qt::transparent );
+
+   gerbv_open_layer_from_filename_with_color( mainProject, const_cast<gchar *>( outlineGerberFilename.c_str() ), transparent.gtk()->r(), transparent.gtk()->g(),
+         transparent.gtk()->b(), transparent.gtk()->a() );
+   gerbv_open_layer_from_filename_with_color( mainProject, const_cast<gchar *>( gerberFilename.c_str() ), layerColor.gtk()->r(),
+         layerColor.gtk()->g(), layerColor.gtk()->b(), layerColor.gtk()->a() );
+
+   gerbv_export_png_file_from_project_autoscaled( mainProject, width, height, const_cast<gchar *>( imageFilename.c_str() ) );
+
+   /*
+      gerbv_render_all_layers_to_cairo_target( mainProject, cr, &screenRenderInfo );
+
+      gerbv_render_cairo_set_scale_and_translation(cr, &screenRenderInfo);
+
+      cairo_set_source_rgba( cr, bgColor.cairo()->r(), bgColor.cairo()->g(), bgColor.cairo()->b(), 1 );
+      cairo_paint( cr );
+
+      cairo_push_group( cr );
+      gerbv_render_layer_to_cairo_target( cr, mainProject->file[0], &screenRenderInfo );
+      cairo_pop_group_to_source( cr );
+      cairo_paint( cr );
+
+      cairo_surface_flush( target );
+   */
+
+
+}
