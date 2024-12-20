@@ -9,7 +9,11 @@
 #include <QObject>
 #include <QFile>
 #include <QDir>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QXmlStreamReader>
+#else
 #include <QXmlSimpleReader>
+#endif
 #include <QDomDocument>
 #include <QFileDialog>
 #include <QStandardPaths>
