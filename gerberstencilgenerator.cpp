@@ -17,6 +17,10 @@
 #include <QMessageBox>
 #include <QMovie>
 #include <QAction>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+   #include <QRegularExpression>
+   #include <QRegularExpressionMatch>
+#endif
 #include "hollowgraphicsrectitem.h"
 #include "hollowroundedgraphicsrectitem.h"
 #include "hollowgraphicsellipseitem.h"
@@ -1212,9 +1216,15 @@ QStringList GerberStencilGenerator::generateHighlightedGerber( int selectedApert
 
    QStringList tempGerberData;
    bool skipLine = false;
+   #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+   QRegularExpression rx1( "^D([0-9]+)\\*$" );
+   QRegularExpression rx2( "^(.*)%$" );
+   QRegularExpression rx3( "^(G|M|%)(.*)$" );
+   #else
    QRegExp rx1( "^D([0-9]+)\\*$" );
    QRegExp rx2( "^(.*)%$" );
    QRegExp rx3( "^(G|M|%)(.*)$" );
+   #endif
 
    for ( int i = 0; i < inputFileData.count(); i++ ) {
       // skip empty lines
@@ -1223,18 +1233,44 @@ QStringList GerberStencilGenerator::generateHighlightedGerber( int selectedApert
       }
 
       // check if new instruction begins
+      #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+      if ( rx2.match( inputFileData.at( i ) ).hasMatch() ) {
+      #else
+
       if ( rx2.indexIn( inputFileData.at( i ) ) > -1 ) {
+      #endif
          skipLine = false;
 
+         #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+      } else if ( rx3.match( inputFileData.at( i ) ).hasMatch() ) {
+         #else
+
       } else if ( rx3.indexIn( inputFileData.at( i ) ) > -1 ) {
+         #endif
          skipLine = false;
       }
 
+      #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+      if ( rx1.match( inputFileData.at( i ) ).hasMatch() ) {
+      #else
+
       if ( rx1.indexIn( inputFileData.at( i ) ) > -1 ) {
+      #endif
          skipLine = false;
+
+         #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+         QRegularExpressionMatch match = rx1.match( inputFileData.at( i ) );
+
+         for ( int j = 0; j < apertureIds.count(); j++ ) {
+            if ( QString( match.captured( 1 ) ).toInt() == apertureIds.at( j ) ) {
+         #else
 
          for ( int j = 0; j < apertureIds.count(); j++ ) {
             if ( QString( rx1.cap( 1 ) ).toInt() == apertureIds.at( j ) ) {
+         #endif
                skipLine = true;
                break;
             }
@@ -1401,6 +1437,16 @@ void GerberStencilGenerator::parseGerberData() {
          }
 
          if ( line.mid( 0, 6 ) == "%FSLAX" ) {
+            #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            QRegularExpression rx( "^%FSLAX([0-9]+)Y([0-9]+)\\*%$" );
+
+            if ( rx.match( line ).hasMatch() ) {
+               if ( rx.match( line ).captured( 1 ) == rx.match( line ).captured( 2 ) ) {
+                  if ( rx.match( line ).captured( 1 ).length() == 2 ) {
+                     numberFormat.clear();
+                     numberFormat.insert( 0, rx.match( line ).captured( 1 ).mid( 0, 1 ).toInt() );
+                     numberFormat.insert( 1, rx.match( line ).captured( 1 ).mid( 1, 1 ).toInt() );
+            #else
             QRegExp rx( "^%FSLAX([0-9]+)Y([0-9]+)\\*%$" );
 
             if ( rx.indexIn( line ) > -1 ) {
@@ -1409,6 +1455,7 @@ void GerberStencilGenerator::parseGerberData() {
                      numberFormat.clear();
                      numberFormat.insert( 0, rx.cap( 1 ).mid( 0, 1 ).toInt() );
                      numberFormat.insert( 1, rx.cap( 1 ).mid( 1, 1 ).toInt() );
+            #endif
 
                   } else {
                      throw ( "Invalid number format found.\n" );
@@ -1429,12 +1476,24 @@ void GerberStencilGenerator::parseGerberData() {
 
       flash_aperture_struct tempAperture;
 
+      #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+      QRegularExpression rx;
+      #else
       QRegExp rx;
+      #endif
       rx.setPattern( "^%ADD([0-9]+)C," );
+
+      #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+      if ( rx.match( aperture ).hasMatch() ) { // Circle
+
+         tempAperture.originalId = rx.match( aperture ).captured( 1 ).toInt();
+      #else
 
       if ( rx.indexIn( aperture ) > -1 ) { // Circle
 
          tempAperture.originalId = rx.cap( 1 ).toInt();
+      #endif
          tempAperture.originalShape = CIRCLE;
          tempAperture.icon.setShape( CIRCLE );
 
@@ -1458,9 +1517,17 @@ void GerberStencilGenerator::parseGerberData() {
             tempAperture.icon.setHollow( true );
             rx.setPattern( "((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)" );
 
+            #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+            if ( rx.match( dimensions ).hasMatch() ) {
+               tempAperture.originalOuterDiameter = rx.match( dimensions ).captured( 1 ).toDouble();
+               tempAperture.originalInnerDiameter = rx.match( dimensions ).captured( 2 ).toDouble();
+            #else
+
             if ( rx.indexIn( dimensions ) > -1 ) {
                tempAperture.originalOuterDiameter = rx.cap( 1 ).toDouble();
                tempAperture.originalInnerDiameter = rx.cap( 2 ).toDouble();
+            #endif
 
             } else {
                throw ( "Aperture parsing error." );
@@ -1477,9 +1544,17 @@ void GerberStencilGenerator::parseGerberData() {
 
       rx.setPattern( "^%ADD([0-9]+)R," );
 
+      #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+      if ( rx.match( aperture ).hasMatch() ) { // Rectangle
+
+         tempAperture.originalId = rx.match( aperture ).captured( 1 ).toInt();
+      #else
+
       if ( rx.indexIn( aperture ) > -1 ) { // Rectangle
 
          tempAperture.originalId = rx.cap( 1 ).toInt();
+      #endif
          tempAperture.originalShape = RECTANGLE;
          tempAperture.icon.setShape( RECTANGLE );
 
@@ -1497,12 +1572,24 @@ void GerberStencilGenerator::parseGerberData() {
             tempAperture.icon.setHollow( true );
             rx.setPattern( "((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)" );
 
+            #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+            if ( rx.match( dimensions ).hasMatch() ) {
+               tempAperture.originalWidth = rx.match( dimensions ).captured( 1 ).toDouble();
+               tempAperture.originalHeight = rx.match( dimensions ).captured( 2 ).toDouble();
+               tempAperture.originalInnerDiameter = rx.match( dimensions ).captured( 3 ).toDouble();
+
+               if ( rx.match( dimensions ).captured( 1 ) == rx.match( dimensions ).captured( 2 ) ) {
+            #else
+
             if ( rx.indexIn( dimensions ) > -1 ) {
                tempAperture.originalWidth = rx.cap( 1 ).toDouble();
                tempAperture.originalHeight = rx.cap( 2 ).toDouble();
                tempAperture.originalInnerDiameter = rx.cap( 3 ).toDouble();
 
                if ( rx.cap( 1 ) == rx.cap( 2 ) ) {
+            #endif
+
                   tempAperture.originalAspectRatio = 1.0;
 
                } else {
@@ -1518,11 +1605,21 @@ void GerberStencilGenerator::parseGerberData() {
 
             rx.setPattern( "((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)" );
 
+            #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+            if ( rx.match( dimensions ).hasMatch() ) {
+               tempAperture.originalWidth = rx.match( dimensions ).captured( 1 ).toDouble();
+               tempAperture.originalHeight = rx.match( dimensions ).captured( 2 ).toDouble();
+
+               if ( rx.match( dimensions ).captured( 1 ) == rx.match( dimensions ).captured( 2 ) ) {
+            #else
+
             if ( rx.indexIn( dimensions ) > -1 ) {
                tempAperture.originalWidth = rx.cap( 1 ).toDouble();
                tempAperture.originalHeight = rx.cap( 2 ).toDouble();
 
                if ( rx.cap( 1 ) == rx.cap( 2 ) ) {
+            #endif
                   tempAperture.originalAspectRatio = 1.0;
 
                } else {
@@ -1554,9 +1651,18 @@ void GerberStencilGenerator::parseGerberData() {
 
       rx.setPattern( "^%ADD([0-9]+)O," );
 
+      #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+      if ( rx.match( aperture ).hasMatch() ) { // Obround
+
+         tempAperture.originalId = rx.match( aperture ).captured( 1 ).toInt();
+      #else
+
       if ( rx.indexIn( aperture ) > -1 ) { // Obround
 
          tempAperture.originalId = rx.cap( 1 ).toInt();
+      #endif
+
          tempAperture.originalShape = OBROUND;
          tempAperture.icon.setShape( OBROUND );
 
@@ -1572,9 +1678,17 @@ void GerberStencilGenerator::parseGerberData() {
             tempAperture.isHollow = false;
             rx.setPattern( "((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)" );
 
+            #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+            if ( rx.match( dimensions ).hasMatch() ) {
+               tempAperture.originalWidth = rx.match( dimensions ).captured( 1 ).toDouble();
+               tempAperture.originalHeight = rx.match( dimensions ).captured( 2 ).toDouble();
+            #else
+
             if ( rx.indexIn( dimensions ) > -1 ) {
                tempAperture.originalWidth = rx.cap( 1 ).toDouble();
                tempAperture.originalHeight = rx.cap( 2 ).toDouble();
+            #endif
                tempAperture.originalAspectRatio = ( tempAperture.originalWidth / tempAperture.originalHeight );
 
             } else {
@@ -1586,11 +1700,21 @@ void GerberStencilGenerator::parseGerberData() {
             tempAperture.icon.setHollow( true );
             rx.setPattern( "((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)" );
 
+            #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+            if ( rx.match( dimensions ).hasMatch() ) {
+               tempAperture.originalWidth = rx.match( dimensions ).captured( 1 ).toDouble();
+               tempAperture.originalHeight = rx.match( dimensions ).captured( 2 ).toDouble();
+               tempAperture.originalAspectRatio = ( tempAperture.originalWidth / tempAperture.originalHeight );
+               tempAperture.originalInnerDiameter = rx.match( dimensions ).captured( 3 ).toDouble();
+            #else
+
             if ( rx.indexIn( dimensions ) > -1 ) {
                tempAperture.originalWidth = rx.cap( 1 ).toDouble();
                tempAperture.originalHeight = rx.cap( 2 ).toDouble();
                tempAperture.originalAspectRatio = ( tempAperture.originalWidth / tempAperture.originalHeight );
                tempAperture.originalInnerDiameter = rx.cap( 3 ).toDouble();
+            #endif
 
             } else {
                throw ( "Aperture parsing error." );
@@ -1614,9 +1738,17 @@ void GerberStencilGenerator::parseGerberData() {
 
       rx.setPattern( "^%ADD([0-9]+)P," );
 
+      #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+      if ( rx.match( aperture ).hasMatch() ) { // Polygon
+
+         tempAperture.originalId = rx.match( aperture ).captured( 1 ).toInt();
+      #else
+
       if ( rx.indexIn( aperture ) > -1 ) { // Polygon
 
          tempAperture.originalId = rx.cap( 1 ).toInt();
+      #endif
          tempAperture.originalShape = POLYGON;
          tempAperture.icon.setShape( POLYGON );
 
@@ -1633,9 +1765,17 @@ void GerberStencilGenerator::parseGerberData() {
             tempAperture.isHollow = false;
             rx.setPattern( "((?:[0-9]+)?\\.[0-9]+)X([0-9]+)" );
 
+            #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+            if ( rx.match( dimensions ).hasMatch() ) {
+               tempAperture.originalOuterDiameter = rx.match( dimensions ).captured( 1 ).toDouble();
+               tempAperture.originalVertices = rx.match( dimensions ).captured( 2 ).toInt();
+            #else
+
             if ( rx.indexIn( dimensions ) > -1 ) {
                tempAperture.originalOuterDiameter = rx.cap( 1 ).toDouble();
                tempAperture.originalVertices = rx.cap( 2 ).toInt();
+            #endif
 
             } else {
                throw ( "Aperture parsing error." );
@@ -1645,10 +1785,19 @@ void GerberStencilGenerator::parseGerberData() {
             tempAperture.isHollow = false;
             rx.setPattern( "((?:[0-9]+)?\\.[0-9]+)X([0-9]+)X((?:[0-9]+)?\\.[0-9]+)" );
 
+            #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+            if ( rx.match( dimensions ).hasMatch() ) {
+               tempAperture.originalOuterDiameter = rx.match( dimensions ).captured( 1 ).toDouble();
+               tempAperture.originalVertices = rx.match( dimensions ).captured( 2 ).toInt();
+               tempAperture.rotation = rx.match( dimensions ).captured( 3 ).toFloat();
+            #else
+
             if ( rx.indexIn( dimensions ) > -1 ) {
                tempAperture.originalOuterDiameter = rx.cap( 1 ).toDouble();
                tempAperture.originalVertices = rx.cap( 2 ).toInt();
                tempAperture.rotation = rx.cap( 3 ).toFloat();
+            #endif
 
             } else {
                throw ( "Aperture parsing error." );
@@ -1659,11 +1808,21 @@ void GerberStencilGenerator::parseGerberData() {
             tempAperture.icon.setHollow( true );
             rx.setPattern( "((?:[0-9]+)?\\.[0-9]+)X([0-9]+)X((?:[0-9]+)?\\.[0-9]+)X((?:[0-9]+)?\\.[0-9]+)" );
 
+            #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
+            if ( rx.match( dimensions ).hasMatch() ) {
+               tempAperture.originalOuterDiameter = rx.match( dimensions ).captured( 1 ).toDouble();
+               tempAperture.originalVertices = rx.match( dimensions ).captured( 2 ).toInt();
+               tempAperture.rotation = rx.match( dimensions ).captured( 3 ).toFloat();
+               tempAperture.originalInnerDiameter = rx.match( dimensions ).captured( 4 ).toDouble();
+            #else
+
             if ( rx.indexIn( dimensions ) > -1 ) {
                tempAperture.originalOuterDiameter = rx.cap( 1 ).toDouble();
                tempAperture.originalVertices = rx.cap( 2 ).toInt();
                tempAperture.rotation = rx.cap( 3 ).toFloat();
                tempAperture.originalInnerDiameter = rx.cap( 4 ).toDouble();
+            #endif
 
             } else {
                throw ( "Aperture parsing error." );
