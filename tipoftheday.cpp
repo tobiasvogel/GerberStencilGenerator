@@ -1,4 +1,5 @@
 #include "tipoftheday.h"
+#include <QFile>
 #include <QDebug>
 
 TipOfTheDay::TipOfTheDay( QWidget *parent ) {
