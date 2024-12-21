@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px" width="128px" height="128px" viewBox="0 0 128 128" xml:space="preserve">
+<rect x="2" y="25" fill="#8B8B8B" width="124" height="78"></rect>
+<polygon points="125,102 116,102 116,100 123,100 123,97 125,97 "></polygon>
+<rect x="92" y="100" width="12" height="2"></rect>
+<rect x="68" y="100" width="12" height="2"></rect>
+<rect x="44" y="100" width="12" height="2"></rect>
+<rect x="20" y="100" width="12" height="2"></rect>
+<polygon points="8,102 3,102 3,89 5,89 5,100 8,100 "></polygon>
+<rect x="123" y="73" width="2" height="12"></rect>
+<rect x="3" y="65" width="2" height="12"></rect>
+<rect x="123" y="49" width="2" height="12"></rect>
+<rect x="3" y="41" width="2" height="12"></rect>
+<polygon points="125,37 123,37 123,28 122,28 122,26 125,26 "></polygon>
+<polygon points="5,29 3,29 3,26 14,26 14,28 5,28 "></polygon>
+<rect x="98" y="26" width="12" height="2"></rect>
+<rect x="74" y="26" width="12" height="2"></rect>
+<rect x="50" y="26" width="12" height="2"></rect>
+<rect x="26" y="26" width="12" height="2"></rect>
+<polygon fill="#800000" points="7.752,127 2.752,127 120.249,1 125.248,1 "></polygon>
+</svg>

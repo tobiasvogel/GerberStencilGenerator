@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px" width="128px" height="128px" viewBox="0 0 128 128" xml:space="preserve">
+<polygon fill="#8B8B8B" points="27.557,115 5.035,45.637 64,2.774 122.965,45.648 100.443,115 "></polygon>
+<rect x="79.014" y="112" width="12" height="2"></rect>
+<rect x="55.014" y="112" width="12" height="2"></rect>
+<rect x="31.014" y="112" width="12" height="2"></rect>
+<rect x="21.158" y="106.293" transform="matrix(0.3088 0.9511 -0.9511 0.3088 120.8183 48.3264)" width="12" height="2"></rect>
+<rect x="101.086" y="97.466" transform="matrix(0.9512 0.3086 -0.3086 0.9512 36.9124 -26.4539)" width="2" height="12"></rect>
+<rect x="13.746" y="83.466" transform="matrix(0.3088 0.9511 -0.9511 0.3088 93.9842 39.599)" width="12" height="2"></rect>
+<rect x="108.499" y="74.64" transform="matrix(0.9512 0.3086 -0.3086 0.9512 30.23 -29.8554)" width="2" height="12"></rect>
+<rect x="6.334" y="60.64" transform="matrix(0.3088 0.9511 -0.9511 0.3088 67.1512 30.8717)" width="12" height="2"></rect>
+<rect x="115.911" y="51.814" transform="matrix(0.951 0.309 -0.309 0.951 23.5898 -33.3005)" width="2" height="12"></rect>
+<rect x="12.839" y="35.71" transform="matrix(0.5878 0.809 -0.809 0.5878 39.447 5.9964)" width="2" height="12"></rect>
+<rect x="104.899" y="38.348" transform="matrix(0.8088 0.5881 -0.5881 0.8088 44.3421 -57.6937)" width="12" height="1.999"></rect>
+<rect x="32.252" y="21.598" transform="matrix(0.5878 0.809 -0.809 0.5878 36.0322 -15.525)" width="2" height="12"></rect>
+<rect x="85.488" y="24.234" transform="matrix(0.8088 0.5881 -0.5881 0.8088 32.3309 -48.977)" width="12" height="1.999"></rect>
+<rect x="51.665" y="7.486" transform="matrix(0.5878 0.809 -0.809 0.5878 32.6177 -37.0464)" width="2" height="12"></rect>
+<rect x="66.076" y="10.12" transform="matrix(0.8088 0.5881 -0.5881 0.8088 20.3195 -40.2604)" width="12" height="1.999"></rect>
+<polygon fill="#800000" points="7.752,127 2.752,127 120.248,1 125.248,1 "></polygon>
+</svg>

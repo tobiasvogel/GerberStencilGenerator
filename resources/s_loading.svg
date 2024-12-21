@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px" width="240px" height="240px" viewBox="0 0 240 240" xml:space="preserve">
+<g id="Spinner">
+<ellipse cx="120" cy="36" rx="14" ry="36"></ellipse>
+<ellipse transform="matrix(0.866 -0.5 0.5 0.866 -13.177 45.3319)" opacity="0.9" cx="78" cy="47.254" rx="14" ry="36"></ellipse>
+<ellipse transform="matrix(0.5 -0.866 0.866 0.5 -43.9231 79.922)" opacity="0.8" cx="47.254" cy="78" rx="14" ry="36"></ellipse>
+<ellipse opacity="0.7" cx="36" cy="120" rx="36" ry="14"></ellipse>
+<ellipse transform="matrix(-0.5 -0.866 0.866 -0.5 -69.4164 283.9232)" opacity="0.6" cx="47.254" cy="162" rx="14" ry="36"></ellipse>
+<ellipse transform="matrix(-0.866 -0.5 0.5 -0.866 49.1725 398.6696)" opacity="0.5" cx="78" cy="192.747" rx="14" ry="36"></ellipse>
+<ellipse opacity="0.4" cx="120" cy="204" rx="14" ry="36"></ellipse>
+<ellipse transform="matrix(-0.8661 0.5 -0.5 -0.8661 398.6667 278.6821)" opacity="0.3" cx="162.001" cy="192.747" rx="14" ry="36.001"></ellipse>
+<ellipse transform="matrix(-0.5001 0.866 -0.866 -0.5001 429.4229 76.0932)" opacity="0.2" cx="192.747" cy="162" rx="14" ry="36.001"></ellipse>
+<path opacity="0.1" d="M204,134c-19.881-0.001-35.999-6.271-36-14c-0.001-7.732,16.119-13.999,36.002-14.001  c19.88,0,36,6.271,35.998,14.001C240.001,127.73,223.882,134,204,134z"></path>
+<animateTransform attributeName="transform" begin="0s" dur="1.5s" type="rotate" from="0 120 120" to="360 120 120" repeatCount="indefinite" />
+</g>
+</svg>
