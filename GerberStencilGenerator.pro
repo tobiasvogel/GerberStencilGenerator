@@ -25,6 +25,8 @@ exists( $$PWD/3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
+CONFIG += sdk_no_version_check
+
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
