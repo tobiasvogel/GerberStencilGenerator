@@ -199,9 +199,9 @@ protected Q_SLOTS:
    void restoreApertureItem( void );
    QColor pickColor( QColor initialColor, QString windowTitle );
    void setShowTipAtStartup( bool toggle );
-   void openGerberPlotterDialog( bool toggle );
-   void openCompilationDialog( bool toggle );
-   void openEmbedTextDialog( bool toggle );
+   void openGerberPlotterDialog( void );
+   void openCompilationDialog( void );
+   void openEmbedTextDialog( void );
    bool isGerberDataLoaded( void );
    void setGerberDataLoaded( bool loaded );
    void requestQuit( void );

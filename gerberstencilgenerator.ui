@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>667</width>
-    <height>540</height>
+    <width>880</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,10 +35,13 @@
       </size>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
@@ -498,22 +501,16 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="previewButton">
+       <widget class="QPushButton" name="previewButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Preview</string>
         </property>
         <property name="icon">
          <iconset resource="resources.qrc">
           <normaloff>:/res/search</normaloff>:/res/search</iconset>
-        </property>
-        <property name="checkable">
-         <bool>false</bool>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::MenuButtonPopup</enum>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -534,19 +531,35 @@
        </spacer>
       </item>
       <item>
-       <widget class="QToolButton" name="utilitiesButton">
+       <widget class="QPushButton" name="panelizeGerberButton">
         <property name="text">
-         <string>Utilities</string>
+         <string>Panelize Gerber...</string>
         </property>
         <property name="icon">
          <iconset resource="resources.qrc">
-          <normaloff>:/res/toolbox</normaloff>:/res/toolbox</iconset>
+          <normaloff>:/res/compile</normaloff>:/res/compile</iconset>
         </property>
-        <property name="popupMode">
-         <enum>QToolButton::MenuButtonPopup</enum>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="plotGerberButton">
+        <property name="text">
+         <string>Gerber to Image...</string>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/res/plot</normaloff>:/res/plot</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="embedLetterButton">
+        <property name="text">
+         <string>Embed Text...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/res/embedtext</normaloff>:/res/embedtext</iconset>
         </property>
        </widget>
       </item>
@@ -569,7 +582,7 @@
          <string>&amp;Quit</string>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
+         <iconset>
           <normaloff>:/res/exit</normaloff>:/res/exit</iconset>
         </property>
        </widget>

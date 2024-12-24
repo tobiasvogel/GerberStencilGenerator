@@ -53,7 +53,7 @@
         <file alias="compile">resources/icons/AddBuildQueue.svg</file>
         <file alias="plot">resources/icons/GenerateResource.svg</file>
         <file alias="toolbox">resources/icons/Toolbox.svg</file>
-        <file alias="exit">resources/icons/exit.svg</file>
+        <file alias="exit">resources/icons/Exit.svg</file>
         <file alias="splitter">resources/splitter.svg</file>
         <file alias="zoom-in">resources/icons/Zoom_In.svg</file>
         <file alias="zoom-out">resources/icons/Zoom_Out.svg</file>

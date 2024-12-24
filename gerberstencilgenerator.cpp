@@ -76,33 +76,19 @@ GerberStencilGenerator::GerberStencilGenerator( QWidget *parent ) :
    QObject::connect( ui->splitter, &QSplitter::splitterMoved, [this]() { resizeEvent( nullptr ); } );
 
    ui->previewButton->setEnabled( true );
-   ui->previewButton->setToolTip( QString() );
-
-   QAction *enableAutoPreviewAction = new QAction( ui->previewButton );
+   /* FIXME: integrate setting into settings dialog
+   QAction *enableAutoPreviewAction = new QAction( ui->previewButton_2 );   
    enableAutoPreviewAction->setCheckable( true );
    enableAutoPreviewAction->setChecked( true );
    enableAutoPreviewAction->setText( tr( "Auto-Update" ) );
-   ui->previewButton->addAction( enableAutoPreviewAction );
+   ui->previewButton_2->addAction( enableAutoPreviewAction );
    QObject::connect( enableAutoPreviewAction, SIGNAL( toggled( bool ) ), this, SLOT( enableAutoPreview( bool ) ) );
+   */
 
-   QAction *openPlotterDialogAction = new QAction( ui->utilitiesButton );
-   openPlotterDialogAction->setCheckable( false );
-   openPlotterDialogAction->setIcon( QIcon( ":/res/plot" ) );
-   openPlotterDialogAction->setText( tr( "Plot Gerber Files to Image..." ) );
-   QObject::connect( openPlotterDialogAction, SIGNAL( triggered( bool ) ), this, SLOT( openGerberPlotterDialog( bool ) ) );
-   ui->utilitiesButton->addAction( openPlotterDialogAction );
-   QAction *openCompilationDialogAction = new QAction( ui->utilitiesButton );
-   openCompilationDialogAction->setCheckable( false );
-   openCompilationDialogAction->setIcon( QIcon( ":/res/compile" ) );
-   openCompilationDialogAction->setText( tr( "Arrange multiple Gerber Files into one File..." ) );
-   QObject::connect( openCompilationDialogAction, SIGNAL( triggered( bool ) ), this, SLOT( openCompilationDialog( bool ) ) );
-   ui->utilitiesButton->addAction( openCompilationDialogAction );
-   QAction *openEmbedTextDialogAction = new QAction( ui->utilitiesButton );
-   openEmbedTextDialogAction->setCheckable( false );
-   openEmbedTextDialogAction->setIcon( QIcon( ":/res/embedtext" ) );
-   openEmbedTextDialogAction->setText( tr( "Embed Text in Solder-Pads..." ) );
-   QObject::connect( openEmbedTextDialogAction, SIGNAL( triggered( bool ) ), this, SLOT( openEmbedTextDialog( bool ) ) );
-   ui->utilitiesButton->addAction( openEmbedTextDialogAction );
+   QObject::connect( ui->plotGerberButton, SIGNAL( clicked() ), this, SLOT( openGerberPlotterDialog() ) );
+   QObject::connect( ui->panelizeGerberButton, SIGNAL( clicked() ), this, SLOT( openCompilationDialog() ) );
+   QObject::connect( ui->embedLetterButton, SIGNAL( clicked() ), this, SLOT( openEmbedTextDialog() ) );
+
 
    #ifdef QT_DEBUG
    new QShortcut( QKeySequence( Qt::CTRL + Qt::Key_D ), this, SLOT( dumpApertureList() ) );
@@ -1058,8 +1044,7 @@ void GerberStencilGenerator::setShowTipAtStartup( bool toggle ) {
    userSettings->setValue( "showAtStartup", toggle );
 }
 
-void GerberStencilGenerator::openGerberPlotterDialog( bool toggle ) {
-   std::ignore = toggle;
+void GerberStencilGenerator::openGerberPlotterDialog() {
    #ifdef QT_DEBUG
    qDebug() << "opening gerber plotter dialog";
    #endif
@@ -1068,12 +1053,10 @@ void GerberStencilGenerator::openGerberPlotterDialog( bool toggle ) {
    plotterDialog->raise();
 }
 
-void GerberStencilGenerator::openCompilationDialog( bool toggle ) {
-   std::ignore = toggle;
+void GerberStencilGenerator::openCompilationDialog() {
 }
 
-void GerberStencilGenerator::openEmbedTextDialog( bool toggle ) {
-   std::ignore = toggle;
+void GerberStencilGenerator::openEmbedTextDialog() {
 }
 
 bool GerberStencilGenerator::isGerberDataLoaded() {
@@ -1329,6 +1312,8 @@ void GerberStencilGenerator::showTipOfTheDay() {
 }
 
 void GerberStencilGenerator::requestQuit() {
+   thread.requestInterruption();
+   thread.quit();
    if ( !( hasUnsavedChanges ) ) {
       qApp->quit();
       #ifdef QT_DEBUG
