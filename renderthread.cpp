@@ -7,7 +7,9 @@ RenderThread::RenderThread( QObject *parent ) : QThread( parent ) {
 RenderThread::~RenderThread() {
    mutex.lock();
    abort = true;
-   gerbv_destroy_project( mainProject );
+   if ( mainProject ) {
+      gerbv_destroy_project( mainProject );
+   }
    condition.wakeOne();
    mutex.unlock();
    wait();
