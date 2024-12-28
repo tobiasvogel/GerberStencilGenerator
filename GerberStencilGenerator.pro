@@ -34,7 +34,7 @@ CONFIG += sdk_no_version_check
 
 DEFINES += QT_NO_KEYWORDS
 
-CONFIG += c++11 link_pkgconfig
+CONFIG += c++11
 
 SOURCES += \
     gerberplotterdialog.cpp \
@@ -78,7 +78,7 @@ HEADERS += \
 
 FORMS += \
     gerberplotterdialog.ui \
-        gerberstencilgenerator.ui \
+    gerberstencilgenerator.ui \
     settingsdialog.ui
 
 # Default rules for deployment.
@@ -89,14 +89,16 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     resources.qrc
 
-PKGCONFIG += libgerbv cairo pixman-1
-
 win32 {
     RC_ICONS = resources/appicon/icon.ico
 }
 macx {
     ICON = resources/appicon/icon.icns
+    INCLUDEPATH += $$system(pkg-config libgerbv cairo pixman-1 gtk+-2.0 --cflags | sed \'s/-I//g\')
+    LIBS += $$system(pkg-config libgerbv cairo pixman-1 gtk+-2.0 --libs)
 }
-unix|linux {
+linux {
     ICON = resources/appicon/icon.png
+    CONFIG += link_pkgconfig
+    PKGCONFIG += libgerbv cairo pixman-1
 }
