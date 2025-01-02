@@ -37,49 +37,49 @@ DEFINES += QT_NO_KEYWORDS
 CONFIG += c++11
 
 SOURCES += \
-    gerberplotterdialog.cpp \
-    main.cpp \
-    gerberstencilgenerator.cpp \
-    renderthread.cpp \
-    shapeicon.cpp \
-    slidersizelabel.cpp \
-    apertureeditview.cpp \
-    hollowgraphicsrectitem.cpp \
-    hollowroundedgraphicsrectitem.cpp \
-    hollowgraphicsellipseitem.cpp \
-    aperturelistwidget.cpp \
-    hollowgraphicsobrounditem.cpp \
-    hollowgraphicspolygonitem.cpp \
-    hollowroundedgraphicspolygonitem.cpp \
-    settingsdialog.cpp \
-    snapslider.cpp \
-    tipoftheday.cpp
+    src/gerberplotterdialog.cpp \
+    src/main.cpp \
+    src/gerberstencilgenerator.cpp \
+    src/renderthread.cpp \
+    src/shapeicon.cpp \
+    src/slidersizelabel.cpp \
+    src/apertureeditview.cpp \
+    src/hollowgraphicsrectitem.cpp \
+    src/hollowroundedgraphicsrectitem.cpp \
+    src/hollowgraphicsellipseitem.cpp \
+    src/aperturelistwidget.cpp \
+    src/hollowgraphicsobrounditem.cpp \
+    src/hollowgraphicspolygonitem.cpp \
+    src/hollowroundedgraphicspolygonitem.cpp \
+    src/settingsdialog.cpp \
+    src/snapslider.cpp \
+    src/tipoftheday.cpp
 
 HEADERS += \
-    color.h \
-    enums.h \
-    floatcompare.h \
-    gerberplotterdialog.h \
-    gerberstencilgenerator.h \
-    renderthread.h \
-    shapeicon.h \
-    slidersizelabel.h \
-    apertureeditview.h \
-    hollowgraphicsrectitem.h \
-    hollowroundedgraphicsrectitem.h \
-    hollowgraphicsellipseitem.h \
-    aperturelistwidget.h \
-    hollowgraphicsobrounditem.h \
-    hollowgraphicspolygonitem.h \
-    hollowroundedgraphicspolygonitem.h \
-    settingsdialog.h \
-    snapslider.h \
-    tipoftheday.h
+    src/color.h \
+    src/enums.h \
+    src/floatcompare.h \
+    src/gerberplotterdialog.h \
+    src/gerberstencilgenerator.h \
+    src/renderthread.h \
+    src/shapeicon.h \
+    src/slidersizelabel.h \
+    src/apertureeditview.h \
+    src/hollowgraphicsrectitem.h \
+    src/hollowroundedgraphicsrectitem.h \
+    src/hollowgraphicsellipseitem.h \
+    src/aperturelistwidget.h \
+    src/hollowgraphicsobrounditem.h \
+    src/hollowgraphicspolygonitem.h \
+    src/hollowroundedgraphicspolygonitem.h \
+    src/settingsdialog.h \
+    src/snapslider.h \
+    src/tipoftheday.h
 
 FORMS += \
-    gerberplotterdialog.ui \
-    gerberstencilgenerator.ui \
-    settingsdialog.ui
+    ui/gerberplotterdialog.ui \
+    ui/gerberstencilgenerator.ui \
+    ui/settingsdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -87,7 +87,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    resources.qrc
+    resources/resources.qrc
+
+INCLUDEPATH += src/
 
 win32 {
     RC_ICONS = resources/appicon/icon.ico
