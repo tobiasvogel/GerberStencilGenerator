@@ -1,0 +1,2849 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+		5E618435888B9D49F8540165 = {
+			buildActionMask = 2147483647;
+			files = (
+				);
+			isa = PBXShellScriptBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Qt Qmake";
+			shellPath = "/bin/sh";
+			shellScript = "make -C /Users/tobiasvogel/src/GerberStencilGenerator/deploy -f GerberStencilGenerator.xcodeproj/qt_makeqmake.mak";
+			showEnvVarsInLog = "0";
+		};
+		5F8CD7915A8046A1A6E9213C = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/abstract_widget_list.cpp";
+			name = "abstract_widget_list.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		7588100173C85A91C328CDC3 = {
+			fileRef = "5F8CD7915A8046A1A6E9213C";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		9FCB98731572EF23B4AD203A = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/bound_color_selector.cpp";
+			name = "bound_color_selector.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		E1739FEEBC278A0C949DD1A8 = {
+			fileRef = "9FCB98731572EF23B4AD203A";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		A1A994B746B0C2A55A77DC41 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_2d_slider.cpp";
+			name = "color_2d_slider.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		AFFF0FBA2C0998AE97624E20 = {
+			fileRef = "A1A994B746B0C2A55A77DC41";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		2F336FB331AFEB4C649EA782 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_delegate.cpp";
+			name = "color_delegate.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		4C421C7DF5F34EB27A364BF0 = {
+			fileRef = "2F336FB331AFEB4C649EA782";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		2E159758811D0688AD3D9988 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_dialog.cpp";
+			name = "color_dialog.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		D79C0147F3DC0809BAA08758 = {
+			fileRef = "2E159758811D0688AD3D9988";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		157A3C02EDF67CC5FB811B6D = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_line_edit.cpp";
+			name = "color_line_edit.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		8722210F00A666FA301F0D14 = {
+			fileRef = "157A3C02EDF67CC5FB811B6D";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		77BB3AC52F1DD3ED92663C9B = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_list_widget.cpp";
+			name = "color_list_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		3D2B755A8C6ACB9DE19CAFFA = {
+			fileRef = "77BB3AC52F1DD3ED92663C9B";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		86E2DF0F66CEEE44F26C29D1 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_names.cpp";
+			name = "color_names.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		89FC4064DFB5FEB846A44BB2 = {
+			fileRef = "86E2DF0F66CEEE44F26C29D1";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		F0808615430105339AEDC7E5 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_palette.cpp";
+			name = "color_palette.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		7DABF6787574B5E8DE93C923 = {
+			fileRef = "F0808615430105339AEDC7E5";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		E152FFA3BA0C6DED19430629 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_palette_model.cpp";
+			name = "color_palette_model.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		5F39EE04F05D8D6FC573779B = {
+			fileRef = "E152FFA3BA0C6DED19430629";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		A1AF98308622F855A1F49290 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_palette_widget.cpp";
+			name = "color_palette_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		AB80AFFA4CC29B20BC92A2CF = {
+			fileRef = "A1AF98308622F855A1F49290";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		01087AFE4FC66BFCBC5DDB29 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_preview.cpp";
+			name = "color_preview.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		4CF2CB89A3B4891DD813E9DD = {
+			fileRef = "01087AFE4FC66BFCBC5DDB29";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		474193D9A49358C628DA2E2E = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_selector.cpp";
+			name = "color_selector.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		F34E27990B002A62A3624367 = {
+			fileRef = "474193D9A49358C628DA2E2E";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		931B052C6E73E6A7AFCE79D7 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_utils.cpp";
+			name = "color_utils.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		4F15FE95E4851D1AB321E33A = {
+			fileRef = "931B052C6E73E6A7AFCE79D7";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		44369AD8B07D22B9658289F9 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_wheel.cpp";
+			name = "color_wheel.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		25AACCF913D56E352C27AD20 = {
+			fileRef = "44369AD8B07D22B9658289F9";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		D73D3D7B65D07E9A5C139092 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/gradient_editor.cpp";
+			name = "gradient_editor.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		3F25227BDFEC9DB80870FFF0 = {
+			fileRef = "D73D3D7B65D07E9A5C139092";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		DF5913A36F70FF7B3C2B4C84 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/gradient_list_model.cpp";
+			name = "gradient_list_model.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		B9605C1ED4B8BFAE4A04A44A = {
+			fileRef = "DF5913A36F70FF7B3C2B4C84";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		41187DCD3F9DB7ECF889DDCB = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/gradient_slider.cpp";
+			name = "gradient_slider.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		C1D6541D65FA6DC225996097 = {
+			fileRef = "41187DCD3F9DB7ECF889DDCB";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		D7896B3012F881050F4F6B4C = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/harmony_color_wheel.cpp";
+			name = "harmony_color_wheel.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		5275C997F569B65A4815202F = {
+			fileRef = "D7896B3012F881050F4F6B4C";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		8DBC6F016677628FC5445EBD = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/hue_slider.cpp";
+			name = "hue_slider.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		6937044325B4A23A1F6937A5 = {
+			fileRef = "8DBC6F016677628FC5445EBD";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		6BAFC1C4F3FE561B11C65B69 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/swatch.cpp";
+			name = "swatch.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		3986D2CB449A77BD2AC8CDF6 = {
+			fileRef = "6BAFC1C4F3FE561B11C65B69";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		F3A4D5A161623950EF11C3F5 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/gerberplotterdialog.cpp";
+			name = "gerberplotterdialog.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		E88CA15E4D2E2B7BB07A3965 = {
+			fileRef = "F3A4D5A161623950EF11C3F5";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		08D2FF4B223E38ABBA8D1D7D = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/main.cpp";
+			name = "main.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		5F1FB58A12B698D3418BF76E = {
+			fileRef = "08D2FF4B223E38ABBA8D1D7D";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		2337BD1309247A088AB30B9C = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/gerberstencilgenerator.cpp";
+			name = "gerberstencilgenerator.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		1AE170C811AB945BEA04D2AD = {
+			fileRef = "2337BD1309247A088AB30B9C";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		A8A76905A9E680D371F88A8B = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/renderthread.cpp";
+			name = "renderthread.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		95187701DD4258D132CEBBA1 = {
+			fileRef = "A8A76905A9E680D371F88A8B";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		5D1DED86CCFC6ABB4094C0E6 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/shapeicon.cpp";
+			name = "shapeicon.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		CD37E10573655102F3D359F2 = {
+			fileRef = "5D1DED86CCFC6ABB4094C0E6";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		196686925C14210AA7975CDC = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/slidersizelabel.cpp";
+			name = "slidersizelabel.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		895957ED0C8A1689E81F7548 = {
+			fileRef = "196686925C14210AA7975CDC";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		5636D33ECA3BA11E857F6F05 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/apertureeditview.cpp";
+			name = "apertureeditview.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		119443A9569E41F62A4CEC1D = {
+			fileRef = "5636D33ECA3BA11E857F6F05";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		635E17570C01B956951A7550 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowgraphicsrectitem.cpp";
+			name = "hollowgraphicsrectitem.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		04E7A421042C894341C1D43A = {
+			fileRef = "635E17570C01B956951A7550";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		6667FF604345195EBE3F3597 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowroundedgraphicsrectitem.cpp";
+			name = "hollowroundedgraphicsrectitem.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		5C6E8B18E9B51B525281B606 = {
+			fileRef = "6667FF604345195EBE3F3597";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		F40FEC327F8456B6F6BA11B2 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowgraphicsellipseitem.cpp";
+			name = "hollowgraphicsellipseitem.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		6A4AA2BBDFE4C03C4A6D5F91 = {
+			fileRef = "F40FEC327F8456B6F6BA11B2";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		6FB4E98C4F0ECF3A220E74CB = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/aperturelistwidget.cpp";
+			name = "aperturelistwidget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		2E02C42EAB03759D8147B5BD = {
+			fileRef = "6FB4E98C4F0ECF3A220E74CB";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		ADD61E4EDDB31FEE2501DA75 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowgraphicsobrounditem.cpp";
+			name = "hollowgraphicsobrounditem.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		9E078E6A31D1C0407AB792A2 = {
+			fileRef = "ADD61E4EDDB31FEE2501DA75";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		64E2D16E8A55674C3CADCC94 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowgraphicspolygonitem.cpp";
+			name = "hollowgraphicspolygonitem.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		30BD85B21E80B03E06C45027 = {
+			fileRef = "64E2D16E8A55674C3CADCC94";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		4A46ACC5610CC2D0E015914D = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowroundedgraphicspolygonitem.cpp";
+			name = "hollowroundedgraphicspolygonitem.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		74E5D7E6AC2493A9E77F073E = {
+			fileRef = "4A46ACC5610CC2D0E015914D";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		EE3B5A1B2C9204BFDF4D4FC9 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/settingsdialog.cpp";
+			name = "settingsdialog.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		5DBB92563580AB7A01091E5F = {
+			fileRef = "EE3B5A1B2C9204BFDF4D4FC9";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		BA1729A8FE91D0DDD44C6EEB = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/snapslider.cpp";
+			name = "snapslider.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		B422A2126E878BC2E6A41592 = {
+			fileRef = "BA1729A8FE91D0DDD44C6EEB";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		B500273B1584C8BC5D505140 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/tipoftheday.cpp";
+			name = "tipoftheday.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		2A34011980288624B837C9F7 = {
+			fileRef = "B500273B1584C8BC5D505140";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		E20544F375DDE993DE241F6B = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/resources/appicon/icon.icns";
+			name = "icon.icns";
+			sourceTree = "<absolute>";
+		};
+		953A37810E4F2F25ACA8A758 = {
+			fileRef = "E20544F375DDE993DE241F6B";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		6FA9CA0BD737451E62E2AAA1 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/qrc_color_widgets.cpp";
+			name = "qrc_color_widgets.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		9053727ED6B0681AFAEAFCE9 = {
+			fileRef = "6FA9CA0BD737451E62E2AAA1";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		1E7469A04441BA6B7B6E91F5 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/qrc_resources.cpp";
+			name = "qrc_resources.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		DA6B7F23420C9B6B42DDBE5B = {
+			fileRef = "1E7469A04441BA6B7B6E91F5";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		2FEDEB0FCB02599D2DCDBCCC = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_abstract_widget_list.cpp";
+			name = "moc_abstract_widget_list.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		0A002E16EFE05EF056E38C08 = {
+			fileRef = "2FEDEB0FCB02599D2DCDBCCC";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		00DB8897B765170FB58A1971 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_bound_color_selector.cpp";
+			name = "moc_bound_color_selector.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		8ACB4E552F38214234D3BEDB = {
+			fileRef = "00DB8897B765170FB58A1971";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		BBCB417D6E27AC0EA5D14E53 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_2d_slider.cpp";
+			name = "moc_color_2d_slider.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		DA93DE4AA5B0EC7423417E72 = {
+			fileRef = "BBCB417D6E27AC0EA5D14E53";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		C1082A7C63C93E4501DCF375 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_delegate.cpp";
+			name = "moc_color_delegate.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		FCCE61977B91D2034083CF43 = {
+			fileRef = "C1082A7C63C93E4501DCF375";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		B7B2DEDA63B29823EB53F785 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_dialog.cpp";
+			name = "moc_color_dialog.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		8D81D0D3697E92E1D8D62532 = {
+			fileRef = "B7B2DEDA63B29823EB53F785";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		79EB667B0654211DE1264F69 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_line_edit.cpp";
+			name = "moc_color_line_edit.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		6B279F2D11C06BFE53B322C1 = {
+			fileRef = "79EB667B0654211DE1264F69";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		3F7BA88780130B75F57E0660 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_list_widget.cpp";
+			name = "moc_color_list_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		4438AA7ABCACF068CEDD8622 = {
+			fileRef = "3F7BA88780130B75F57E0660";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		FBF58909E47A39AB88E81DC3 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_palette.cpp";
+			name = "moc_color_palette.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		66D4BF75AE301DB0B75F834F = {
+			fileRef = "FBF58909E47A39AB88E81DC3";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		93C05B8F70CD1BE910FDF9DD = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_palette_model.cpp";
+			name = "moc_color_palette_model.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		B2870D711E1A93C66710C787 = {
+			fileRef = "93C05B8F70CD1BE910FDF9DD";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		F77F6ED41FE3A93C1FE9D5D5 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_palette_widget.cpp";
+			name = "moc_color_palette_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		2F2182864A999697342D1CC8 = {
+			fileRef = "F77F6ED41FE3A93C1FE9D5D5";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		D36F7DAAB9E9E7A05B43B95C = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_preview.cpp";
+			name = "moc_color_preview.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		BD0999B18C05DCC571847AC9 = {
+			fileRef = "D36F7DAAB9E9E7A05B43B95C";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		F1097BB02E98F95F5CB3B3B1 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_selector.cpp";
+			name = "moc_color_selector.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		F6CBA5590B0B73BDABE86C6F = {
+			fileRef = "F1097BB02E98F95F5CB3B3B1";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		8B0EE9E1941038FC084CEEC8 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_color_wheel.cpp";
+			name = "moc_color_wheel.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		552DB9B553706482F7644632 = {
+			fileRef = "8B0EE9E1941038FC084CEEC8";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		0C55F40402BF7F2040889872 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_gradient_delegate.cpp";
+			name = "moc_gradient_delegate.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		0F972324E8D84CF74BC6385D = {
+			fileRef = "0C55F40402BF7F2040889872";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		DAAB55523E0B654429856D29 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_gradient_editor.cpp";
+			name = "moc_gradient_editor.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		7AE29045CC09EDE70571CBE7 = {
+			fileRef = "DAAB55523E0B654429856D29";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		FA20368CF897AEC8D543452C = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_gradient_list_model.cpp";
+			name = "moc_gradient_list_model.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		1413CEFFD2A076D2C9F62DC8 = {
+			fileRef = "FA20368CF897AEC8D543452C";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		BF12AD496953A91DA701D325 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_gradient_slider.cpp";
+			name = "moc_gradient_slider.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		F211DC4AED0EA75B93713FDB = {
+			fileRef = "BF12AD496953A91DA701D325";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		73BDEBD53943491D32D20ADE = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_harmony_color_wheel.cpp";
+			name = "moc_harmony_color_wheel.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		AF50FF3E0EF2B35A40D2F3B7 = {
+			fileRef = "73BDEBD53943491D32D20ADE";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		1176D147BA110E169F41970D = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_hue_slider.cpp";
+			name = "moc_hue_slider.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		E3C626788FCF9E4BB49B2889 = {
+			fileRef = "1176D147BA110E169F41970D";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		72AE1CDD2EC34D0A0A2B86B1 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_swatch.cpp";
+			name = "moc_swatch.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		31C1AA9C44EBB2FB1967B07D = {
+			fileRef = "72AE1CDD2EC34D0A0A2B86B1";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		1F2411075493D84BE493DD34 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_gerberplotterdialog.cpp";
+			name = "moc_gerberplotterdialog.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		A6D2191DB6FCE9F3FC5821F8 = {
+			fileRef = "1F2411075493D84BE493DD34";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		1A28E90ECE104309733E16B1 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_gerberstencilgenerator.cpp";
+			name = "moc_gerberstencilgenerator.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		2173F51F9CBF892C50A7ECC4 = {
+			fileRef = "1A28E90ECE104309733E16B1";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		5D27EA53177FA24E2EBBC7A2 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_renderthread.cpp";
+			name = "moc_renderthread.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		106FC996548AE9CEEF6CF4D6 = {
+			fileRef = "5D27EA53177FA24E2EBBC7A2";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		97227E808846945B7D015B10 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_aperturelistwidget.cpp";
+			name = "moc_aperturelistwidget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		5885C1A50F0B161C7FF3415F = {
+			fileRef = "97227E808846945B7D015B10";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		9E0F50D2ACED9CB00FF45C74 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_settingsdialog.cpp";
+			name = "moc_settingsdialog.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		AC45E11A3D525894C999D2D4 = {
+			fileRef = "9E0F50D2ACED9CB00FF45C74";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		3E05D470C999BA511F53546D = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_snapslider.cpp";
+			name = "moc_snapslider.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		0FA265649714224439933800 = {
+			fileRef = "3E05D470C999BA511F53546D";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		38FBF5F6E89D78E1ACB9ED18 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/moc_tipoftheday.cpp";
+			name = "moc_tipoftheday.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		E2D54C878CAA4A062F513E8E = {
+			fileRef = "38FBF5F6E89D78E1ACB9ED18";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		B3367077EEF17951124921AF = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/ui_color_dialog.h";
+			name = "ui_color_dialog.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		2F304BA4A2BEF94A88D4BAD9 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/ui_color_palette_widget.h";
+			name = "ui_color_palette_widget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		3BE65A01F58E5DE5EC2F4AD6 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/ui_gerberplotterdialog.h";
+			name = "ui_gerberplotterdialog.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		3187B320BAACF5E52B53F714 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/ui_gerberstencilgenerator.h";
+			name = "ui_gerberstencilgenerator.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		F48F96835CD644F32D43F242 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/ui_settingsdialog.h";
+			name = "ui_settingsdialog.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		DE2ED094AF223560E7482F89 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/abstract_widget_list.hpp";
+			name = "abstract_widget_list.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		82300A4D517DB30D851231F8 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/bound_color_selector.hpp";
+			name = "bound_color_selector.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		72D702082B9EBF0131AE79AB = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_2d_slider.hpp";
+			name = "color_2d_slider.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		0493C9F118DDC448454C8183 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_delegate.hpp";
+			name = "color_delegate.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		67519CAC052E484FAD895482 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_dialog.hpp";
+			name = "color_dialog.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		8DF6A3334940635B5DC926CB = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_line_edit.hpp";
+			name = "color_line_edit.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		3E77BA59D97024F8C5F68385 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_list_widget.hpp";
+			name = "color_list_widget.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		DC952135A39F3514F89CFC40 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_names.hpp";
+			name = "color_names.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		2333684BE29E14FCB5FAB6A3 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_palette.hpp";
+			name = "color_palette.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		AC9A0FEE2AE241186B5A34E6 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_palette_model.hpp";
+			name = "color_palette_model.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		C301A258B8F6B90AD36B5F07 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_palette_widget.hpp";
+			name = "color_palette_widget.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		A698898CC576B1F5D0C82449 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_preview.hpp";
+			name = "color_preview.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		BEE5BE18E5C597C40CC416D8 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_selector.hpp";
+			name = "color_selector.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		9D758042701B42DEDF42BE84 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_utils.hpp";
+			name = "color_utils.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		15F60D76FF8997742E6C6082 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_wheel.hpp";
+			name = "color_wheel.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		3F072B473DD086254853F583 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_wheel_private.hpp";
+			name = "color_wheel_private.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		06BE602526CC1B3396AAC11D = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/colorwidgets_global.hpp";
+			name = "colorwidgets_global.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		316BF876D4BDA47F42737F8D = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/gradient_delegate.hpp";
+			name = "gradient_delegate.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		BF83DDB20309B3F82D9D051E = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/gradient_editor.hpp";
+			name = "gradient_editor.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		FFFDC601533D5962E9ADC85C = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/gradient_helper.hpp";
+			name = "gradient_helper.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		5B64BFF551433528F5B6DC73 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/gradient_list_model.hpp";
+			name = "gradient_list_model.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		24B820593AFA38AE00D86E2E = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/gradient_slider.hpp";
+			name = "gradient_slider.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		276D1DEE5CC87FF56BE1A30C = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/harmony_color_wheel.hpp";
+			name = "harmony_color_wheel.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		B012E4DFE34F02B695B2C8D0 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/hue_slider.hpp";
+			name = "hue_slider.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		6006F5A332DD2CE4B2ED3EEE = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/swatch.hpp";
+			name = "swatch.hpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		19BFAC3CB86404C6DE946C53 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/color.h";
+			name = "color.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		34500E2A2E8A292CB88B03D9 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/enums.h";
+			name = "enums.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		50549F678546B8BE4E14F6D6 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/floatcompare.h";
+			name = "floatcompare.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		E7CAEAE8645D21AEAE0FC561 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/gerberplotterdialog.h";
+			name = "gerberplotterdialog.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		826CA2A3FAAA514CFB8D5966 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/gerberstencilgenerator.h";
+			name = "gerberstencilgenerator.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		45D5E6E5AB873A4DA9044B50 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/renderthread.h";
+			name = "renderthread.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		B9A35116E716282E05C234DD = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/shapeicon.h";
+			name = "shapeicon.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		3E9FA11EFD3BFF0F303EED47 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/slidersizelabel.h";
+			name = "slidersizelabel.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		1DA83EC1731E6C16136B6408 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/apertureeditview.h";
+			name = "apertureeditview.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		B7FB68FEC43B9453858B3EB7 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowgraphicsrectitem.h";
+			name = "hollowgraphicsrectitem.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		B75500E00ACBC721FB7B5628 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowroundedgraphicsrectitem.h";
+			name = "hollowroundedgraphicsrectitem.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		40F1DA0332A308B119A43791 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowgraphicsellipseitem.h";
+			name = "hollowgraphicsellipseitem.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		B9F05AFC87C73040821D063D = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/aperturelistwidget.h";
+			name = "aperturelistwidget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		61A72929C7CFDC61522A62F3 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowgraphicsobrounditem.h";
+			name = "hollowgraphicsobrounditem.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		B61E68583B2D1C512EFAFDE2 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowgraphicspolygonitem.h";
+			name = "hollowgraphicspolygonitem.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		FA9407F48D4208FEB9F2863A = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/hollowroundedgraphicspolygonitem.h";
+			name = "hollowroundedgraphicspolygonitem.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		9223F30E7493C3387E7BCA52 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/settingsdialog.h";
+			name = "settingsdialog.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		B6E50735B65E771A6D16ABEE = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/snapslider.h";
+			name = "snapslider.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		479FFC8C4515B92FEC39CAD4 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/src/tipoftheday.h";
+			name = "tipoftheday.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		2C3D0BCCA3AC2B59677AC9BF = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/resources/QtColorWidgets/color_widgets.qrc";
+			name = "color_widgets.qrc";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "text";
+		};
+		E02263F29280FAD5FE35FA34 = {
+			fileRef = "2C3D0BCCA3AC2B59677AC9BF";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		81546A0243665FC524B30421 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/resources/resources.qrc";
+			name = "resources.qrc";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "text";
+		};
+		DE41CA3A1D6295D24EABCC8C = {
+			fileRef = "81546A0243665FC524B30421";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		028904C181BFAE9BC6F4D906 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_dialog.ui";
+			name = "color_dialog.ui";
+			sourceTree = "<absolute>";
+		};
+		0C7AECDA1737B410FC86ED1D = {
+			fileRef = "028904C181BFAE9BC6F4D906";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		3DA7B73E4511556B63FB07C0 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_palette_widget.ui";
+			name = "color_palette_widget.ui";
+			sourceTree = "<absolute>";
+		};
+		A73D4335B294FE02AAA94297 = {
+			fileRef = "3DA7B73E4511556B63FB07C0";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		5F08CD7A74E4A949A75D3449 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/ui/gerberplotterdialog.ui";
+			name = "gerberplotterdialog.ui";
+			sourceTree = "<absolute>";
+		};
+		6D885DAB373BE02AEB9A2CF6 = {
+			fileRef = "5F08CD7A74E4A949A75D3449";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		1CDDBD7EB84124A748EBB2A9 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/ui/gerberstencilgenerator.ui";
+			name = "gerberstencilgenerator.ui";
+			sourceTree = "<absolute>";
+		};
+		67C973805BB236B23E4B1049 = {
+			fileRef = "1CDDBD7EB84124A748EBB2A9";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		3D2096D856D9D2A2A780BD1E = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/ui/settingsdialog.ui";
+			name = "settingsdialog.ui";
+			sourceTree = "<absolute>";
+		};
+		C84FBDDE87716065E4E66076 = {
+			fileRef = "3D2096D856D9D2A2A780BD1E";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		C6901D820C8655B45FD6FBFE = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/deploy/GerberStencilGenerator.pro";
+			name = "GerberStencilGenerator.pro";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "text";
+		};
+		3BBC0DE928D07C961E6FBD97 = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/3rdparty/Qt-Color-Widgets-master/color_widgets.pri";
+			name = "color_widgets.pri";
+			sourceTree = "<absolute>";
+		};
+		167A31B17E10CCBA3D72AB8D = {
+			isa = PBXFileReference;
+			path = "/Users/tobiasvogel/src/GerberStencilGenerator/GerberStencilGenerator.pro";
+			name = "GerberStencilGenerator.pro";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "text";
+		};
+		25B08E2869634E9BCBA333A2 = {
+			isa = PBXGroup;
+			children = (
+				"47B8C576BE63A66D6E7833E0");
+			name = "Generated Sources";
+			sourceTree = "<group>";
+		};
+		47B8C576BE63A66D6E7833E0 = {
+			isa = PBXGroup;
+			children = (
+				"6FA9CA0BD737451E62E2AAA1",
+				"1E7469A04441BA6B7B6E91F5",
+				"2FEDEB0FCB02599D2DCDBCCC",
+				"00DB8897B765170FB58A1971",
+				"BBCB417D6E27AC0EA5D14E53",
+				"C1082A7C63C93E4501DCF375",
+				"B7B2DEDA63B29823EB53F785",
+				"79EB667B0654211DE1264F69",
+				"3F7BA88780130B75F57E0660",
+				"FBF58909E47A39AB88E81DC3",
+				"93C05B8F70CD1BE910FDF9DD",
+				"F77F6ED41FE3A93C1FE9D5D5",
+				"D36F7DAAB9E9E7A05B43B95C",
+				"F1097BB02E98F95F5CB3B3B1",
+				"8B0EE9E1941038FC084CEEC8",
+				"0C55F40402BF7F2040889872",
+				"DAAB55523E0B654429856D29",
+				"FA20368CF897AEC8D543452C",
+				"BF12AD496953A91DA701D325",
+				"73BDEBD53943491D32D20ADE",
+				"1176D147BA110E169F41970D",
+				"72AE1CDD2EC34D0A0A2B86B1",
+				"1F2411075493D84BE493DD34",
+				"1A28E90ECE104309733E16B1",
+				"5D27EA53177FA24E2EBBC7A2",
+				"97227E808846945B7D015B10",
+				"9E0F50D2ACED9CB00FF45C74",
+				"3E05D470C999BA511F53546D",
+				"38FBF5F6E89D78E1ACB9ED18",
+				"B3367077EEF17951124921AF",
+				"2F304BA4A2BEF94A88D4BAD9",
+				"3BE65A01F58E5DE5EC2F4AD6",
+				"3187B320BAACF5E52B53F714",
+				"F48F96835CD644F32D43F242");
+			name = "deploy";
+			sourceTree = "<group>";
+		};
+		ACDA49FE7BA6D574B27E2BB9 = {
+			isa = PBXGroup;
+			children = (
+				"4C751DAAE0A4201FC1847F38");
+			name = "3rdparty";
+			sourceTree = "<group>";
+		};
+		4C751DAAE0A4201FC1847F38 = {
+			isa = PBXGroup;
+			children = (
+				"E4D7B59FA72A740643F2ACBE");
+			name = "Qt-Color-Widgets-master";
+			sourceTree = "<group>";
+		};
+		E4D7B59FA72A740643F2ACBE = {
+			isa = PBXGroup;
+			children = (
+				"30C085000CE9010657E601CB");
+			name = "resources";
+			sourceTree = "<group>";
+		};
+		30C085000CE9010657E601CB = {
+			isa = PBXGroup;
+			children = (
+				"2C3D0BCCA3AC2B59677AC9BF");
+			name = "QtColorWidgets";
+			sourceTree = "<group>";
+		};
+		2AE5075E893C7B07A29253C2 = {
+			isa = PBXGroup;
+			children = (
+				"81546A0243665FC524B30421");
+			name = "resources";
+			sourceTree = "<group>";
+		};
+		4D025E52D9B8A3159BFC4CD8 = {
+			isa = PBXGroup;
+			children = (
+				"523BB2C01FEC5BCE16C6AFC2");
+			name = "3rdparty";
+			sourceTree = "<group>";
+		};
+		523BB2C01FEC5BCE16C6AFC2 = {
+			isa = PBXGroup;
+			children = (
+				"8FD08D279EDC7C7DE8426C57");
+			name = "Qt-Color-Widgets-master";
+			sourceTree = "<group>";
+		};
+		8FD08D279EDC7C7DE8426C57 = {
+			isa = PBXGroup;
+			children = (
+				"BB71494CF740B65D26B4D9C5");
+			name = "src";
+			sourceTree = "<group>";
+		};
+		BB71494CF740B65D26B4D9C5 = {
+			isa = PBXGroup;
+			children = (
+				"028904C181BFAE9BC6F4D906",
+				"3DA7B73E4511556B63FB07C0");
+			name = "QtColorWidgets";
+			sourceTree = "<group>";
+		};
+		F027E420C02C9CC7A06A0901 = {
+			isa = PBXGroup;
+			children = (
+				"5F08CD7A74E4A949A75D3449",
+				"1CDDBD7EB84124A748EBB2A9",
+				"3D2096D856D9D2A2A780BD1E");
+			name = "ui";
+			sourceTree = "<group>";
+		};
+		5DE1297DC357BC3B2196692D = {
+			isa = PBXGroup;
+			children = (
+				"99A0CF4CE8D52F97BB508150");
+			name = "3rdparty";
+			sourceTree = "<group>";
+		};
+		99A0CF4CE8D52F97BB508150 = {
+			isa = PBXGroup;
+			children = (
+				"CF1DDEED5EE3FCF2F0C680DB",
+				"96A57984872C3111FF50CD68");
+			name = "Qt-Color-Widgets-master";
+			sourceTree = "<group>";
+		};
+		96A57984872C3111FF50CD68 = {
+			isa = PBXGroup;
+			children = (
+				"19FF4BF686F64E7AE666307E");
+			name = "include";
+			sourceTree = "<group>";
+		};
+		19FF4BF686F64E7AE666307E = {
+			isa = PBXGroup;
+			children = (
+				"DE2ED094AF223560E7482F89",
+				"82300A4D517DB30D851231F8",
+				"72D702082B9EBF0131AE79AB",
+				"0493C9F118DDC448454C8183",
+				"67519CAC052E484FAD895482",
+				"8DF6A3334940635B5DC926CB",
+				"3E77BA59D97024F8C5F68385",
+				"DC952135A39F3514F89CFC40",
+				"2333684BE29E14FCB5FAB6A3",
+				"AC9A0FEE2AE241186B5A34E6",
+				"C301A258B8F6B90AD36B5F07",
+				"A698898CC576B1F5D0C82449",
+				"BEE5BE18E5C597C40CC416D8",
+				"9D758042701B42DEDF42BE84",
+				"15F60D76FF8997742E6C6082",
+				"3F072B473DD086254853F583",
+				"06BE602526CC1B3396AAC11D",
+				"316BF876D4BDA47F42737F8D",
+				"BF83DDB20309B3F82D9D051E",
+				"FFFDC601533D5962E9ADC85C",
+				"5B64BFF551433528F5B6DC73",
+				"24B820593AFA38AE00D86E2E",
+				"276D1DEE5CC87FF56BE1A30C",
+				"B012E4DFE34F02B695B2C8D0",
+				"6006F5A332DD2CE4B2ED3EEE");
+			name = "QtColorWidgets";
+			sourceTree = "<group>";
+		};
+		CF1DDEED5EE3FCF2F0C680DB = {
+			isa = PBXGroup;
+			children = (
+				"4FE35CB517FCDECEEE736A49");
+			name = "src";
+			sourceTree = "<group>";
+		};
+		4FE35CB517FCDECEEE736A49 = {
+			isa = PBXGroup;
+			children = (
+				"5F8CD7915A8046A1A6E9213C",
+				"9FCB98731572EF23B4AD203A",
+				"A1A994B746B0C2A55A77DC41",
+				"2F336FB331AFEB4C649EA782",
+				"2E159758811D0688AD3D9988",
+				"157A3C02EDF67CC5FB811B6D",
+				"77BB3AC52F1DD3ED92663C9B",
+				"86E2DF0F66CEEE44F26C29D1",
+				"F0808615430105339AEDC7E5",
+				"E152FFA3BA0C6DED19430629",
+				"A1AF98308622F855A1F49290",
+				"01087AFE4FC66BFCBC5DDB29",
+				"474193D9A49358C628DA2E2E",
+				"931B052C6E73E6A7AFCE79D7",
+				"44369AD8B07D22B9658289F9",
+				"D73D3D7B65D07E9A5C139092",
+				"DF5913A36F70FF7B3C2B4C84",
+				"41187DCD3F9DB7ECF889DDCB",
+				"D7896B3012F881050F4F6B4C",
+				"8DBC6F016677628FC5445EBD",
+				"6BAFC1C4F3FE561B11C65B69");
+			name = "QtColorWidgets";
+			sourceTree = "<group>";
+		};
+		E27231F9DBEA920995A2BBBF = {
+			isa = PBXGroup;
+			children = (
+				"710E23A50E01EB6ACBB08F07");
+			name = "deploy";
+			sourceTree = "<group>";
+		};
+		710E23A50E01EB6ACBB08F07 = {
+			isa = PBXGroup;
+			children = (
+				"040A6DC2FA0C867BB1E2A8CE");
+			name = "resources";
+			sourceTree = "<group>";
+		};
+		040A6DC2FA0C867BB1E2A8CE = {
+			isa = PBXGroup;
+			children = (
+				"E20544F375DDE993DE241F6B");
+			name = "appicon";
+			sourceTree = "<group>";
+		};
+		921315FAA7F261D737F4F4C7 = {
+			isa = PBXGroup;
+			children = (
+				"F3A4D5A161623950EF11C3F5",
+				"08D2FF4B223E38ABBA8D1D7D",
+				"2337BD1309247A088AB30B9C",
+				"A8A76905A9E680D371F88A8B",
+				"5D1DED86CCFC6ABB4094C0E6",
+				"196686925C14210AA7975CDC",
+				"5636D33ECA3BA11E857F6F05",
+				"635E17570C01B956951A7550",
+				"6667FF604345195EBE3F3597",
+				"F40FEC327F8456B6F6BA11B2",
+				"6FB4E98C4F0ECF3A220E74CB",
+				"ADD61E4EDDB31FEE2501DA75",
+				"64E2D16E8A55674C3CADCC94",
+				"4A46ACC5610CC2D0E015914D",
+				"EE3B5A1B2C9204BFDF4D4FC9",
+				"BA1729A8FE91D0DDD44C6EEB",
+				"B500273B1584C8BC5D505140",
+				"19BFAC3CB86404C6DE946C53",
+				"34500E2A2E8A292CB88B03D9",
+				"50549F678546B8BE4E14F6D6",
+				"E7CAEAE8645D21AEAE0FC561",
+				"826CA2A3FAAA514CFB8D5966",
+				"45D5E6E5AB873A4DA9044B50",
+				"B9A35116E716282E05C234DD",
+				"3E9FA11EFD3BFF0F303EED47",
+				"1DA83EC1731E6C16136B6408",
+				"B7FB68FEC43B9453858B3EB7",
+				"B75500E00ACBC721FB7B5628",
+				"40F1DA0332A308B119A43791",
+				"B9F05AFC87C73040821D063D",
+				"61A72929C7CFDC61522A62F3",
+				"B61E68583B2D1C512EFAFDE2",
+				"FA9407F48D4208FEB9F2863A",
+				"9223F30E7493C3387E7BCA52",
+				"B6E50735B65E771A6D16ABEE",
+				"479FFC8C4515B92FEC39CAD4");
+			name = "src";
+			sourceTree = "<group>";
+		};
+		9C993FB6A9F2642ED76DF8E1 = {
+			isa = PBXGroup;
+			children = (
+				"B278405F380D5B36361E1667");
+			name = "3rdparty";
+			sourceTree = "<group>";
+		};
+		B278405F380D5B36361E1667 = {
+			isa = PBXGroup;
+			children = (
+				"3BBC0DE928D07C961E6FBD97");
+			name = "Qt-Color-Widgets-master";
+			sourceTree = "<group>";
+		};
+		3AF77BBD5ECC53D6BF03D44E = {
+			isa = PBXGroup;
+			children = (
+				"C6901D820C8655B45FD6FBFE");
+			name = "deploy";
+			sourceTree = "<group>";
+		};
+		87DF60DE337FB58864343E39 = {
+			isa = PBXGroup;
+			children = (
+				"ACDA49FE7BA6D574B27E2BB9",
+				"2AE5075E893C7B07A29253C2");
+			name = "Resources";
+			sourceTree = "<group>";
+		};
+		2EB56BE3C2D93CDAB0C52E67 = {
+			isa = PBXGroup;
+			children = (
+				"5DE1297DC357BC3B2196692D",
+				"921315FAA7F261D737F4F4C7",
+				"E27231F9DBEA920995A2BBBF");
+			name = "Sources";
+			sourceTree = "<group>";
+		};
+		12E908B8A1C3C07C115504F5 = {
+			isa = PBXGroup;
+			children = (
+				"4D025E52D9B8A3159BFC4CD8",
+				"F027E420C02C9CC7A06A0901");
+			name = "Sources [uic]";
+			sourceTree = "<group>";
+		};
+		74B182DB50CB5611B5C1C297 = {
+			isa = PBXGroup;
+			children = (
+				"3AF77BBD5ECC53D6BF03D44E",
+				"9C993FB6A9F2642ED76DF8E1",
+				"167A31B17E10CCBA3D72AB8D");
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7EF0942E79C014DCEC8976BC = {
+			buildActionMask = 2147483647;
+			files = (
+				);
+			isa = PBXShellScriptBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Qt Preprocessors";
+			inputPaths = (
+				"../3rdparty/Qt-Color-Widgets-master/resources/QtColorWidgets/color_widgets.qrc",
+				"../resources/resources.qrc",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/abstract_widget_list.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/bound_color_selector.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_2d_slider.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_delegate.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_dialog.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_line_edit.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_list_widget.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_palette.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_palette_model.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_palette_widget.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_preview.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_selector.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/color_wheel.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/gradient_delegate.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/gradient_editor.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/gradient_list_model.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/gradient_slider.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/harmony_color_wheel.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/hue_slider.hpp",
+				"../3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/swatch.hpp",
+				"../src/gerberplotterdialog.h",
+				"../src/gerberstencilgenerator.h",
+				"../src/renderthread.h",
+				"../src/aperturelistwidget.h",
+				"../src/settingsdialog.h",
+				"../src/snapslider.h",
+				"../src/tipoftheday.h",
+				"../3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_dialog.ui",
+				"../3rdparty/Qt-Color-Widgets-master/src/QtColorWidgets/color_palette_widget.ui",
+				"../ui/gerberplotterdialog.ui",
+				"../ui/gerberstencilgenerator.ui",
+				"../ui/settingsdialog.ui");
+			outputPaths = (
+				"qrc_color_widgets.cpp",
+				"qrc_resources.cpp",
+				"moc_abstract_widget_list.cpp",
+				"moc_bound_color_selector.cpp",
+				"moc_color_2d_slider.cpp",
+				"moc_color_delegate.cpp",
+				"moc_color_dialog.cpp",
+				"moc_color_line_edit.cpp",
+				"moc_color_list_widget.cpp",
+				"moc_color_palette.cpp",
+				"moc_color_palette_model.cpp",
+				"moc_color_palette_widget.cpp",
+				"moc_color_preview.cpp",
+				"moc_color_selector.cpp",
+				"moc_color_wheel.cpp",
+				"moc_gradient_delegate.cpp",
+				"moc_gradient_editor.cpp",
+				"moc_gradient_list_model.cpp",
+				"moc_gradient_slider.cpp",
+				"moc_harmony_color_wheel.cpp",
+				"moc_hue_slider.cpp",
+				"moc_swatch.cpp",
+				"moc_gerberplotterdialog.cpp",
+				"moc_gerberstencilgenerator.cpp",
+				"moc_renderthread.cpp",
+				"moc_aperturelistwidget.cpp",
+				"moc_settingsdialog.cpp",
+				"moc_snapslider.cpp",
+				"moc_tipoftheday.cpp",
+				"ui_color_dialog.h",
+				"ui_color_palette_widget.h",
+				"ui_gerberplotterdialog.h",
+				"ui_gerberstencilgenerator.h",
+				"ui_settingsdialog.h");
+			shellPath = "/bin/sh";
+			shellScript = "make -C /Users/tobiasvogel/src/GerberStencilGenerator/deploy -f GerberStencilGenerator.xcodeproj/qt_preprocess.mak";
+			showEnvVarsInLog = "0";
+			alwaysOutOfDate = "1";
+		};
+		F7E50F631C51CD5B5DC0BC43 = {
+			buildActionMask = 2147483647;
+			files = (
+				"7588100173C85A91C328CDC3",
+				"E1739FEEBC278A0C949DD1A8",
+				"AFFF0FBA2C0998AE97624E20",
+				"4C421C7DF5F34EB27A364BF0",
+				"D79C0147F3DC0809BAA08758",
+				"8722210F00A666FA301F0D14",
+				"3D2B755A8C6ACB9DE19CAFFA",
+				"89FC4064DFB5FEB846A44BB2",
+				"7DABF6787574B5E8DE93C923",
+				"5F39EE04F05D8D6FC573779B",
+				"AB80AFFA4CC29B20BC92A2CF",
+				"4CF2CB89A3B4891DD813E9DD",
+				"F34E27990B002A62A3624367",
+				"4F15FE95E4851D1AB321E33A",
+				"25AACCF913D56E352C27AD20",
+				"3F25227BDFEC9DB80870FFF0",
+				"B9605C1ED4B8BFAE4A04A44A",
+				"C1D6541D65FA6DC225996097",
+				"5275C997F569B65A4815202F",
+				"6937044325B4A23A1F6937A5",
+				"3986D2CB449A77BD2AC8CDF6",
+				"E88CA15E4D2E2B7BB07A3965",
+				"5F1FB58A12B698D3418BF76E",
+				"1AE170C811AB945BEA04D2AD",
+				"95187701DD4258D132CEBBA1",
+				"CD37E10573655102F3D359F2",
+				"895957ED0C8A1689E81F7548",
+				"119443A9569E41F62A4CEC1D",
+				"04E7A421042C894341C1D43A",
+				"5C6E8B18E9B51B525281B606",
+				"6A4AA2BBDFE4C03C4A6D5F91",
+				"2E02C42EAB03759D8147B5BD",
+				"9E078E6A31D1C0407AB792A2",
+				"30BD85B21E80B03E06C45027",
+				"74E5D7E6AC2493A9E77F073E",
+				"5DBB92563580AB7A01091E5F",
+				"B422A2126E878BC2E6A41592",
+				"2A34011980288624B837C9F7",
+				"9053727ED6B0681AFAEAFCE9",
+				"DA6B7F23420C9B6B42DDBE5B",
+				"0A002E16EFE05EF056E38C08",
+				"8ACB4E552F38214234D3BEDB",
+				"DA93DE4AA5B0EC7423417E72",
+				"FCCE61977B91D2034083CF43",
+				"8D81D0D3697E92E1D8D62532",
+				"6B279F2D11C06BFE53B322C1",
+				"4438AA7ABCACF068CEDD8622",
+				"66D4BF75AE301DB0B75F834F",
+				"B2870D711E1A93C66710C787",
+				"2F2182864A999697342D1CC8",
+				"BD0999B18C05DCC571847AC9",
+				"F6CBA5590B0B73BDABE86C6F",
+				"552DB9B553706482F7644632",
+				"0F972324E8D84CF74BC6385D",
+				"7AE29045CC09EDE70571CBE7",
+				"1413CEFFD2A076D2C9F62DC8",
+				"F211DC4AED0EA75B93713FDB",
+				"AF50FF3E0EF2B35A40D2F3B7",
+				"E3C626788FCF9E4BB49B2889",
+				"31C1AA9C44EBB2FB1967B07D",
+				"A6D2191DB6FCE9F3FC5821F8",
+				"2173F51F9CBF892C50A7ECC4",
+				"106FC996548AE9CEEF6CF4D6",
+				"5885C1A50F0B161C7FF3415F",
+				"AC45E11A3D525894C999D2D4",
+				"0FA265649714224439933800",
+				"E2D54C878CAA4A062F513E8E");
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Compile Sources";
+		};
+		B855CEC0D6F75E47DE56BF77 = {
+			isa = PBXFileReference;
+			name = "gerbv";
+			path = "/opt/homebrew/Cellar/gerbv/2.10.0_1/lib/libgerbv.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		DF404500C0966AA53A0CE847 = {
+			fileRef = "B855CEC0D6F75E47DE56BF77";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		D83AB99FB018201BF196BF1E = {
+			isa = PBXFileReference;
+			name = "pixman-1";
+			path = "/opt/homebrew/Cellar/pixman/0.44.2/lib/libpixman-1.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		0DCA7ED0A42E51F1C2861257 = {
+			fileRef = "D83AB99FB018201BF196BF1E";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		940C1A58F6A03BCE70EE6DA4 = {
+			isa = PBXFileReference;
+			name = "gtk-quartz-2.0";
+			path = "/opt/homebrew/Cellar/gtk+/2.24.33_2/lib/libgtk-quartz-2.0.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		37F3E5A38B17D05D41CA681F = {
+			fileRef = "940C1A58F6A03BCE70EE6DA4";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		422530CEC7AC6B0A66F56F56 = {
+			isa = PBXFileReference;
+			name = "gdk-quartz-2.0";
+			path = "/opt/homebrew/Cellar/gtk+/2.24.33_2/lib/libgdk-quartz-2.0.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		FB8926EC41D11F7E231F3973 = {
+			fileRef = "422530CEC7AC6B0A66F56F56";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		AEA456A2F75ED9F5CDA7BCBE = {
+			isa = PBXFileReference;
+			name = "Cocoa.framework";
+			path = "/System/Library/Frameworks/Cocoa.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		1BB705CDB741E2B7450201A5 = {
+			fileRef = "AEA456A2F75ED9F5CDA7BCBE";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5D450C133A1E962C4C701689 = {
+			isa = PBXFileReference;
+			name = "pangocairo-1.0";
+			path = "/opt/homebrew/Cellar/pango/1.55.5/lib/libpangocairo-1.0.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		22ABFEF2EEDF8CAD54FEBC1C = {
+			fileRef = "5D450C133A1E962C4C701689";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6A726206E6DBFB3680240E93 = {
+			isa = PBXFileReference;
+			name = "pango-1.0";
+			path = "/opt/homebrew/Cellar/pango/1.55.5/lib/libpango-1.0.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		5DAF236F8E3D3C5885B10632 = {
+			fileRef = "6A726206E6DBFB3680240E93";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		145EF6B18255B82A8838826E = {
+			isa = PBXFileReference;
+			name = "harfbuzz";
+			path = "/opt/homebrew/Cellar/harfbuzz/10.1.0/lib/libharfbuzz.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		992BAEF4A97AE014F6E588C9 = {
+			fileRef = "145EF6B18255B82A8838826E";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		4D765E1B1EA6C757220C63E7 = {
+			isa = PBXFileReference;
+			name = "CoreFoundation.framework";
+			path = "/System/Library/Frameworks/CoreFoundation.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		F8B465CE34D8DF87AAE95913 = {
+			fileRef = "4D765E1B1EA6C757220C63E7";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		DFD7912080BC557230093752 = {
+			isa = PBXFileReference;
+			name = "ApplicationServices.framework";
+			path = "/System/Library/Frameworks/ApplicationServices.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		328FD74542F6E2C873EE4D4B = {
+			fileRef = "DFD7912080BC557230093752";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6EA9B90824C6610A5584721E = {
+			isa = PBXFileReference;
+			name = "atk-1.0";
+			path = "/opt/homebrew/Cellar/at-spi2-core/2.54.0/lib/libatk-1.0.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		A51DD1477AE3582154FDC449 = {
+			fileRef = "6EA9B90824C6610A5584721E";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		0BCF339422E6CD552995D4CF = {
+			isa = PBXFileReference;
+			name = "cairo";
+			path = "/opt/homebrew/Cellar/cairo/1.18.2/lib/libcairo.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		F5057236A723D9843039C82C = {
+			fileRef = "0BCF339422E6CD552995D4CF";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		E66878B59770C9748D896AA6 = {
+			isa = PBXFileReference;
+			name = "gdk_pixbuf-2.0";
+			path = "/opt/homebrew/Cellar/gdk-pixbuf/2.42.12/lib/libgdk_pixbuf-2.0.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		8F6F1D357B982A2DF9B7A277 = {
+			fileRef = "E66878B59770C9748D896AA6";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		12BA954D0F62D5445CFF80E9 = {
+			isa = PBXFileReference;
+			name = "gio-2.0";
+			path = "/opt/homebrew/Cellar/glib/2.82.4/lib/libgio-2.0.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		37FD194FFB17BC6823605AD9 = {
+			fileRef = "12BA954D0F62D5445CFF80E9";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		B30855158E1540EC7B4959BC = {
+			isa = PBXFileReference;
+			name = "gobject-2.0";
+			path = "/opt/homebrew/Cellar/glib/2.82.4/lib/libgobject-2.0.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		CFE2CBE7602C5F051D1D6340 = {
+			fileRef = "B30855158E1540EC7B4959BC";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		396D38245FF5ACDF00DBB970 = {
+			isa = PBXFileReference;
+			name = "glib-2.0";
+			path = "/opt/homebrew/Cellar/glib/2.82.4/lib/libglib-2.0.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		26C23AE2F347A228B7348C74 = {
+			fileRef = "396D38245FF5ACDF00DBB970";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		DF57F61F154A0990CE52A38A = {
+			isa = PBXFileReference;
+			name = "intl";
+			path = "/opt/homebrew/opt/gettext/lib/libintl.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		700BAC5E65A5066AB7CE686F = {
+			fileRef = "DF57F61F154A0990CE52A38A";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B397883925DC35028BD535B = {
+			isa = PBXFileReference;
+			name = "QtWidgets.framework";
+			path = "/Users/tobiasvogel/Qt/6.5.3/macos/lib/QtWidgets.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		CEC51EB7F8F42E754AF5B7CB = {
+			fileRef = "6B397883925DC35028BD535B";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5286102FBE76DAD73E8C4E4D = {
+			isa = PBXFileReference;
+			name = "QtGui.framework";
+			path = "/Users/tobiasvogel/Qt/6.5.3/macos/lib/QtGui.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		7A79D78A2107180859FBFEA1 = {
+			fileRef = "5286102FBE76DAD73E8C4E4D";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		723F90793B2C195E2CCB2233 = {
+			isa = PBXFileReference;
+			name = "AppKit.framework";
+			path = "/System/Library/Frameworks/AppKit.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		F2A75ACAC9DF6A3F4E5711E7 = {
+			fileRef = "723F90793B2C195E2CCB2233";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3A8EF9C62A8D4790CBB89CEA = {
+			isa = PBXFileReference;
+			name = "ImageIO.framework";
+			path = "/System/Library/Frameworks/ImageIO.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		61EEC397DC8556BF8C4E36A7 = {
+			fileRef = "3A8EF9C62A8D4790CBB89CEA";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		1B2543FCC48E9436F21C4F63 = {
+			isa = PBXFileReference;
+			name = "Metal.framework";
+			path = "/System/Library/Frameworks/Metal.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		B3FE8FAC746D3D5BB24FA398 = {
+			fileRef = "1B2543FCC48E9436F21C4F63";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		71C407C51518E633CEADC2BB = {
+			isa = PBXFileReference;
+			name = "QtXml.framework";
+			path = "/Users/tobiasvogel/Qt/6.5.3/macos/lib/QtXml.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		3152915AC2FCC246FC128899 = {
+			fileRef = "71C407C51518E633CEADC2BB";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		58325753F2DFE2744DE017D0 = {
+			isa = PBXFileReference;
+			name = "QtCore.framework";
+			path = "/Users/tobiasvogel/Qt/6.5.3/macos/lib/QtCore.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		A6420E77EDAEB6C55F02B219 = {
+			fileRef = "58325753F2DFE2744DE017D0";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		A1A67BEAA744704B29168D39 = {
+			isa = PBXFileReference;
+			name = "IOKit.framework";
+			path = "/System/Library/Frameworks/IOKit.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		8D267F2E4776F0ECA2F49DC8 = {
+			fileRef = "A1A67BEAA744704B29168D39";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2B774D8E4178765CE52EAAF5 = {
+			isa = PBXFileReference;
+			name = "DiskArbitration.framework";
+			path = "/System/Library/Frameworks/DiskArbitration.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		A99B2AA0F9CBBDD12BA126A4 = {
+			fileRef = "2B774D8E4178765CE52EAAF5";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		8D9815BDB5BD9F90D2BC05C5 = {
+			isa = PBXFileReference;
+			name = "AGL.framework";
+			path = "/System/Library/Frameworks/AGL.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		E45E51A644D5FC9F942ECE55 = {
+			fileRef = "8D9815BDB5BD9F90D2BC05C5";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		D4B32C2222F82AC56BADEB21 = {
+			isa = PBXFileReference;
+			name = "OpenGL.framework";
+			path = "/System/Library/Frameworks/OpenGL.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		8771A8C96E9C391044035D99 = {
+			fileRef = "D4B32C2222F82AC56BADEB21";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		AF39DD055C3EF8226FBE929D = {
+			children = (
+				"B855CEC0D6F75E47DE56BF77",
+				"D83AB99FB018201BF196BF1E",
+				"940C1A58F6A03BCE70EE6DA4",
+				"422530CEC7AC6B0A66F56F56",
+				"AEA456A2F75ED9F5CDA7BCBE",
+				"5D450C133A1E962C4C701689",
+				"6A726206E6DBFB3680240E93",
+				"145EF6B18255B82A8838826E",
+				"4D765E1B1EA6C757220C63E7",
+				"DFD7912080BC557230093752",
+				"6EA9B90824C6610A5584721E",
+				"0BCF339422E6CD552995D4CF",
+				"E66878B59770C9748D896AA6",
+				"12BA954D0F62D5445CFF80E9",
+				"B30855158E1540EC7B4959BC",
+				"396D38245FF5ACDF00DBB970",
+				"DF57F61F154A0990CE52A38A",
+				"6B397883925DC35028BD535B",
+				"5286102FBE76DAD73E8C4E4D",
+				"723F90793B2C195E2CCB2233",
+				"3A8EF9C62A8D4790CBB89CEA",
+				"1B2543FCC48E9436F21C4F63",
+				"71C407C51518E633CEADC2BB",
+				"58325753F2DFE2744DE017D0",
+				"A1A67BEAA744704B29168D39",
+				"2B774D8E4178765CE52EAAF5",
+				"8D9815BDB5BD9F90D2BC05C5",
+				"D4B32C2222F82AC56BADEB21");
+			isa = PBXGroup;
+			name = "Frameworks";
+			sourceTree = "<group>";
+		};
+		D1C883685E82D5676953459A = {
+			buildActionMask = 2147483647;
+			files = (
+				"DF404500C0966AA53A0CE847",
+				"0DCA7ED0A42E51F1C2861257",
+				"37F3E5A38B17D05D41CA681F",
+				"FB8926EC41D11F7E231F3973",
+				"1BB705CDB741E2B7450201A5",
+				"22ABFEF2EEDF8CAD54FEBC1C",
+				"5DAF236F8E3D3C5885B10632",
+				"992BAEF4A97AE014F6E588C9",
+				"F8B465CE34D8DF87AAE95913",
+				"328FD74542F6E2C873EE4D4B",
+				"A51DD1477AE3582154FDC449",
+				"F5057236A723D9843039C82C",
+				"8F6F1D357B982A2DF9B7A277",
+				"37FD194FFB17BC6823605AD9",
+				"CFE2CBE7602C5F051D1D6340",
+				"26C23AE2F347A228B7348C74",
+				"700BAC5E65A5066AB7CE686F",
+				"CEC51EB7F8F42E754AF5B7CB",
+				"7A79D78A2107180859FBFEA1",
+				"F2A75ACAC9DF6A3F4E5711E7",
+				"61EEC397DC8556BF8C4E36A7",
+				"B3FE8FAC746D3D5BB24FA398",
+				"3152915AC2FCC246FC128899",
+				"A6420E77EDAEB6C55F02B219",
+				"8D267F2E4776F0ECA2F49DC8",
+				"A99B2AA0F9CBBDD12BA126A4",
+				"E45E51A644D5FC9F942ECE55",
+				"8771A8C96E9C391044035D99");
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Link Binary With Libraries";
+		};
+		30414803F31797EB689AE508 = {
+			buildActionMask = 2147483647;
+			files = (
+				"8B2B0B902532144BCD193F6A");
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Copy Bundle Resources";
+		};
+		99542592E9780B9225F24AA8 = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3A2E314834252E4181CE791 = {
+			isa = PBXFileReference;
+			includeInIndex = 0;
+			explicitFileType = "wrapper.application";
+			path = "GerberStencilGenerator.app";
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FE0A091FDBFB3E9C31B7A1BD = {
+			children = (
+				"F3A2E314834252E4181CE791");
+			isa = PBXGroup;
+			name = "Products";
+			sourceTree = "<group>";
+		};
+		E8C543AB96796ECAA2E65C57 = {
+			children = (
+				"2EB56BE3C2D93CDAB0C52E67",
+				"25B08E2869634E9BCBA333A2",
+				"87DF60DE337FB58864343E39",
+				"12E908B8A1C3C07C115504F5",
+				"74B182DB50CB5611B5C1C297",
+				"AF39DD055C3EF8226FBE929D",
+				"FE0A091FDBFB3E9C31B7A1BD");
+			isa = PBXGroup;
+			name = "GerberStencilGenerator";
+			sourceTree = "<group>";
+		};
+		EBF810C9EF2B24B4899B1930 = {
+			buildPhases = (
+				"5E618435888B9D49F8540165",
+				"7EF0942E79C014DCEC8976BC");
+			dependencies = (
+				);
+			buildConfigurationList = 6CC3B5D2136C7CD6A5CF5A59;
+			isa = PBXAggregateTarget;
+			buildRules = (
+);
+			productName = "Qt Preprocess";
+			name = "Qt Preprocess";
+		};
+		0C806DC96E4661FB36087A59 = {
+			isa = PBXTargetDependency;
+			target = "EBF810C9EF2B24B4899B1930";
+		};
+		8643DB6680A55BC8BBD0A739 = {
+			buildPhases = (
+				"F7E50F631C51CD5B5DC0BC43",
+				"D1C883685E82D5676953459A",
+				"30414803F31797EB689AE508",
+				"99542592E9780B9225F24AA8");
+			dependencies = (
+				"0C806DC96E4661FB36087A59");
+			productReference = "F3A2E314834252E4181CE791";
+			buildConfigurationList = 6CC3B5D2136C7CD6A5CF5A59;
+			isa = PBXNativeTarget;
+			buildRules = (
+);
+			productType = "com.apple.product-type.application";
+			name = "GerberStencilGenerator";
+			productName = "GerberStencilGenerator";
+		};
+		3AA6C32AC930069E80220CF1 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = "NO";
+				"ARCHS[sdk=macosx*]" = "x86_64 arm64";
+				COPY_PHASE_STRIP = "NO";
+				ENABLE_BITCODE = "NO";
+				GCC_OPTIMIZATION_LEVEL = "0";
+				ONLY_ACTIVE_ARCH = "YES";
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.test.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "GerberStencilGenerator";
+				QMAKE_FULL_VERSION = "1.0.0";
+				QMAKE_PKGINFO_TYPEINFO = "????";
+				QMAKE_SHORT_VERSION = "1.0";
+				QT_LIBRARY_SUFFIX = "";
+				SDKROOT = "macosx";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				CC = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang";
+				LDPLUSPLUS = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++";
+				INFOPLIST_FILE = "Info.plist";
+				SYMROOT = "$(PROJECT_DIR)";
+				DYLIB_CURRENT_VERSION = "1.0.0";
+				DYLIB_COMPATIBILITY_VERSION = "1.0";
+				MACOSX_DEPLOYMENT_TARGET = "11.0";
+				HEADER_SEARCH_PATHS = (
+					"../../GerberStencilGenerator",
+					".",
+					"../3rdparty/Qt-Color-Widgets-master/src",
+					"../3rdparty/Qt-Color-Widgets-master/include",
+					"../src",
+					"/opt/homebrew/Cellar/gerbv/2.10.0_1/include/gerbv-2.10.0",
+					"/opt/homebrew/Cellar/gtk+/2.24.33_2/include/gtk-2.0",
+					"/opt/homebrew/Cellar/gtk+/2.24.33_2/lib/gtk-2.0/include",
+					"/opt/homebrew/Cellar/pango/1.55.5/include/pango-1.0",
+					"/opt/homebrew/Cellar/fribidi/1.0.16/include/fribidi",
+					"/opt/homebrew/Cellar/harfbuzz/10.1.0/include/harfbuzz",
+					"/opt/homebrew/Cellar/graphite2/1.3.14/include",
+					"/opt/homebrew/Cellar/cairo/1.18.2/include",
+					"/opt/homebrew/Cellar/at-spi2-core/2.54.0/include/atk-1.0",
+					"/opt/homebrew/Cellar/cairo/1.18.2/include/cairo",
+					"/opt/homebrew/Cellar/fontconfig/2.15.0/include",
+					"/opt/homebrew/opt/freetype/include/freetype2",
+					"/opt/homebrew/Cellar/libxext/1.3.6/include",
+					"/opt/homebrew/Cellar/xorgproto/2024.1/include",
+					"/opt/homebrew/Cellar/libxrender/0.9.12/include",
+					"/opt/homebrew/Cellar/libx11/1.8.10/include",
+					"/opt/homebrew/Cellar/libxcb/1.17.0/include",
+					"/opt/homebrew/Cellar/libxau/1.0.12/include",
+					"/opt/homebrew/Cellar/libxdmcp/1.1.5/include",
+					"/opt/homebrew/Cellar/pixman/0.44.2/include/pixman-1",
+					"/opt/homebrew/Cellar/gdk-pixbuf/2.42.12/include/gdk-pixbuf-2.0",
+					"/opt/homebrew/opt/libpng/include/libpng16",
+					"/opt/homebrew/opt/libtiff/include",
+					"/opt/homebrew/opt/zstd/include",
+					"/opt/homebrew/Cellar/xz/5.6.3/include",
+					"/opt/homebrew/opt/jpeg-turbo/include",
+					"/opt/homebrew/Cellar/glib/2.82.4/include",
+					"/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/usr/include/ffi",
+					"/opt/homebrew/Cellar/glib/2.82.4/include/glib-2.0",
+					"/opt/homebrew/Cellar/glib/2.82.4/lib/glib-2.0/include",
+					"/opt/homebrew/opt/gettext/include",
+					"/opt/homebrew/Cellar/pcre2/10.44/include",
+					"../../../Qt/6.5.3/macos/lib/QtWidgets.framework/Headers",
+					"../../../Qt/6.5.3/macos/lib/QtGui.framework/Headers",
+					"../../../Qt/6.5.3/macos/lib/QtXml.framework/Headers",
+					"../../../Qt/6.5.3/macos/lib/QtCore.framework/Headers",
+					".",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/AGL.framework/Headers",
+					".",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/AGL.framework/Headers",
+					"../../../Qt/6.5.3/macos/mkspecs/macx-clang");
+				LIBRARY_SEARCH_PATHS = (
+					"/opt/homebrew/Cellar/gerbv/2.10.0_1/lib",
+					"/opt/homebrew/Cellar/pixman/0.44.2/lib",
+					"/opt/homebrew/Cellar/gtk+/2.24.33_2/lib",
+					"/System/Library/Frameworks/",
+					"/opt/homebrew/Cellar/pango/1.55.5/lib",
+					"/opt/homebrew/Cellar/harfbuzz/10.1.0/lib",
+					"/opt/homebrew/Cellar/at-spi2-core/2.54.0/lib",
+					"/opt/homebrew/Cellar/cairo/1.18.2/lib",
+					"/opt/homebrew/Cellar/gdk-pixbuf/2.42.12/lib",
+					"/opt/homebrew/Cellar/glib/2.82.4/lib",
+					"/opt/homebrew/opt/gettext/lib",
+					"/Users/tobiasvogel/Qt/6.5.3/macos/lib");
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/tobiasvogel/Qt/6.5.3/macos/lib",
+					"/Users/tobiasvogel/Qt/6.5.3/macos/lib");
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-O2",
+					"-Wall",
+					"-Wextra",
+					"-DQT_DEPRECATED_WARNINGS",
+					"-DQT_NO_KEYWORDS",
+					"-DQT_NO_DEBUG",
+					"-DQT_WIDGETS_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_XML_LIB",
+					"-DQT_CORE_LIB");
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-stdlib=libc++",
+					"-O2",
+					"-std=gnu++1z",
+					"-Wall",
+					"-Wextra",
+					"-DQT_DEPRECATED_WARNINGS",
+					"-DQT_NO_KEYWORDS",
+					"-DQT_NO_DEBUG",
+					"-DQT_WIDGETS_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_XML_LIB",
+					"-DQT_CORE_LIB");
+				OTHER_LDFLAGS = (
+						"-stdlib=libc++",
+						"-headerpad_max_install_names",
+						"-Wl,-rpath,@executable_path/../Frameworks",
+						"-Wl,-rpath,/Users/tobiasvogel/Qt/6.5.3/macos/lib",
+						"-F/Users/tobiasvogel/Qt/6.5.3/macos/lib",
+						"-L/opt/homebrew/Cellar/gerbv/2.10.0_1/lib",
+						"-L/opt/homebrew/Cellar/pixman/0.44.2/lib",
+						"-L/opt/homebrew/Cellar/gtk+/2.24.33_2/lib",
+						"-L/opt/homebrew/Cellar/pango/1.55.5/lib",
+						"-L/opt/homebrew/Cellar/harfbuzz/10.1.0/lib",
+						"-L/opt/homebrew/Cellar/at-spi2-core/2.54.0/lib",
+						"-L/opt/homebrew/Cellar/cairo/1.18.2/lib",
+						"-L/opt/homebrew/Cellar/gdk-pixbuf/2.42.12/lib",
+						"-L/opt/homebrew/Cellar/glib/2.82.4/lib",
+						"-L/opt/homebrew/opt/gettext/lib");
+				ARCHS = "x86_64 arm64";
+			};
+			name = "Debug";
+		};
+		77418F46922677BB04ED38DD = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = "NO";
+				"ARCHS[sdk=macosx*]" = "x86_64 arm64";
+				COPY_PHASE_STRIP = "NO";
+				ENABLE_BITCODE = "NO";
+				GCC_OPTIMIZATION_LEVEL = "0";
+				ONLY_ACTIVE_ARCH = "YES";
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.test.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "GerberStencilGenerator";
+				QMAKE_FULL_VERSION = "1.0.0";
+				QMAKE_PKGINFO_TYPEINFO = "????";
+				QMAKE_SHORT_VERSION = "1.0";
+				QT_LIBRARY_SUFFIX = "";
+				SDKROOT = "macosx";
+				PRODUCT_NAME = "GerberStencilGenerator";
+			};
+			name = "Debug";
+		};
+		339EE1B2CC4FC24589A0EA95 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = "NO";
+				"ARCHS[sdk=macosx*]" = "x86_64 arm64";
+				COPY_PHASE_STRIP = "NO";
+				ENABLE_BITCODE = "NO";
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.test.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "GerberStencilGenerator";
+				QMAKE_FULL_VERSION = "1.0.0";
+				QMAKE_PKGINFO_TYPEINFO = "????";
+				QMAKE_SHORT_VERSION = "1.0";
+				QT_LIBRARY_SUFFIX = "";
+				SDKROOT = "macosx";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				CC = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang";
+				LDPLUSPLUS = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++";
+				INFOPLIST_FILE = "Info.plist";
+				SYMROOT = "$(PROJECT_DIR)";
+				DYLIB_CURRENT_VERSION = "1.0.0";
+				DYLIB_COMPATIBILITY_VERSION = "1.0";
+				MACOSX_DEPLOYMENT_TARGET = "11.0";
+				HEADER_SEARCH_PATHS = (
+					"../../GerberStencilGenerator",
+					".",
+					"../3rdparty/Qt-Color-Widgets-master/src",
+					"../3rdparty/Qt-Color-Widgets-master/include",
+					"../src",
+					"/opt/homebrew/Cellar/gerbv/2.10.0_1/include/gerbv-2.10.0",
+					"/opt/homebrew/Cellar/gtk+/2.24.33_2/include/gtk-2.0",
+					"/opt/homebrew/Cellar/gtk+/2.24.33_2/lib/gtk-2.0/include",
+					"/opt/homebrew/Cellar/pango/1.55.5/include/pango-1.0",
+					"/opt/homebrew/Cellar/fribidi/1.0.16/include/fribidi",
+					"/opt/homebrew/Cellar/harfbuzz/10.1.0/include/harfbuzz",
+					"/opt/homebrew/Cellar/graphite2/1.3.14/include",
+					"/opt/homebrew/Cellar/cairo/1.18.2/include",
+					"/opt/homebrew/Cellar/at-spi2-core/2.54.0/include/atk-1.0",
+					"/opt/homebrew/Cellar/cairo/1.18.2/include/cairo",
+					"/opt/homebrew/Cellar/fontconfig/2.15.0/include",
+					"/opt/homebrew/opt/freetype/include/freetype2",
+					"/opt/homebrew/Cellar/libxext/1.3.6/include",
+					"/opt/homebrew/Cellar/xorgproto/2024.1/include",
+					"/opt/homebrew/Cellar/libxrender/0.9.12/include",
+					"/opt/homebrew/Cellar/libx11/1.8.10/include",
+					"/opt/homebrew/Cellar/libxcb/1.17.0/include",
+					"/opt/homebrew/Cellar/libxau/1.0.12/include",
+					"/opt/homebrew/Cellar/libxdmcp/1.1.5/include",
+					"/opt/homebrew/Cellar/pixman/0.44.2/include/pixman-1",
+					"/opt/homebrew/Cellar/gdk-pixbuf/2.42.12/include/gdk-pixbuf-2.0",
+					"/opt/homebrew/opt/libpng/include/libpng16",
+					"/opt/homebrew/opt/libtiff/include",
+					"/opt/homebrew/opt/zstd/include",
+					"/opt/homebrew/Cellar/xz/5.6.3/include",
+					"/opt/homebrew/opt/jpeg-turbo/include",
+					"/opt/homebrew/Cellar/glib/2.82.4/include",
+					"/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/usr/include/ffi",
+					"/opt/homebrew/Cellar/glib/2.82.4/include/glib-2.0",
+					"/opt/homebrew/Cellar/glib/2.82.4/lib/glib-2.0/include",
+					"/opt/homebrew/opt/gettext/include",
+					"/opt/homebrew/Cellar/pcre2/10.44/include",
+					"../../../Qt/6.5.3/macos/lib/QtWidgets.framework/Headers",
+					"../../../Qt/6.5.3/macos/lib/QtGui.framework/Headers",
+					"../../../Qt/6.5.3/macos/lib/QtXml.framework/Headers",
+					"../../../Qt/6.5.3/macos/lib/QtCore.framework/Headers",
+					".",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/AGL.framework/Headers",
+					".",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/AGL.framework/Headers",
+					"../../../Qt/6.5.3/macos/mkspecs/macx-clang");
+				LIBRARY_SEARCH_PATHS = (
+					"/opt/homebrew/Cellar/gerbv/2.10.0_1/lib",
+					"/opt/homebrew/Cellar/pixman/0.44.2/lib",
+					"/opt/homebrew/Cellar/gtk+/2.24.33_2/lib",
+					"/System/Library/Frameworks/",
+					"/opt/homebrew/Cellar/pango/1.55.5/lib",
+					"/opt/homebrew/Cellar/harfbuzz/10.1.0/lib",
+					"/opt/homebrew/Cellar/at-spi2-core/2.54.0/lib",
+					"/opt/homebrew/Cellar/cairo/1.18.2/lib",
+					"/opt/homebrew/Cellar/gdk-pixbuf/2.42.12/lib",
+					"/opt/homebrew/Cellar/glib/2.82.4/lib",
+					"/opt/homebrew/opt/gettext/lib",
+					"/Users/tobiasvogel/Qt/6.5.3/macos/lib");
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/tobiasvogel/Qt/6.5.3/macos/lib",
+					"/Users/tobiasvogel/Qt/6.5.3/macos/lib");
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-O2",
+					"-Wall",
+					"-Wextra",
+					"-DQT_DEPRECATED_WARNINGS",
+					"-DQT_NO_KEYWORDS",
+					"-DQT_NO_DEBUG",
+					"-DQT_WIDGETS_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_XML_LIB",
+					"-DQT_CORE_LIB");
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-stdlib=libc++",
+					"-O2",
+					"-std=gnu++1z",
+					"-Wall",
+					"-Wextra",
+					"-DQT_DEPRECATED_WARNINGS",
+					"-DQT_NO_KEYWORDS",
+					"-DQT_NO_DEBUG",
+					"-DQT_WIDGETS_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_XML_LIB",
+					"-DQT_CORE_LIB");
+				OTHER_LDFLAGS = (
+						"-stdlib=libc++",
+						"-headerpad_max_install_names",
+						"-Wl,-rpath,@executable_path/../Frameworks",
+						"-Wl,-rpath,/Users/tobiasvogel/Qt/6.5.3/macos/lib",
+						"-F/Users/tobiasvogel/Qt/6.5.3/macos/lib",
+						"-L/opt/homebrew/Cellar/gerbv/2.10.0_1/lib",
+						"-L/opt/homebrew/Cellar/pixman/0.44.2/lib",
+						"-L/opt/homebrew/Cellar/gtk+/2.24.33_2/lib",
+						"-L/opt/homebrew/Cellar/pango/1.55.5/lib",
+						"-L/opt/homebrew/Cellar/harfbuzz/10.1.0/lib",
+						"-L/opt/homebrew/Cellar/at-spi2-core/2.54.0/lib",
+						"-L/opt/homebrew/Cellar/cairo/1.18.2/lib",
+						"-L/opt/homebrew/Cellar/gdk-pixbuf/2.42.12/lib",
+						"-L/opt/homebrew/Cellar/glib/2.82.4/lib",
+						"-L/opt/homebrew/opt/gettext/lib");
+				ARCHS = "x86_64 arm64";
+			};
+			name = "Release";
+		};
+		6666AA5E688052234F6758D8 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = "NO";
+				"ARCHS[sdk=macosx*]" = "x86_64 arm64";
+				COPY_PHASE_STRIP = "NO";
+				ENABLE_BITCODE = "NO";
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.test.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "GerberStencilGenerator";
+				QMAKE_FULL_VERSION = "1.0.0";
+				QMAKE_PKGINFO_TYPEINFO = "????";
+				QMAKE_SHORT_VERSION = "1.0";
+				QT_LIBRARY_SUFFIX = "";
+				SDKROOT = "macosx";
+				PRODUCT_NAME = "GerberStencilGenerator";
+			};
+			name = "Release";
+		};
+		DAC4C1AA5EDEA1C85E9CA5E6 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"3AA6C32AC930069E80220CF1",
+				"339EE1B2CC4FC24589A0EA95");
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		6CC3B5D2136C7CD6A5CF5A59 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"77418F46922677BB04ED38DD",
+				"6666AA5E688052234F6758D8");
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		6DB9C3763D02B1415CD9D565 = {
+			hasScannedForEncodings = 1;
+			compatibilityVersion = "Xcode 3.2";
+			isa = PBXProject;
+			mainGroup = "E8C543AB96796ECAA2E65C57";
+			productRefGroup = "FE0A091FDBFB3E9C31B7A1BD";
+			buildConfigurationList = "DAC4C1AA5EDEA1C85E9CA5E6";
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"8643DB6680A55BC8BBD0A739",
+				"EBF810C9EF2B24B4899B1930");
+			attributes = {
+				TargetAttributes = {
+				};
+			};
+		};
+	};
+	rootObject = "6DB9C3763D02B1415CD9D565";
+}
