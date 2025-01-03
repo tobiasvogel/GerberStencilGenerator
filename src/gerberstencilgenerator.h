@@ -119,8 +119,8 @@ private:
    QTemporaryFile tempLogFile;
    #endif
    QTemporaryFile tempImageFile;
-   bool _showTipAtStartup = true;
-   int _showTipOfTheDayNumber = 0;
+   bool _showTipAtStartup;
+   int _showTipOfTheDayNumber;
 
    QPushButton *previewZoomInButton;
    QPushButton *previewZoomOutButton;
@@ -199,6 +199,7 @@ protected Q_SLOTS:
    void restoreApertureItem( void );
    QColor pickColor( QColor initialColor, QString windowTitle );
    void setShowTipAtStartup( bool toggle );
+   void setShowNextTipNumber( int tipNumber );
    void openGerberPlotterDialog( void );
    void openCompilationDialog( void );
    void openEmbedTextDialog( void );

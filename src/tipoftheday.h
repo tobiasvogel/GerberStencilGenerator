@@ -73,6 +73,7 @@ protected Q_SLOTS:
 
 Q_SIGNALS:
    void showAtStartUp( bool );
+   void showNextTipNumber( int );
 
 private:
    bool _showAtStarup;

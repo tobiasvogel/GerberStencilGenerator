@@ -96,3 +96,8 @@ compile_commands.json
 /GerberStencilGenerator
 
 #EOF
+*.DS_Store
+__*.idx
+_*.idx
+*.idx
+*.qmake.stash

@@ -128,15 +128,16 @@ GerberStencilGenerator::GerberStencilGenerator( QWidget *parent ) :
    if ( _showTipAtStartup ) {
       tipOfTheDayDialog = new TipOfTheDay( this );
       QObject::connect( tipOfTheDayDialog, SIGNAL( showAtStartUp( bool ) ), this, SLOT( setShowTipAtStartup( bool ) ) );
+      QObject::connect( tipOfTheDayDialog, SIGNAL( showNextTipNumber( int ) ), this, SLOT( setShowNextTipNumber( int ) ) );
       this->showTipOfTheDay();
       bool maxtip = tipOfTheDayDialog->showTipNumber( _showTipOfTheDayNumber );
 
       if ( maxtip ) {
          qDebug() << "Next time request Tip Number: " << ( _showTipOfTheDayNumber + 1 );
-         userSettings->setValue( "showTipOfTheDayNumber", ( _showTipOfTheDayNumber + 1 ) );
+         userSettings->setValue( "TipOfTheDay/showTipOfTheDayNumber", ( _showTipOfTheDayNumber + 1 ) );
 
       } else {
-         userSettings->setValue( "showTipOfTheDayNumber", 0 );
+         userSettings->setValue( "TipOfTheDay/showTipOfTheDayNumber", 0 );
       }
    }
 
@@ -1041,7 +1042,13 @@ QColor GerberStencilGenerator::pickColor( QColor initialColor, QString windowTit
 
 void GerberStencilGenerator::setShowTipAtStartup( bool toggle ) {
    qDebug() << "Show Tip Of The Day at Startup:" << toggle;
-   userSettings->setValue( "showAtStartup", toggle );
+   userSettings->setValue( "TipOfTheDay/showAtStartup", QVariant( bool (toggle) ));
+   saveUserSettings();
+}
+
+void GerberStencilGenerator::setShowNextTipNumber( int tipNumber ) {
+    userSettings->setValue("TipOfTheDay/showTipOfTheDayNumber", QVariant( int (tipNumber) ));
+    saveUserSettings();
 }
 
 void GerberStencilGenerator::openGerberPlotterDialog() {
@@ -1308,6 +1315,9 @@ void GerberStencilGenerator::invokeRenderer( int width, int height, QStringList 
 
 void GerberStencilGenerator::showTipOfTheDay() {
    tipOfTheDayDialog->show();
+    if (userSettings->contains("TipOfTheDay/showTipOfTheDayNumber")) {
+       tipOfTheDayDialog->showTipNumber( _showTipOfTheDayNumber );
+    }
    tipOfTheDayDialog->raise();
 }
 
@@ -1372,6 +1382,13 @@ void GerberStencilGenerator::restoreUserSettings() {
    QVariant boolean;
    QVariant integer;
    userSettings->beginGroup( "Colors" );
+#ifdef QT_DEBUG
+   qDebug() << "Reading in previously stored settings...";
+   QStringList keysDebug = userSettings->allKeys();
+   Q_FOREACH (QString valueDebug, keysDebug) {
+       qDebug() << "KEY: "<< valueDebug;
+   }
+#endif
    color = userSettings->value( "flashColor", QVariant( QColor( 255, 0, 0, 255 ) ) );
    flashColor = color.value<QColor>();
    color = userSettings->value( "adjustmentColor", QVariant( QColor( 0, 255, 0, 255 ) ) );

@@ -154,6 +154,7 @@ bool TipOfTheDay::showTipNumber( int showTip = 0 ) {
    }
 
    this->showTip();
+   Q_EMIT showNextTipNumber(_currentTip);
 
    if ( _currentTip < ( showTip - 1 ) ) {
       return false;
@@ -175,6 +176,7 @@ void TipOfTheDay::loadNextTip( void ) {
    }
 
    this->showTip();
+   Q_EMIT showNextTipNumber(_currentTip);
 }
 
 void TipOfTheDay::loadPreviousTip( void ) {
