@@ -101,3 +101,4 @@ __*.idx
 _*.idx
 *.idx
 *.qmake.stash
+/build/
