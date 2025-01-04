@@ -102,5 +102,5 @@ macx {
 linux {
     ICON = resources/appicon/icon.png
     CONFIG += link_pkgconfig
-    PKGCONFIG += libgerbv cairo pixman-1
+    PKGCONFIG += libgerbv cairo pixman-1 gtk+-2.0
 }

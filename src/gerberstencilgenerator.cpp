@@ -77,12 +77,12 @@ GerberStencilGenerator::GerberStencilGenerator( QWidget *parent ) :
 
    ui->previewButton->setEnabled( true );
    /* FIXME: integrate setting into settings dialog
-   QAction *enableAutoPreviewAction = new QAction( ui->previewButton_2 );   
-   enableAutoPreviewAction->setCheckable( true );
-   enableAutoPreviewAction->setChecked( true );
-   enableAutoPreviewAction->setText( tr( "Auto-Update" ) );
-   ui->previewButton_2->addAction( enableAutoPreviewAction );
-   QObject::connect( enableAutoPreviewAction, SIGNAL( toggled( bool ) ), this, SLOT( enableAutoPreview( bool ) ) );
+      QAction *enableAutoPreviewAction = new QAction( ui->previewButton_2 );
+      enableAutoPreviewAction->setCheckable( true );
+      enableAutoPreviewAction->setChecked( true );
+      enableAutoPreviewAction->setText( tr( "Auto-Update" ) );
+      ui->previewButton_2->addAction( enableAutoPreviewAction );
+      QObject::connect( enableAutoPreviewAction, SIGNAL( toggled( bool ) ), this, SLOT( enableAutoPreview( bool ) ) );
    */
 
    QObject::connect( ui->plotGerberButton, SIGNAL( clicked() ), this, SLOT( openGerberPlotterDialog() ) );
@@ -1042,13 +1042,13 @@ QColor GerberStencilGenerator::pickColor( QColor initialColor, QString windowTit
 
 void GerberStencilGenerator::setShowTipAtStartup( bool toggle ) {
    qDebug() << "Show Tip Of The Day at Startup:" << toggle;
-   userSettings->setValue( "TipOfTheDay/showAtStartup", QVariant( bool (toggle) ));
+   userSettings->setValue( "TipOfTheDay/showAtStartup", QVariant( bool ( toggle ) ) );
    saveUserSettings();
 }
 
 void GerberStencilGenerator::setShowNextTipNumber( int tipNumber ) {
-    userSettings->setValue("TipOfTheDay/showTipOfTheDayNumber", QVariant( int (tipNumber) ));
-    saveUserSettings();
+   userSettings->setValue( "TipOfTheDay/showTipOfTheDayNumber", QVariant( int ( tipNumber ) ) );
+   saveUserSettings();
 }
 
 void GerberStencilGenerator::openGerberPlotterDialog() {
@@ -1315,15 +1315,18 @@ void GerberStencilGenerator::invokeRenderer( int width, int height, QStringList 
 
 void GerberStencilGenerator::showTipOfTheDay() {
    tipOfTheDayDialog->show();
-    if (userSettings->contains("TipOfTheDay/showTipOfTheDayNumber")) {
-       tipOfTheDayDialog->showTipNumber( _showTipOfTheDayNumber );
-    }
+
+   if ( userSettings->contains( "TipOfTheDay/showTipOfTheDayNumber" ) ) {
+      tipOfTheDayDialog->showTipNumber( _showTipOfTheDayNumber );
+   }
+
    tipOfTheDayDialog->raise();
 }
 
 void GerberStencilGenerator::requestQuit() {
    thread.requestInterruption();
    thread.quit();
+
    if ( !( hasUnsavedChanges ) ) {
       qApp->quit();
       #ifdef QT_DEBUG
@@ -1382,13 +1385,15 @@ void GerberStencilGenerator::restoreUserSettings() {
    QVariant boolean;
    QVariant integer;
    userSettings->beginGroup( "Colors" );
-#ifdef QT_DEBUG
+   #ifdef QT_DEBUG
    qDebug() << "Reading in previously stored settings...";
    QStringList keysDebug = userSettings->allKeys();
-   Q_FOREACH (QString valueDebug, keysDebug) {
-       qDebug() << "KEY: "<< valueDebug;
+
+   Q_FOREACH ( QString valueDebug, keysDebug ) {
+      qDebug() << "KEY: " << valueDebug;
    }
-#endif
+
+   #endif
    color = userSettings->value( "flashColor", QVariant( QColor( 255, 0, 0, 255 ) ) );
    flashColor = color.value<QColor>();
    color = userSettings->value( "adjustmentColor", QVariant( QColor( 0, 255, 0, 255 ) ) );
@@ -1967,7 +1972,8 @@ void  GerberStencilGenerator::dumpApertureMacro( void ) {
    }
 }
 
-void GerberStencilGenerator::afterWindowIsShown() {
+#endif
+
+void GerberStencilGenerator::afterWindowIsShown( void ) {
    this->resizeEvent( nullptr );
 }
-#endif

@@ -3,10 +3,15 @@ project(GerberStencilGenerator VERSION 1.0 LANGUAGES C CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+add_definitions(-DQT_NO_KEYWORDS)
+list(APPEND CMAKE_AUTOUIC_SEARCH_PATHS "ui" "src")
 
 find_package(QT NAMES Qt5 Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui Xml)
 find_package(Qt${QT_VERSION_MAJOR} OPTIONAL_COMPONENTS Widgets)
+
+find_package(PkgConfig REQUIRED)
 
 qt_standard_project_setup()
 
@@ -37,6 +42,7 @@ qt_add_executable(GerberStencilGenerator WIN32 MACOSX_BUNDLE
 )
 target_include_directories(GerberStencilGenerator PRIVATE
     src
+    ui
 )
 
 target_compile_definitions(GerberStencilGenerator PRIVATE
@@ -50,6 +56,28 @@ target_link_libraries(GerberStencilGenerator PRIVATE
     Qt::Xml
 )
 
+pkg_check_modules(GTK2 REQUIRED gtk+-2.0)
+pkg_check_modules(LIBGERBV REQUIRED libgerbv)
+pkg_check_modules(CAIRO REQUIRED cairo)
+pkg_check_modules(PIXMAN REQUIRED pixman-1) 
+target_include_directories(GerberStencilGenerator PUBLIC
+    ${GTK2_INCLUDE_DIRS}
+    ${LIBGERBV_INCLUDE_DIRS}
+    ${CAIRO_INCLUDE_DIRS}
+    ${PIXMAN_INCLUDE_DIRS}
+)
+target_link_libraries(GerberStencilGenerator PUBLIC
+    ${GTK2_LIBRARIES}
+    ${LIBGERBV_LIBRARIES}
+    ${CAIRO_LIBRARIES}
+    ${PIXMAN_LIBRARIES}
+)
+target_compile_options(GerberStencilGenerator PUBLIC
+    ${GTK2_CFLAGS_OTHER}
+    ${LIBGERBV_CFLAGS_OTHER}
+    ${CAIRO_CFLAGS_OTHER}
+    ${PIXMAN_CFLAGS_OTHER}
+)
 
 # Resources:
 set_source_files_properties("resources/apertures/circle.svg"
@@ -341,7 +369,7 @@ if((QT_VERSION_MAJOR GREATER 4))
     )
 endif()
 
-if((NOT (EXISTS _ss_PWD/3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee)) AND (EXISTS _ss_PWD/3rdparty/Qt-Color-Widgets-master))
+if((NOT (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee)) AND (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/Qt-Color-Widgets-master))
     target_sources(GerberStencilGenerator PUBLIC
         3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/abstract_widget_list.hpp
         3rdparty/Qt-Color-Widgets-master/include/QtColorWidgets/bound_color_selector.hpp
@@ -410,7 +438,7 @@ if((NOT (EXISTS _ss_PWD/3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d
         FILES
             ${color_widgets_resource_files}
     )
-elseif((NOT (EXISTS _ss_PWD/3rdparty/Qt-Color-Widgets-master)) AND (EXISTS _ss_PWD/3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee))
+elseif((NOT (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/Qt-Color-Widgets-master)) AND (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee))
     target_sources(GerberStencilGenerator PUBLIC
         3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee/include/QtColorWidgets/abstract_widget_list.hpp
         3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee/include/QtColorWidgets/bound_color_selector.hpp
@@ -479,20 +507,11 @@ elseif((NOT (EXISTS _ss_PWD/3rdparty/Qt-Color-Widgets-master)) AND (EXISTS _ss_P
         FILES
             ${color_widgets_resource_files}
     )
-elseif((EXISTS _ss_PWD/3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee) AND (EXISTS _ss_PWD/3rdparty/Qt-Color-Widgets-master))
+elseif((EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee) AND (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/Qt-Color-Widgets-master))
     message(FATAL_ERROR "Directories \"Qt-Color-Widgets-2bc527adf371a534f6340943726b2d31627fa3ee\" and \"Qt-Color-Widgets-master\" both exist. Please remove either one.")
 else()
+    message(${CMAKE_CURRENT_SOURCE_DIR})
     message(FATAL_ERROR "Additional \"Qt-Color-Widgets\"-library required. Please read the README-file in \"3rdparty/\" directory.")
-endif()
-
-if(MACOS)
-    target_include_directories(GerberStencilGenerator PRIVATE
-        (pkg-config libgerbv cairo pixman-1 gtk+-2.0 --cflags | sed \'s/-I//g\')
-    )
-
-    target_link_libraries(GerberStencilGenerator PRIVATE
-        (pkg-config libgerbv cairo pixman-1 gtk+-2.0 --libs)
-    )
 endif()
 
 install(TARGETS GerberStencilGenerator
@@ -502,7 +521,7 @@ install(TARGETS GerberStencilGenerator
 
 qt_generate_deploy_app_script(
     TARGET GerberStencilGenerator
-    FILENAME_VARIABLE deploy_script
+    OUTPUT_SCRIPT deploy_script
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
 install(SCRIPT ${deploy_script})
